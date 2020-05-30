@@ -1,0 +1,71 @@
+@import "../../../styles/sass/main";
+.reviewWrapper {
+  .ratingResume {
+    display: flex;
+    align-items: flex-start;
+    padding: 1em 0;
+
+    .ratingTotal {
+      text-align: right;
+      display: block;
+      .ratingValue {
+        font-size: 3.4em;
+      }
+    }
+    .ratingDetailsContainer {
+      padding: 0 1.3em;
+      .ratingDetails {
+        .ratingDetailItem {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          .ratingText {
+            text-align: right;
+          }
+          .ratingProgress {
+            position: relative;
+            width: 100px;
+            margin: 0 1em;
+            .progressBg {
+              background-color: rgba(0, 0, 0, 0.1);
+              -webkit-border-radius: 100px;
+              border-radius: 100px;
+              bottom: 0;
+              display: block;
+              height: 3px;
+              left: 0;
+              right: 0;
+              top: 0;
+              position: absolute;
+            }
+            .progressFill {
+              background-color: $primaryColor;
+              -webkit-border-radius: 100px;
+              border-radius: 100px;
+              bottom: 0;
+              display: block;
+              height: 3px;
+              left: 0;
+              right: 0;
+              top: 0;
+              position: absolute;
+            }
+          }
+        }
+      }
+    }
+  }
+  .userReviews{
+    padding: 2em 0;
+    .review{
+      .reviewRating{
+      }
+      .reviewUserName{
+        margin-bottom: .75em;
+      }
+      .reviewUserComment{
+        font-size: 16px;
+      }
+    }
+  }
+}

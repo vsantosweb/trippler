@@ -1,25 +1,23 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
 
+import { Button } from 'antd';
+import Routes from './routes/Routes';
+import { Route, Switch, BrowserRouter, useHistory } from 'react-router-dom';
+const history = useHistory;
 function App() {
+
+  const routes = () => (
+
+    Routes.map((route, key) => {
+      return <Route exact={route.exact} path={route.path} component={route.component} key={key} />
+    })
+  )
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <BrowserRouter history={history}>
+      <Switch>
+        {routes()}
+      </Switch>
+    </BrowserRouter>
   );
 }
 
