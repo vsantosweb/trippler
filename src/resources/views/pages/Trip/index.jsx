@@ -107,11 +107,11 @@ const Trip = () => {
                                             <VerticalTimeline layout={'1-column'} animate={false} className={css.verticalTimeline}>
                                                 <VerticalTimelineElement
                                                     className="vertical-timeline-element--work"
-                                                    contentStyle={{ background: '#f9f9f9', color: '#333', boxShadow: 'none', border: 'solid 1px #dedfe0', display: 'flex', flexDirection: 'column-reverse' }}
+                                                    contentStyle={{ background: '#f9f9f9', color: '#333', boxShadow: 'none',  display: 'flex', flexDirection: 'column-reverse' }}
                                                     contentArrowStyle={{ borderRight: '7px solid  #dedfe0' }}
                                                     dateClassName={css.timeLineDate}
                                                     date="2º DIA - SÁBADO - De Cusco-PER a Águas Calientes-PER PACOTE 3 - City Tour no Vale Sagrado dos Incas + Trem + Hospedagem Águas Calientes - R$ 1.599,00 por pessoa"
-                                                    iconStyle={{ border: 'solid 3px rgb(24, 144, 255)', background: 'rgb(255, 255, 255)', color: '#333', display: 'flex', alignItems: 'center', justifyContent: 'center', boxShadow: 'none' }}
+                                                    iconStyle={{  background: 'rgb(255, 255, 255)', color: '#333', display: 'flex', alignItems: 'center', justifyContent: 'center', boxShadow: 'none' }}
                                                     icon={<span className="material-icons-outlined">local_library</span>}
                                                 >
                                                     <ul>
@@ -121,11 +121,11 @@ const Trip = () => {
                                                 </VerticalTimelineElement>
                                                 <VerticalTimelineElement
                                                     className="vertical-timeline-element--work"
-                                                    contentStyle={{ background: '#f9f9f9', color: '#333', boxShadow: 'none', border: 'solid 1px #dedfe0', display: 'flex', flexDirection: 'column-reverse' }}
+                                                    contentStyle={{ background: '#f9f9f9', color: '#333', boxShadow: 'none',  display: 'flex', flexDirection: 'column-reverse' }}
                                                     contentArrowStyle={{ borderRight: '7px solid  #dedfe0' }}
                                                     dateClassName={css.timeLineDate}
                                                     date="2º DIA - SÁBADO - De Cusco-PER a Águas Calientes-PER PACOTE 3 - City Tour no Vale Sagrado dos Incas + Trem + Hospedagem Águas Calientes - R$ 1.599,00 por pessoa"
-                                                    iconStyle={{ border: 'solid 3px rgb(24, 144, 255)', background: 'rgb(255, 255, 255)', color: '#333', display: 'flex', alignItems: 'center', justifyContent: 'center', boxShadow: 'none' }}
+                                                    iconStyle={{  background: 'rgb(255, 255, 255)', color: '#333', display: 'flex', alignItems: 'center', justifyContent: 'center', boxShadow: 'none' }}
                                                     icon={<span className="material-icons-outlined">local_library</span>}
                                                 >
                                                     <ul>
@@ -140,11 +140,11 @@ const Trip = () => {
                                                 </VerticalTimelineElement>
                                                 <VerticalTimelineElement
                                                     className="vertical-timeline-element--work"
-                                                    contentStyle={{ background: '#f9f9f9', color: '#333', boxShadow: 'none', border: 'solid 1px #dedfe0', display: 'flex', flexDirection: 'column-reverse' }}
+                                                    contentStyle={{ background: '#f9f9f9', color: '#333', boxShadow: 'none',  display: 'flex', flexDirection: 'column-reverse' }}
                                                     contentArrowStyle={{ borderRight: '7px solid  #dedfe0' }}
                                                     dateClassName={css.timeLineDate}
                                                     date="2º DIA - SÁBADO - De Cusco-PER a Águas Calientes-PER PACOTE 3 - City Tour no Vale Sagrado dos Incas + Trem + Hospedagem Águas Calientes - R$ 1.599,00 por pessoa"
-                                                    iconStyle={{ border: 'solid 3px rgb(24, 144, 255)', background: 'rgb(255, 255, 255)', color: '#333', display: 'flex', alignItems: 'center', justifyContent: 'center', boxShadow: 'none' }}
+                                                    iconStyle={{background: 'rgb(255, 255, 255)', color: '#333', display: 'flex', alignItems: 'center', justifyContent: 'center', boxShadow: 'none' }}
                                                     icon={<span className="material-icons-outlined">local_library</span>}
                                                 >
                                                     <ul>
@@ -281,7 +281,7 @@ const Trip = () => {
                             <Col md={3}>
                                 <div className={css.tripForm}>
                                     <header className={css.tripFormHeader}>
-                                        <img src={'https://i.picsum.photos/id/440/500/350.jpg'} />
+                                        <img src={'https://picsum.photos/id/440/500/350.jpg'} />
                                     </header>
                                     <section className={css.tripMainWrapper}>
                                         <div className={css.tripCheckoutBox}>
@@ -296,7 +296,7 @@ const Trip = () => {
                                                     <Select.Option value="2 - Pte. Do Socorro">2 - Pte. Do Socorro</Select.Option>
                                                     <Select.Option value="3 - Aeroporto Congonhas">3 - Aeroporto Congonhas</Select.Option>
                                                 </Select>
-                                                <Button size={'large'} type={'primary'} className={`${css.checkoutButton}`}>Comprar Ticket</Button>
+                                                <Button href={'/checkout'} size={'large'} type={'primary'} className={`${css.checkoutButton}`}>Comprar Ticket</Button>
                                             </div>
                                             <p>
                                                 Em Até 12x

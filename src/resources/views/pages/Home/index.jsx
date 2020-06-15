@@ -12,8 +12,8 @@ export default function Home() {
         return [1, 2, 3, 4, 5, 6, 7, 8].map((el, key) => {
             const { name } = el;
             return (
-                <Col md={3}>
-                    <CardEvent key={key} title={'Parque Áquatico viva parque em Juquitiba'} image={'https://i.picsum.photos/id/' + Math.floor(Math.random() * 500) + '/500/350.jpg'} />
+                <Col md={3} xs={6}>
+                    <CardEvent key={key} title={'Parque Áquatico viva parque em Juquitiba'} image={'https://picsum.photos/id/' + Math.floor(Math.random() * 500) + '/500/350.jpg'} />
                 </Col>
             )
         });
@@ -22,7 +22,7 @@ export default function Home() {
     return (
         <SiteLayout>
             <Hero />
-            <div className={css.mainMrapper}>
+            <div className={css.mainWrapper}>
                 <section id={'tripFeatures'} className={css.sectionBLock}>
                     <div className={css.containerWrapper}>
                         <Container >

@@ -26,7 +26,7 @@ const CardEvent = (props) => {
             <div className={styles.cardFooter}>
                 <div className={styles.ownerWrapper}>
                     <div className={styles.ownerImage}>
-                        <img src={'https://i.picsum.photos/id/' + Math.floor(Math.random() * 500) + '/50/50.jpg'} />
+                        <img src={'https://picsum.photos/id/' + Math.floor(Math.random() * 500) + '/50/50.jpg'} />
                     </div>
                     <a href="#" className={styles.ownerName}>Jhon Doe</a>
                 </div>

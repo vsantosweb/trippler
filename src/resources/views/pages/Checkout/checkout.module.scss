@@ -1,0 +1,58 @@
+@import "../../../styles/sass/main";
+.checkoutWrapper {
+  margin-top: 75px;
+
+  .checkoutContent {
+
+    &.left {
+   
+      min-height: 1px;
+      margin-bottom: 50px;
+    }
+    &.right {
+      position: relative;
+    }
+    .checkoutBlock {
+      // padding: 26px 20px;
+      overflow: unset;
+      // box-shadow: 0px 1px 3px 0.5px rgba(0, 0, 0, 0.16);
+      margin-bottom: 2em;
+      .blockTitle {
+        font-size: 1.3em;
+        font-weight: bold;
+        color: $primaryColor;
+      }
+      .blockText {
+      }
+    }
+    .checkoutDetails {
+      .detailsHeader {
+        .title {
+          margin: 0;
+          font-weight: 600;
+          font-size: 1.3em;
+        }
+      }
+      .productDetail {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        .productInfo {
+          margin-bottom: 0.6em;
+          .productName {
+            font-weight: bold;
+            font-size: 14px;
+          }
+          .productFeature {
+            font-size: 12px;
+          }
+        }
+      }
+      
+    }
+    .finishCheckout{
+      margin-top: 1em;
+      text-align: center;
+    }
+  }
+}

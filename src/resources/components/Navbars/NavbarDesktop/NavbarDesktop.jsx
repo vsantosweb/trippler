@@ -17,7 +17,8 @@ const NavbarDesktop = () => {
                 <a onClick={ handleNavbarMobile } className={css.toggleNavigation} href={'#'}><span className={'material-icons'}>menu</span> </a>
                 <div className={css.leftContent}>
                     <div className={css.brand}>
-                        <img src={'https://travelhotel.wpengine.com/wp-content/uploads/2018/11/Traveler_logo.svg'} />
+                        <h3>Viagens</h3>
+                        {/* <img src={'https://travelhotel.wpengine.com/wp-content/uploads/2018/11/Traveler_logo.svg'} /> */}
                     </div>
                 </div>
                 <nav className={css.mainNavigation}>

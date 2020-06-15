@@ -130,7 +130,8 @@
   
   .verticalTimeline{
     &:before{
-      background: $primaryColor !important;
+      width: 0;
+      border: dashed 1px $primaryColor;
     }
     .timeLineDate{
       margin:0 16px;
