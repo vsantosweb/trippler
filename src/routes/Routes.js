@@ -20,7 +20,7 @@ const Routes = [
         private: false
     },
     {
-        path: '/trip',
+        path: '/trips/:code',
         exact: false,
         title: 'Home',
         component: Trip,

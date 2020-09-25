@@ -142,3 +142,37 @@
       font-size: 16px !important;
     }
   }
+
+
+  .tripPackageList{
+    margin: 1em 0;
+    display: flex;
+    flex-flow: wrap;
+
+    .packageItem{
+      flex: 1 0 47%;
+      margin: .3em;
+      border: dashed 1px #eee;
+      flex-grow: inherit;
+      display: flex;
+      flex-direction: column;
+      background: #fff;
+      padding: 1em;
+      &.selected{
+        background: $primaryColor;
+        color: #fff;
+      }
+      &:hover{
+        background: $primaryColor;
+        color: #fff;
+        cursor: pointer;
+      }
+      
+      .packageTitle{
+        font-weight: bold;
+      }
+    }
+  }
+  .tripPassagerTypes{
+    padding: 1em 0;
+  }

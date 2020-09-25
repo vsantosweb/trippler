@@ -2,24 +2,24 @@ import React from 'react';
 import styles from './CardEvent.module.scss';
 import { Link } from 'react-router-dom';
 import { Rate } from 'antd';
-
-const CardEvent = (props) => {
+import moment from 'moment';
+const CardEvent = ({ data }) => {
 
     return (
         <div className={styles.cardEvent}>
-            <img className={styles.cardImage} src={props.image} alt="Card image cap" />
-            <Link to={{ pathname: `/${'trip'}`, teste: 'testeeeee' }} className={styles.cardBody}>
-                <span className={styles.cardTagCategory}>Fim de Semana</span>
-                <h2 className={styles.cardTitle}>{props.title}</h2>
+            <img className={styles.cardImage} src={data.trip.image_url} alt="Card image cap" />
+            <Link to={{ pathname: `/${'trips/'+data.code}`, teste: 'testeeeee' }} className={styles.cardBody}>
+                <span className={styles.cardTagCategory}>{data.category.name}</span>
+                <h2 className={styles.cardTitle}>{data.trip.name}</h2>
 
-                <Rate tooltips={'good'} size={'small'} disabled  value={'5'} />
+                <Rate tooltips={'good'} size={'small'} disabled value={'5'} />
                 <div className={styles.infoWrapper}>
                     <div className={styles.dateWrapper}>
-                        <span className={styles.date}>20/03/2020</span>
+                        <span className={styles.date}>{moment(data.start_date).locale('pt-BR').format('LL')}</span>
                     </div>
                     <div className={styles.priceWrapper}>
                         <span className={styles.text}>A partir de</span>
-                        <span className={styles.price}>R$452,00</span>
+                        <span className={styles.price}>R$ {data.price} </span>
                     </div>
                 </div>
             </Link>

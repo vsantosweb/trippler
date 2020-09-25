@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 
 import css from './Home.module.scss';
 import SiteLayout from '../../layouts/SiteLayout';
@@ -6,14 +6,21 @@ import Hero from '../../../components/Hero/Hero';
 import { Row, Col, Container } from 'react-grid-system';
 import CardEvent from '../../../components/Cards/CardEvent/CardEvent';
 import Footer from '../../../components/Footer/Footer';
+import TripSchedule from '../../../../api/Trip/TripSchedule';
 console.log(css)
 export default function Home() {
+
+    const [ scheduleList, setScheduleList ] = useState([]);
+
+    useEffect(() => {
+        TripSchedule.list().then(response => setScheduleList(response.data))
+    },[]);
+    console.log(scheduleList)
     const getFeaturesTrip = (list) => {
-        return [1, 2, 3, 4, 5, 6, 7, 8].map((el, key) => {
-            const { name } = el;
+        return scheduleList.map((schedule, key) => {
             return (
                 <Col md={3} xs={6}>
-                    <CardEvent key={key} title={'Parque Áquatico viva parque em Juquitiba'} image={'https://picsum.photos/id/' + Math.floor(Math.random() * 500) + '/500/350.jpg'} />
+                    <CardEvent key={key} data={schedule} title={'Cânion Fortaleza - Cambará do Sul - RS'} image={'https://picsum.photos/id/' + Math.floor(Math.random() * 500) + '/500/350.jpg'} />
                 </Col>
             )
         });
