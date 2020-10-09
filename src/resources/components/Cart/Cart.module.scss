@@ -1,0 +1,82 @@
+@import "../../styles/sass/main";
+.cart {
+  .cartButton {
+    background: none;
+    color: #222;
+    border: none;
+    outline: none !important;
+    box-shadow: none !important;
+    position: relative;
+    .count {
+      width: 17px;
+      height: 17px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 100%;
+      font-size: 14px;
+      background: red;
+      position: absolute;
+      font-weight: bold;
+      color: #fff;
+      right: 0;
+      margin-right: -3px;
+    }
+    span {
+      font-size: 1.7em;
+    }
+  }
+  .cartWrapper {
+    padding: 1em;
+    margin-top: 20px;
+    z-index: 3;
+    width: 340px;
+    background: #f1f1f1;
+    position: absolute;
+    border-radius: 3px;
+    transform: translateX(-80%);
+    // box-shadow: 0 2px 4px 0 rgba(94, 91, 91, 0.5);
+    &:after {
+      content: "";
+      position: absolute;
+      width: 0;
+      height: 0;
+      top:-15px;
+      right: 0;
+      transform: translateX(-130%);
+      border-left: 15px solid transparent;
+      border-right: 15px solid transparent;
+      border-bottom: 15px solid #f1f1f1;
+    }
+    .cartHeader {
+      font-weight: bold;
+      text-transform: uppercase;
+      padding-bottom: 1em;
+    }
+    .cartBody {
+      border-bottom: solid 1px;
+      .tripName {
+        font-size: 1em;
+        font-weight: bold;
+      }
+    }
+
+    .cartFooter {
+      flex-direction: column;
+      text-align: right;
+      .cartFooterContent {
+        padding: 1em 0;
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        .totalText {
+          font-weight: bold;
+        }
+        .totalAmount {
+          font-weight: bold;
+          font-size: 1.7em;
+        }
+      }
+    }
+  }
+}

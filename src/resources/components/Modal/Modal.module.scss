@@ -1,0 +1,32 @@
+@import "../../styles/sass/main.scss";
+
+.customModal {
+  height: 100%;
+  overflow: hidden auto;
+  position: fixed;
+  z-index: 30;
+  top: 0px;
+  left: 0px;
+  bottom: 0px;
+  right: 0px;
+  background-color: rgba(0, 0, 0, 0.5);
+  transition: opacity 0.3s ease 0s;
+  .modalWrapper {
+    display: flex;
+    -webkit-box-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    align-items: center;
+    min-height: 100%;
+    margin: 0px auto;
+    padding: 24px 0px;
+  }
+}
+.loginContainer{
+    background: #fff;
+    padding: 1em;
+
+}
+.modalLogin{
+    width: 300px;
+}

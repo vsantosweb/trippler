@@ -21,7 +21,7 @@ const Routes = [
     },
     {
         path: '/trips/:code',
-        exact: false,
+        exact: true,
         title: 'Home',
         component: Trip,
         type: 'default',

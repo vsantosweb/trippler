@@ -9,4 +9,8 @@ export default class TripSchedule{
     static show = async (code) => (
         await api.get('/client/public/trips/schedule/' + code).then(response => response.data)
     )
+
+    static additionalPackages = async (code) => (
+        await api.get('/client/public/trips/additional-packages/' + code).then(response => response.data)
+    )
 }

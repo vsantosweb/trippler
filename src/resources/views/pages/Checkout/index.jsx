@@ -1,52 +1,59 @@
 import React, { useEffect, useState, useCallback } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+
 import css from './checkout.module.scss';
 import CheckoutLayout from '../../layouts/CheckoutLayout';
 import Validator from 'Validator';
 import * as documentValidator from '../../../helpers/DocumentValidator';
 import { Row, Col, Container, Hidden } from 'react-grid-system';
-import {
-  Form,
-  Input,
-  Button,
-  Collapse,
-  Spin
-} from 'antd';
+import CardAdditionalPackage from '../../../components/Cards/CardAdditionalPackage';
+import { getCart } from '../../../../store/cart/cartAction';
+import TripSchedule from '../../../../api/Trip/TripSchedule';
 
-const { Panel } = Collapse;
 
 function Checkout({ plans, ...props }) {
 
   const [formData, setFormData] = useState({});
   const [formFeedback, setFormFeedback] = useState({ disabledSubmit: true, submited: false });
-  const [paymentMethods, setPaymentMethod] = useState({paymentMethod: 'CREDIT_CARD'})
+  const [paymentMethods, setPaymentMethod] = useState({ paymentMethod: 'CREDIT_CARD' })
+  const [passagerPackages, setPassagerPackages] = useState(false);
+  const [additionalPackages, setadditionalPackages] = useState(false);
+  const dispatch = useDispatch();
+  const currentCart = dispatch(getCart());
 
-
+  console.log(currentCart.cart, 'currentCart')
+  useEffect(() => {
+    getAdditionalPackages()
+  }, [])
+  const getAdditionalPackages = () => (TripSchedule.additionalPackages(currentCart.cart.code).then(response => setadditionalPackages(response.data)))
+  console.log(additionalPackages, 'packages')
   const handlePaymentMethod = (paymentMethodKey) => {
+
     switch (paymentMethodKey) {
       case 'CREDIT_CARD':
-        setFormData({paymentMethod: {method: paymentMethodKey}});
+        setFormData({ paymentMethod: { method: paymentMethodKey } });
         console.log(paymentMethodKey, 'cartao')
         break;
       case 'BOLETO':
-        setFormData({paymentMethod: paymentMethodKey});
+        setFormData({ paymentMethod: paymentMethodKey });
         console.log(paymentMethodKey, 'boleto!!')
-      break;
+        break;
       default:
         break;
     }
-    
+
   }
 
   const handleInput = (e) => {
 
     let formFields = {};
-    
+
     formFields = Object.assign({}, formData);
     console.log(e, 'onchange')
 
     formFields[e.target.name] = e.target.value;
 
-    
+
 
     let validator = Validator.make(formFields, {
 
@@ -104,91 +111,33 @@ function Checkout({ plans, ...props }) {
    */
   return (
     <CheckoutLayout>
-      <Spin spinning={false} tip={'Processando...'} wrapperClassName={css.wrapperContent}	>
       <div className={`${css.wrapperContent} ${css.sectionBlock}`}>
         <Container fluid className={css.containerWrapper}>
           <Row>
             <Col md={8}>
-              <Form onSubmitCapture={handleSubmit} labelCol={{ span: 6 }} className={`${css.checkoutContent} ${css.left}`}
+              <form onSubmitCapture={handleSubmit} labelCol={{ span: 6 }} className={`${css.checkoutContent} ${css.left}`}
                 layout="vertical"
                 size={'large'}>
-                <div className={css.checkoutBlock}>
-                  <h3 className={css.blockTitle}>1. Faça um cadastro</h3>
-                  <p><strong>Já possui uma conta?</strong> <a href="#">Faça login</a> </p>
-
-                  <Form.Item hasFeedback {...formFeedback.fullname ? { ...formFeedback } : ''}>
-                    <Input placeholder={'Nome Completo*'} name={'fullname'} onChange={handleInput} />
-                  </Form.Item>
-
-                  <Form.Item hasFeedback {...formFeedback.email ? { ...formFeedback } : ''}>
-                    <Input placeholder={'Email*'} name={'email'} onChange={handleInput} />
-                  </Form.Item>
-
-                  <Form.Item hasFeedback {...formFeedback.document ? { ...formFeedback } : ''}>
-                    <Input placeholder={'CPF ou CNPJ*'} name={'document'} onChange={handleInput} />
-                  </Form.Item>
-
-                  <Form.Item>
-                    <Input placeholder={'Data de nascimento*'} type={'date'} name={'birthday'} onChange={handleInput} hasFeedback {...formFeedback.birthday ? { ...formFeedback } : ''} />
-                  </Form.Item>
-
-                  <Form.Item hasFeedback {...formFeedback.phone ? { ...formFeedback } : ''}>
-                    <Input placeholder={'Celular*'} name={'phone'} onChange={handleInput} />
-                  </Form.Item>
-
-                  <Form.Item hasFeedback {...formFeedback.password ? { ...formFeedback } : ''}>
-                    <Input.Password placeholder={'Senha*'} name={'password'} onChange={handleInput} />
-                  </Form.Item>
-
+                <div className={`${css.checkoutBlock} container-fluid`}>
+                  <h3 className={css.blockTitle}>1. Pacotes Adicionais</h3>
+                  <div className={'row'}>
+                    {additionalPackages ? additionalPackages.map((item, key) =>
+                      <div className={'col-md-4'}>
+                        <CardAdditionalPackage data={item} passagers={currentCart.cart.passagers} />
+                      </div>
+                    ) : ''}
+                  </div>
                 </div>
                 <div className={css.checkoutBlock}>
                   <h3 className={css.blockTitle}>2. Escolha a forma de pagamento</h3>
                   <p><strong>Já possui uma conta?</strong> <a href="#">Faça login</a> </p>
-                  <Collapse accordion={true} defaultActiveKey={paymentMethods.paymentMethod} onChange={handlePaymentMethod} name={'paymentMethod'}>
-                    <Panel accordion={true} header="Cartão de Crédito" key='CREDIT_CARD' id={'PaymentForm'} name={'paymentMethod'}>
-                      <p>Pagamento seguro com cartão Você está em um site seguro e seus dados estão protegidos por criptografia </p>
-                      <Row justify={'center'}>
-                        <Hidden xs>
-                          {/* <Col md={6}>
-                            <Cards name={formData.ccholder} number={formData.ccnumber} expiry={formData.ccexpiry} cvc={formData.ccsecurity} />
-                          </Col> */}
-                        </Hidden>
-                        <Col md={12}>
-                          <Row>
-                            <Col md={12}>
-                              <Form.Item hasFeedback {...formFeedback.ccnumber ? { ...formFeedback } : ''}>
-                                <Input placeholder={'Número do cartão *'} maxLength={16} name={'ccnumber'} onBlur={handleInput} />
-                              </Form.Item>
-                            </Col>
-                            <Col md={12}>
-                              <Form.Item hasFeedback {...formFeedback.ccholder ? { ...formFeedback } : ''}>
-                                <Input placeholder={'Nome impresso *'} name={'ccholder'} onChange={handleInput} />
-                              </Form.Item>
-                            </Col>
-                            <Col md={6}>
-                              <Form.Item hasFeedback {...formFeedback.phone ? { ...formFeedback } : ''}>
-                                <Input placeholder={'Vencimento *'} name={'ccexpiry'} onChange={handleInput} />
-                              </Form.Item>
-                            </Col>
-                            <Col md={6}>
-                              <Form.Item hasFeedback {...formFeedback.phone ? { ...formFeedback } : ''}>
-                                <Input placeholder={'CVC *'} name={'ccsecurity'} onChange={handleInput} />
-                              </Form.Item>
-                            </Col>
-                          </Row>
-                        </Col>
-                      </Row>
-                    </Panel>
-                    <Panel accordion={true} header="Boleto Bancário" key="BOLETO">
-                      <p>{'text'}</p>
-                    </Panel>
-                  </Collapse>
+
 
                   <Row className={css.finishCheckout}>
-                    <Col><Button htmlType={'submit'} block loading={formFeedback.submited} type={'primary'} disabled={false}>Finalizar Compra</Button></Col>
+                    <Col><button htmlType={'submit'} block loading={formFeedback.submited} type={'primary'} disabled={false}>Finalizar Compra</button></Col>
                   </Row>
                 </div>
-              </Form>
+              </form>
             </Col>
             <Col md={4}>
               <div className={`${css.checkoutContent} ${css.right}`}>
@@ -228,7 +177,6 @@ function Checkout({ plans, ...props }) {
 
         </Container>
       </div>
-    </Spin>
     </CheckoutLayout>
   )
 

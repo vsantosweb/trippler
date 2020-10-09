@@ -1,5 +1,7 @@
 
 @import 'variables';
+$primary: purple;
+$danger: red;
 
 a{
     text-decoration: none;
@@ -24,6 +26,7 @@ ul{
     max-width: 1368px;
     margin: auto;
     position: relative;
+    height: 100%;
 }
 .sectionBlock{
     position: relative;
@@ -52,5 +55,20 @@ ul{
     .widgetTitle{
         margin:0;
         font-size: 2em;
+    }
+}
+
+.slideNav {
+    width: 30px;
+    height: 30px;
+    border-radius: 100%;
+    background: none;
+    border: solid 1px;
+    outline: none;
+    box-shadow: none;
+    margin-bottom: .5em;
+    margin-right: .4em;
+    &:focus {
+        outline: none;
     }
 }

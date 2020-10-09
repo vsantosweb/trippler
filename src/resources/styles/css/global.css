@@ -13,7 +13,10 @@
     outline: 0;
   }
 
-  html, body, #root, main {
+  main{
+    background: #f4f4f4;
+  }
+  html, body{
     height: 100%;
   }
 

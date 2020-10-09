@@ -1,7 +1,6 @@
 import React from 'react';
 import styles from './CardEvent.module.scss';
 import { Link } from 'react-router-dom';
-import { Rate } from 'antd';
 import moment from 'moment';
 const CardEvent = ({ data }) => {
 
@@ -12,7 +11,6 @@ const CardEvent = ({ data }) => {
                 <span className={styles.cardTagCategory}>{data.category.name}</span>
                 <h2 className={styles.cardTitle}>{data.trip.name}</h2>
 
-                <Rate tooltips={'good'} size={'small'} disabled value={'5'} />
                 <div className={styles.infoWrapper}>
                     <div className={styles.dateWrapper}>
                         <span className={styles.date}>{moment(data.start_date).locale('pt-BR').format('LL')}</span>
@@ -31,8 +29,11 @@ const CardEvent = ({ data }) => {
                     <a href="#" className={styles.ownerName}>Jhon Doe</a>
                 </div>
             </div>
+
         </div>
+
     );
 }
+
 
 export default CardEvent;

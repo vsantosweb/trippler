@@ -23,11 +23,12 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
+      flex:1;
     }
     .rightContent {
-      flex: 1 1;
+      flex: 1;
       display: flex;
-      justify-content: flex-end;
+      justify-content: space-around;
       @media (max-width: 990px) {
         display: none;
       }
@@ -56,4 +57,31 @@
       }
     }
   }
+}
+
+.cart{
+   background:none;
+   color:#222;
+   border:none;
+   outline:none !important;
+   box-shadow: none !important;
+   position: relative;
+   .count{
+     width: 17px;
+     height: 17px;
+     display: flex;
+     align-items: center;
+     justify-content: center;
+     border-radius: 100%;
+     font-size: 14px;
+     background:red;
+     position: absolute;
+     font-weight: bold;
+     color: #fff;
+     right: 0;
+     margin-right: -3px;
+   }
+   span{
+     font-size: 1.7em;
+   }
 }

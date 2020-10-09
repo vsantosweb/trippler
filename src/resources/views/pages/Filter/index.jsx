@@ -3,12 +3,10 @@ import SiteLayout from "../../layouts/SiteLayout";
 import { Col, Row, Container } from "react-grid-system";
 import css from "./Filter.module.scss";
 
-import { Form, Input, DatePicker, Checkbox, Breadcrumb } from 'antd';
 import CardEvent from "../../../components/Cards/CardEvent/CardEvent";
 
 
 function Filter() {
-  const { MonthPicker, RangePicker } = DatePicker;
   const getFeaturesTrip = (list) => {
     return [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18].map((el, key) => {
       const { name } = el;
@@ -21,7 +19,7 @@ function Filter() {
   }
   return (
     <SiteLayout>
-      <div className={css.mainWrapper}>
+      {/* <div className={css.mainWrapper}>
         <div className={`${css.containerWrapper} ${css.sectionBlock}`}>
 
           <Container fluid>
@@ -90,7 +88,7 @@ function Filter() {
             </Row>
           </Container>
         </div>
-      </div>
+      </div> */}
     </SiteLayout>
   );
 }

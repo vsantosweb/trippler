@@ -1,16 +1,17 @@
 import React from 'react';
 import NavbarHeader from '../../components/Navbars/NavbarHeader';
 import Footer from '../../components/Footer/Footer';
+import css from './Layout.module.scss';
 
 // import { Container } from './styles';
 
-function SiteLayout({ children , pageTitle }) {
+function SiteLayout({ children }) {
   return (
-    <main>
+    <div className={css.mainWrapper}>
       <NavbarHeader />
       {children}
       <Footer />
-    </main>
+    </div>
   );
 }
 

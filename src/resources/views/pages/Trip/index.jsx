@@ -1,16 +1,30 @@
 import React, { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+
 import Gallery from 'react-grid-gallery';
+import Validator from 'Validator';
+
+import SwiperCore, { Navigation } from 'swiper';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import 'swiper/swiper.scss';
+
 import { VerticalTimeline, VerticalTimelineElement } from 'react-vertical-timeline-component';
 import 'react-vertical-timeline-component/style.min.css';
 
 import css from './Trip.module.scss';
 import SiteLayout from '../../layouts/SiteLayout';
 import { Container, Row, Col } from 'react-grid-system';
-import { Tabs, Button, Breadcrumb, Select } from 'antd';
 import TripReviews from '../../../components/Reviews/TripReviews/TripReviews';
 import TripSchedule from '../../../../api/Trip/TripSchedule';
-const { TabPane } = Tabs;
-const { Option } = Select;
+import { setCart } from '../../../../store/cart/cartAction';
+import { ModalLogin } from '../../../components/Modal/ModalLogin';
+import { Redirect } from 'react-router-dom';
+import Cokkie from 'js-cookie'
+
+
+SwiperCore.use([Navigation]);
+
+// Cokkie.remove('cart')
 const IMAGES =
     [{
         src: "https://c2.staticflickr.com/9/8817/28973449265_07e3aa5d2e_b.jpg",
@@ -78,58 +92,66 @@ const IMAGES =
 const Trip = (props) => {
 
     const [tripSchedule, setTripSchedule] = useState(false);
-    const [tripPackage, setTripPackage] = useState(false);
+    const [tripPackage, setTripPackage] = useState('');
+    const [passagers, setPassagers] = useState(false);
     const [totalPrice, setTotalPrice] = useState(tripSchedule.price);
+    const [disableSubmit, setDisableSubmit] = useState(true);
+    const [loginRequest, setLoginRequest] = useState('');
+
+    const dispatch = useDispatch();
+    const loggedCustomer = useSelector(state => state.customer);
+
+    const validation = (data) => {
+        let validator = Validator.make(data, {
+            boarding_location: 'required',
+            package: 'required',
+            passagers: 'quantity'
+        })
+
+        validator.extend('quantity', validatePassagers, ":attr is not a valid");
+
+        if (validator.fails()) {
+            return setDisableSubmit(true);
+        } else {
+            return setDisableSubmit(false);
+        }
+    }
+
+    const validatePassagers = (name, value, params) => {
+
+        if (tripPackage.passagers) {
+            return tripPackage.package.quantity === tripPackage.passagers.length;
+        }
+        return false;
+    }
+
 
     useEffect(() => {
+
         TripSchedule.show(props.match.params.code).then(response => {
             setTripSchedule(response.data);
             setTotalPrice(response.data.price);
-        })
-    }, [])
-
-    const chosePackage = (tripPackage) => {
-        setTotalPrice(totalPrice + tripPackage.amount);
-        setTripPackage({
-
-            trip_schedule_id: tripSchedule.id,
-            name: tripPackage.name,
-            description: tripPackage.description,
-            quantity: tripPackage.quantity,
-            amount: tripPackage.amount
         });
-    }
+
+        validation(tripPackage)
+        console.log(tripPackage, 'mano impossivel velho')
+
+    }, [tripPackage])
 
     const chosePassagerTypes = (element, position) => {
 
-        let items = Object.assign([], tripPackage.items);
+        let passagers = Object.assign([], tripPackage.passagers);
         let passager = JSON.parse(element.target.value);
-        items[position] = passager;
-        let totalAmount = 0;
-
-        setTripPackage({ ...tripPackage, items });
-
-        console.log(items.length, 'length')
-
-        for (let item of items) {
-            totalAmount = item.amount + totalAmount;
-        }
-
-        let updateTotalPrice = totalAmount + totalPrice;
-
-        setTotalPrice(updateTotalPrice);
+        passagers[position] = passager;
+        setTripPackage({ ...tripPackage, passagers });
     }
 
     const passagerCount = () => {
 
         let passagers = [];
 
-        for (let i = 0; i <= tripPackage.quantity - 1; i++) {
+        for (let i = 0; i <= tripPackage.package.quantity - 1; i++) {
             passagers.push(
-                // <Select style={{ width: "100%", margin: '.4em 0' }} name="passageiro[i]" defaultValue="Selecione o tipo de passageiro" onChange={chosePassagerTypes}>
-                //     {tripSchedule.passager_types.map(passager => <Select.Option key={passager.id} value={JSON.stringify(passager)}>{passager.name}</Select.Option>)}
-                // </Select>
-
                 <select style={{ width: "100%", margin: '.4em 0' }} name={`passageiro[${i}]`} defaultValue="Selecione o tipo de passageiro" onChange={(element) => chosePassagerTypes(element, i)}>
                     {tripSchedule.passager_types.map(passager => <option key={passager.id} value={JSON.stringify(passager)}>{passager.name}</option>)}
                 </select>
@@ -138,31 +160,34 @@ const Trip = (props) => {
         return passagers;
     }
 
-    const updateTotalPrice = (amount) => {
-        setTotalPrice(totalPrice = +amount);
+    const handleBoardingLocation = (e) => {
+        setTripPackage({ boarding_location: JSON.parse(e.target.value), ...tripPackage });
     }
+    const handlePackage = (selectedPackage) => {
 
+        setTripPackage({code:tripSchedule.code, package: selectedPackage, ...tripPackage });
+    }
+    
+    const handleSubmit = () => {
+
+        if(!loggedCustomer){
+            return setLoginRequest(true);
+        }
+        dispatch(setCart(tripPackage))
+        return props.history.push('/checkout')
+    }
     return (
-        <SiteLayout>
+        <div className={`${css.tripPage} ${css.containerWrapper}`}>
 
-            <main className={`${css.tripPage} ${css.containerWrapper}`}>
+            <ModalLogin visible={loginRequest} handleClose={() => setLoginRequest(false)} />
+            
+            <header className={css.tripHeader}>
 
-                <header className={css.tripHeader}>
-                    <Breadcrumb>
-                        <Breadcrumb.Item>Home</Breadcrumb.Item>
-                        <Breadcrumb.Item>
-                            <a href="">Application Center</a>
-                        </Breadcrumb.Item>
-                        <Breadcrumb.Item>
-                            <a href="">Application List</a>
-                        </Breadcrumb.Item>
-                        <Breadcrumb.Item>An Application</Breadcrumb.Item>
-                    </Breadcrumb>
-                    {tripSchedule ?
-                        <Container fluid>
-                            <Row>
-                                <Col md={9}>
-                                    <div className={`${css.tripLead}`}>
+                {tripSchedule ?
+                    <Container fluid>
+                        <Row>
+                            <Col md={8}>
+                                {/* <div className={`${css.tripLead}`}>
                                         <h1 className={css.tripLeadTitle}>{tripSchedule.trip.name} </h1>
                                     </div>
                                     <Tabs animated={false} size={'large'}>
@@ -344,68 +369,97 @@ const Trip = (props) => {
                                                 </ul>
                                             </div>
                                         </TabPane>
-                                    </Tabs>
-                                </Col>
-                                <Col md={3}>
-                                    <div className={css.tripForm}>
-                                        <header className={css.tripFormHeader}>
-                                            <img src={tripSchedule.trip.image_url} />
-                                        </header>
-                                        <section className={css.tripMainWrapper}>
-                                            <div className={css.tripCheckoutBox}>
-                                                <div className={css.tripPriceTextContent}>
-                                                    <span className={css.price}>R${totalPrice}</span>
-                                                    {/* <del>R$ {tripSchedule.price + tripPackage.amount} </del> */}
-                                                </div>
-                                                <div className={css.tripCheckoutActions}>
-                                                    <small>Selecione o local de Embarque</small>
-                                                    <Select size={'large'} defaultValue="1 - Term Grajaú" onChange={'handleChange'}>
-                                                        <Select.Option value="1 - Term Grajaú">1 - Term Grajaú</Select.Option>
-                                                        <Select.Option value="2 - Pte. Do Socorro">2 - Pte. Do Socorro</Select.Option>
-                                                        <Select.Option value="3 - Aeroporto Congonhas">3 - Aeroporto Congonhas</Select.Option>
-                                                    </Select>
-                                                    {!tripPackage ?
-                                                        <div className={css.tripPackageList}>
-                                                            <h4>ESCOLHA UM PACOTE</h4>
-                                                            <p>Ao efetuar a reserva, você poderá optar por pagar para todos os passageiros ou cada um pagar o seu</p>
+                                    </Tabs>*/}
+                            </Col>
+                            <Col md={4}>
+                                <div className={css.tripForm}>
+                                    <header className={css.tripFormHeader}>
+                                        <img src={tripSchedule.trip.image_url} />
+                                    </header>
+                                    <section className={css.tripMainWrapper}>
+                                        <div className={css.tripCheckoutBox}>
+                                            <div className={css.tripPriceTextContent}>
+                                                <span className={css.price}>R${totalPrice}</span>
+                                                {/* <del>R$ {tripSchedule.price + tripPackage.amount} </del> */}
+                                            </div>
+                                            <div className={css.tripCheckoutActions}>
+                                                <small>Selecione o local de Embarque</small>
+                                                <select style={{ width: "100%", margin: '.4em 0' }} name={'boarding_locations'} defaultValue="Selecione o tipo de passageiro" onChange={handleBoardingLocation}>
+                                                    {tripSchedule.boarding_locations.map(location => <option key={location.id} value={JSON.stringify(location)}>{location.name}</option>)}
+                                                </select>
+                                                {!tripPackage.package ?
+                                                    <div className={css.tripPackageList}>
+                                                        <h4>ESCOLHA UM PACOTE</h4>
+                                                        <p>Ao efetuar a reserva, você poderá optar por pagar para todos os passageiros ou cada um pagar o seu</p>
 
+                                                        {/* <div className={css.tripPackageContent}>
                                                             {tripSchedule.packages.map(tripPackage => (
-                                                                <div className={`${css.packageItem} ${tripPackage ? 'selected' : ''}`} key={tripPackage.id} onClick={() => chosePackage(tripPackage)}>
+                                                                <div className={`${css.packageItem} ${tripPackage ? 'selected' : ''}`} key={tripPackage.id} onClick={() => handlePackage(tripPackage)}>
                                                                     <span className={css.packageTitle}>{tripPackage.name} x{tripPackage.quantity}</span>
                                                                     <small>{tripPackage.description}</small>
                                                                 </div>
                                                             ))}
-                                                        </div> :
-                                                        <div className={css.tripPassagerTypes}>
-                                                            {<button onClick={() => setTripPackage(false)}>{'voltar'}</button>} <h4>SELECIONE OS PASSAGEIROS</h4>
-                                                            <p>Ao efetuar a reserva, você poderá optar por pagar para todos os passageiros ou cada um pagar o seu</p>
-                                                            {/* <hr /> */}
-                                                            {passagerCount()}
-                                                            {/* <hr /> */}
-                                                            <small>
-                                                                *Observação: bebê até 4 anos, viajando no colo e acompanhado de dois adultos, é isento e não entram no
-                                                                cálculo do pacote, porém, logo após a compra, devem ser cadastrados.
-                                                                As orientações seguirão por e-mail após a compra.
+                                                        </div> */}
+                                                        <button className={`${css.slideNav} slide-nav swiper-button-prev`}>{'<'}</button>
+                                                        <button className={`${css.slideNav} slide-nav swiper-button-next`}>{'>'}</button>
+                                                        <Swiper
+                                                            navigation={{
+                                                                nextEl: '.swiper-button-next',
+                                                                prevEl: '.swiper-button-prev',
+                                                            }}
+                                                            direction='horizontal'
+                                                            spaceBetween={10}
+                                                            slidesPerView={3}
+                                                            freeMode={true}
+                                                            onSwiper={(swiper) => console.log(swiper)}
+                                                        >
+
+                                                            {tripSchedule.packages.map(tripPackage => (
+                                                                <SwiperSlide className={css.tripPackageContent}>
+                                                                    <div className={css.packageItem} key={tripPackage.id} onClick={() => handlePackage(tripPackage)}>
+                                                                        <span className={css.packageTitle}>{tripPackage.name} x{tripPackage.quantity}</span>
+                                                                        <small>{tripPackage.description}</small>
+                                                                    </div>
+                                                                    {/* <div className={`${css.packageItem} ${tripPackage ? 'selected' : ''}`} key={tripPackage.id} onClick={() => handlePackage(tripPackage)}>
+                                                                        <span className={css.packageTitle}>{tripPackage.name} x{tripPackage.quantity}</span>
+                                                                        <small>{tripPackage.description}</small>
+                                                                    </div> */}
+                                                                </SwiperSlide>
+                                                            ))}
+
+
+                                                        </Swiper>
+                                                    </div> :
+                                                    <div className={css.tripPassagerTypes}>
+                                                        {<button className={'btn btn-light'} onClick={() => setTripPackage('')}>{'Escolher outro'}</button>} <h4>SELECIONE OS PASSAGEIROS</h4>
+                                                        <p>Ao efetuar a reserva, você poderá optar por pagar para todos os passageiros ou cada um pagar o seu</p>
+                                                        {/* <hr /> */}
+                                                        {passagerCount()}
+                                                        {/* <hr /> */}
+                                                        <small>
+                                                            *Observação: bebê até 4 anos, viajando no colo e acompanhado de dois adultos, é isento e não entram no
+                                                            cálculo do pacote, porém, logo após a compra, devem ser cadastrados.
+                                                            As orientações seguirão por e-mail após a compra.
                                                             </small>
-                                                        </div>
-                                                    }
-                                                    <Button href={'/checkout'} size={'large'} type={'primary'} className={`${css.checkoutButton}`}>Prosseguir</Button>
-                                                </div>
-                                                <p>
-                                                    Em Até 12x
-                                                    Desconto de R$ 44,95 via depósito/transferência
-                                         </p>
+                                                    </div>
+                                                }
+                                                <button onClick={handleSubmit} disabled={disableSubmit} className={`${css.checkoutButton} btn btn-info`}>FECHAR PACOTE</button>
                                             </div>
-                                        </section>
-                                    </div>
-                                </Col>
-                            </Row>
-                        </Container> : 'Carregando...'
-                    }
+                                            <p>
+                                                Em Até 12x
+                                                Desconto de R$ 44,95 via depósito/transferência
+                                         </p>
+                                        </div>
+                                    </section>
+                                </div>
+                            </Col>
+                        </Row>
+                    </Container> : 'Carregando...'
+                }
 
 
-                </header>
-                <section>
+            </header>
+            {/* <section>
                     <Container fluid>
                         <Row>
                             <Col md={8}>
@@ -427,10 +481,9 @@ const Trip = (props) => {
                             </Col>
                         </Row>
                     </Container>
-                </section>
+                </section> */}
 
-            </main>
-        </SiteLayout >
+        </div>
     );
 }
 export default Trip;

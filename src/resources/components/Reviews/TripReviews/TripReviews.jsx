@@ -1,7 +1,6 @@
 import React from 'react';
 
 import css from './TripReviews.module.scss';
-import { Rate } from 'antd'
 function TripReviews() {
   return (
     <div className={css.reviewWrapper}>
@@ -9,7 +8,7 @@ function TripReviews() {
         <div className={css.ratingTotal}>
           <div className={css.ratingValue}>4,5</div>
           <div className={css.rating}>
-            <Rate tooltips={'good'} size={'small'} disabled value={'5'} />
+            {/* <Rate tooltips={'good'} size={'small'} disabled value={'5'} /> */}
           </div>
         </div>
         <div className={css.ratingDetailsContainer}>
@@ -61,7 +60,7 @@ function TripReviews() {
         <h3>Opiniões dos viajantes</h3>
         <div className={css.review}>
           <div className={css.reviewRating}>
-            <Rate tooltips={'good'} size={'small'}  disabled value={'5'} />
+            {/* <Rate tooltips={'good'} size={'small'}  disabled value={'5'} /> */}
           </div>
           <div className={css.reviewUserName}>John Smith,  Março 2020</div>
           <p className={css.reviewUserComment}>
@@ -71,7 +70,7 @@ function TripReviews() {
         </div>
         <div className={css.review}>
           <div className={css.reviewRating}>
-            <Rate tooltips={'good'} size={'small'} disabled value={'3.5'} />
+            {/* <Rate tooltips={'good'} size={'small'} disabled value={'3.5'} /> */}
           </div>
           <div className={css.reviewUserName}>John Smith,  Março 2020</div>
           <p className={css.reviewUserComment}>
@@ -81,7 +80,7 @@ function TripReviews() {
         </div>
         <div className={css.review}>
           <div className={css.reviewRating}>
-            <Rate tooltips={'good'} size={'small'} disabled value={'4'} />
+            {/* <Rate tooltips={'good'} size={'small'} disabled value={'4'} /> */}
           </div>
           <div className={css.reviewUserName}>John Smith,  Março 2020</div>
           <p className={css.reviewUserComment}>
@@ -91,7 +90,7 @@ function TripReviews() {
         </div>
         <div className={css.review}>
           <div className={css.reviewRating}>
-            <Rate tooltips={'good'} size={'small'} disabled value={'35'} />
+            {/* <Rate tooltips={'good'} size={'small'} disabled value={'35'} /> */}
           </div>
           <div className={css.reviewUserName}>John Smith,  Março 2020</div>
           <p className={css.reviewUserComment}>
