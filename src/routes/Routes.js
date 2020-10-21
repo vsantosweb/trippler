@@ -7,7 +7,7 @@
 
 import Home from "../resources/views/pages/Home";
 import Trip from "../resources/views/pages/Trip";
-import Checkout from "../resources/views/pages/Checkout";
+import Cart from "../resources/views/pages/Cart";
 import Filter from "../resources/views/pages/Filter";
 
 const Routes = [
@@ -28,10 +28,10 @@ const Routes = [
         private: false
     },
     {
-        path: '/checkout',
+        path: '/mochila',
         exact: false,
         title: 'Home',
-        component: Checkout,
+        component: Cart,
         type: 'default',
         private: false
     },

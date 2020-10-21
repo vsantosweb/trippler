@@ -127,7 +127,7 @@ const Trip = (props) => {
 
 
     useEffect(() => {
-
+        
         TripSchedule.show(props.match.params.code).then(response => {
             setTripSchedule(response.data);
             setTotalPrice(response.data.price);
@@ -165,7 +165,7 @@ const Trip = (props) => {
     }
     const handlePackage = (selectedPackage) => {
 
-        setTripPackage({code:tripSchedule.code, package: selectedPackage, ...tripPackage });
+        setTripPackage({code: tripSchedule.code, name: tripSchedule.trip.name, price:tripSchedule.price, package: selectedPackage, ...tripPackage });
     }
     
     const handleSubmit = () => {
@@ -174,7 +174,7 @@ const Trip = (props) => {
             return setLoginRequest(true);
         }
         dispatch(setCart(tripPackage))
-        return props.history.push('/checkout')
+        return props.history.push('/mochila')
     }
     return (
         <div className={`${css.tripPage} ${css.containerWrapper}`}>

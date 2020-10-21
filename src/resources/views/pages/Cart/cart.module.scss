@@ -1,9 +1,8 @@
 @import "../../../styles/sass/main";
-.checkoutWrapper {
+.cartWrapper {
   margin-top: 75px;
 
-  .checkoutContent {
-
+  .cartContent {
     &.left {
    
       min-height: 1px;
@@ -11,11 +10,11 @@
     }
     &.right {
       position: relative;
+      background: #fff;
+      border: solid 1px #eee;
+      padding: .8em;
     }
-    .checkoutBlock {
-      // padding: 26px 20px;
-      overflow: unset;
-      // box-shadow: 0px 1px 3px 0.5px rgba(0, 0, 0, 0.16);
+    .cartBlock {
       margin-bottom: 2em;
       .blockTitle {
         font-size: 1.3em;
@@ -25,10 +24,12 @@
       .blockText {
       }
     }
-    .checkoutDetails {
+    .cartDetails {
+      .productDescription{
+        border-bottom: dashed 1px;
+      }
       .detailsHeader {
         .title {
-          margin: 0;
           font-weight: 600;
           font-size: 1.3em;
         }
@@ -41,7 +42,7 @@
           margin-bottom: 0.6em;
           .productName {
             font-weight: bold;
-            font-size: 14px;
+            font-size: 18px;
           }
           .productFeature {
             font-size: 12px;
