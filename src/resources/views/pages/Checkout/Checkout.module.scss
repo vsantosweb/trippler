@@ -1,0 +1,17 @@
+@import '../../../styles/sass/main.scss';
+
+.payMentMethod{
+    border: solid 1px rgb(153, 153, 153);
+    margin-bottom: 15px;
+    .payMentMethodHead{
+        width: 100%;
+        padding: 1em;
+        input{
+            margin: 0;
+            position: relative;
+        }
+    }
+    .payMentMethodBody{
+        padding: 1em;
+    }
+}

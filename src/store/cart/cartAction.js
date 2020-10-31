@@ -15,16 +15,3 @@ export const getCart = () => {
         cart: JSON.parse(cookie.get('cart'))
     }
 }
-// export const getUserProfile = () => {
-
-//     return dispatch => {
-//         getProfile().then(response => {
-//             dispatch({
-//                 type: 'GET_USER_PROFILE',
-//                 userData: response
-//             })
-//         })
-
-//     }
-// }
-

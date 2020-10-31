@@ -4,7 +4,7 @@ import { useDispatch } from 'react-redux';
 import css from './Modal.module.scss';
 import Validator from 'Validator';
 import Authenticate from '../../../api/Auth/Athenticate';
-import { setUserProfile } from '../../../store/customer/customerAction';
+import { setCustomerProfile } from '../../../store/customer/customerAction';
 
 export const ModalLogin = ({ visible, handleClose }) => {
 
@@ -54,19 +54,20 @@ export const ModalLogin = ({ visible, handleClose }) => {
             setFormFeedBack(fails);
             return;
         }
+        console.log(formData, 'formData')
         Authenticate.signIn(formData).then((response) => {
-
+            console.log(response, 'response sigIn')
             if (response.error) {
 
                 setFormFeedBack({ invalidCredentails: response.message });
                 return e.target.reset()
             }
 
-            console.log(response, 'hahaha')
 
             Authenticate.logged().then(response => {
+                console.log(response, 'caralhoooo!')
                 handleClose()
-                dispatch(setUserProfile(Authenticate.getUser()))
+                dispatch(setCustomerProfile(Authenticate.getUser()))
             })
         });
 

@@ -72,3 +72,16 @@ ul{
         outline: none;
     }
 }
+
+
+.text{
+    color:red;
+    &:hover{
+        .outroTexto{
+            font-size: 1em;
+        }
+    }
+}
+.text:hover{
+    
+}

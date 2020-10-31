@@ -9,8 +9,7 @@ export default function CardAdditionalPackage({ passagers, changePassagers, data
     useEffect(() => {
         passagers.map((passager, key) => {
 
-            passager.totalAmount = passager.amount;
-            passager.additionalPackages = []
+            passager.additionalPackages = passager.additionalPackages ? passager.additionalPackages : [];
         });
 
     }, [])
@@ -19,12 +18,12 @@ export default function CardAdditionalPackage({ passagers, changePassagers, data
             <img className={css.cardImage} src={'https://picsum.photos/id/' + Math.floor(Math.random() * 500) + '/50/50.jpg'} alt="Card image cap" />
             <div className={css.cardBody}>
                 <h2 className={css.cardTitle}>{data.name}</h2>
-
+                <p><small>{data.description}</small> </p>
                 <div className={css.infoWrapper}>
                     <div className={css.dateWrapper}>
                     </div>
                     <div className={css.priceWrapper}>
-                        <span className={css.price}>R$ {data.amount} </span>
+                        <span className={css.price}>{new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(data.amount)} </span>
                     </div>
                 </div>
             </div>
@@ -34,21 +33,22 @@ export default function CardAdditionalPackage({ passagers, changePassagers, data
                         return <li className={css.switchItem} key={key} >
                             <span className={css.itemText}>{key + 1} - {passager.fullName ? passager.fullName : passager.name}</span>
                             <BootstrapSwitchButton
-                                style={{ borderRadius: '20px' }}
+                                style={{ borderRadius: '30px' }}
                                 onlabel='Sim'
                                 offlabel='Não'
                                 onstyle={'success'}
                                 size="xs"
+                                checked={ passager.additionalPackages ? passager.additionalPackages.map(attr => attr.id).indexOf(data.id) > -1 ? true : false: false}
                                 onChange={(checked) => {
-                                    let index = passager.additionalPackages.indexOf(data);
-
+                                    let index = passager.additionalPackages.map(attr => attr.id).indexOf(data.id);
+                                    
                                     if (checked) {
-                                        console.log(passager.totalAmount, data.amount, 'vai sommmmaaaaaaaaa')
-                                        console.log(passager.totalAmount + data.amount, 'SOMOOOOOOU')
+                                      
                                         passager.totalAmount = passager.totalAmount + data.amount;
                                         passager.additionalPackages.push(data);
                                         return changePassagers([...passagers]);
                                     }
+                                    console.log(index, 'indexxxxxxxxxxx')
                                     if (index > -1) {
 
                                         passager.totalAmount = parseFloat((passager.totalAmount - data.amount).toFixed(2))

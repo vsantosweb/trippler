@@ -9,6 +9,7 @@ import Home from "../resources/views/pages/Home";
 import Trip from "../resources/views/pages/Trip";
 import Cart from "../resources/views/pages/Cart";
 import Filter from "../resources/views/pages/Filter";
+import Checkout from "../resources/views/pages/Checkout";
 
 const Routes = [
     {
@@ -32,6 +33,14 @@ const Routes = [
         exact: false,
         title: 'Home',
         component: Cart,
+        type: 'default',
+        private: false
+    },
+    {
+        path: '/checkout',
+        exact: false,
+        title: 'Checkout',
+        component: Checkout,
         type: 'default',
         private: false
     },

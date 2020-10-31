@@ -20,7 +20,7 @@ export default class Authenticate {
         return  api.post('/client/customer/auth/login', credentials)
         .then(response => {
 
-            Cookie.set('UID', response.data.data, {secure:true})
+            Cookie.set('UID', response.data.data)
             return response;
 
         })
@@ -47,14 +47,13 @@ export default class Authenticate {
     }
 
 
-    static logged = () => {
+    static logged = async () => {
 
-        return api.get('/client/customer/auth/logged').then((response) => {
+        return await api.get('/client/customer/auth/logged').then((response) => {
             switch (response.status) {
                 case 200:
                     this.isAuthorized = true;
-                    this.userData = response.data.data;
-                    break;
+                    return this.userData = response.data.data;
                 case 401:
                     this.isAuthorized = false;
                     return window.location.href = '/login';
