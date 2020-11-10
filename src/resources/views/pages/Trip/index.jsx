@@ -152,7 +152,7 @@ const Trip = (props) => {
 
         for (let i = 0; i <= tripPackage.package.quantity - 1; i++) {
             passagers.push(
-                <select style={{ width: "100%", margin: '.4em 0' }} name={`passageiro[${i}]`} defaultValue="Selecione o tipo de passageiro" onChange={(element) => chosePassagerTypes(element, i)}>
+                <select style={{ width: "100%", margin: '.4em 0' }} className={'form-control'} name={`passageiro[${i}]`} defaultValue="Selecione o tipo de passageiro" onChange={(element) => chosePassagerTypes(element, i)}>
                     {tripSchedule.passager_types.map(passager => <option key={passager.id} value={JSON.stringify(passager)}>{passager.name}</option>)}
                 </select>
             );
@@ -384,7 +384,7 @@ const Trip = (props) => {
                                             </div>
                                             <div className={css.tripCheckoutActions}>
                                                 <small>Selecione o local de Embarque</small>
-                                                <select style={{ width: "100%", margin: '.4em 0' }} name={'boarding_locations'} defaultValue="Selecione o tipo de passageiro" onChange={handleBoardingLocation}>
+                                                <select style={{ width: "100%", margin: '.4em 0' }} className={'form-control'} name={'boarding_locations'} defaultValue="Selecione o tipo de passageiro" onChange={handleBoardingLocation}>
                                                     {tripSchedule.boarding_locations.map(location => <option key={location.id} value={JSON.stringify(location)}>{location.name}</option>)}
                                                 </select>
                                                 {!tripPackage.package ?

@@ -95,8 +95,9 @@ function Checkout({ plans, ...props }) {
 
     e.preventDefault();
 
-    console.log('enviadoo!!!!', myCart.passagers)
+    console.log('enviadoo!!!!', myCart.passagers);
     let validators = formRules(myCart.passagers);
+    
     let feedBack = []
 
     let validationCheck = validators.map((validator, key) => {
@@ -115,7 +116,7 @@ function Checkout({ plans, ...props }) {
     })
 
     if (checkValidForms(validationCheck)) {
-      dispatch(setOrder(myCart));
+      dispatch(setCart(myCart));
       props.history.push('/checkout');
     }
 
