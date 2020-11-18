@@ -1,4 +1,9 @@
-.footerWrapper{
-    background: #000;
+@import '../../styles/sass/main.scss';
+.footer {
+    background: $secondaryColor;
+    color: #fff;
     padding: 4em 0;
+    .footerWrapper {
+        @extend .containerWrapper;
+    }
 }

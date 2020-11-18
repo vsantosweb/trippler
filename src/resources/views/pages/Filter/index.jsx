@@ -3,7 +3,7 @@ import SiteLayout from "../../layouts/SiteLayout";
 import { Col, Row, Container } from "react-grid-system";
 import css from "./Filter.module.scss";
 
-import CardEvent from "../../../components/Cards/CardEvent/CardEvent";
+import CardEvent from "../../../components/Cards/CardEvent";
 
 
 function Filter() {

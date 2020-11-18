@@ -1,4 +1,3 @@
-
 /*
 |--------------------------------------------------------------------------
 | Routes
@@ -11,8 +10,7 @@ import Cart from "../resources/views/pages/Cart";
 import Filter from "../resources/views/pages/Filter";
 import Checkout from "../resources/views/pages/Checkout";
 
-const Routes = [
-    {
+const Routes = [{
         path: '/',
         exact: true,
         title: 'Home',
@@ -52,6 +50,6 @@ const Routes = [
         type: 'default',
         private: false
     }
-    
+
 ]
 export default Routes;

@@ -1,39 +1,51 @@
 @import '../../../styles/sass/main.scss';
-
 .featured {
     display: flex;
     margin: 1.4em 1.4em;
-    .featuredText{
-      padding-left: 1em;
-      text-align: left;
-      .featuredTitle{
-        margin: 0;
-        text-transform: uppercase;
-      }
-      .featuredDescription{
-        font-size: 16px;
-      }
+    .featuredText {
+        padding-left: 1em;
+        text-align: left;
+        .featuredTitle {
+            margin: 0;
+            text-transform: uppercase;
+        }
+        .featuredDescription {
+            font-size: 16px;
+        }
     }
     .featuredIcon {
-      margin-left: auto;
-      margin-right: auto;
-
-      align-items: center;
-      border-radius: 100%;
-      justify-content: center;
-      @media (max-width: 768px) {
-        width: 3em;
-        height: 3em;
-      }
-      span {
-        color: $primaryColor;
-        font-size: 3em;
-      }
+        margin-left: auto;
+        margin-right: auto;
+        align-items: center;
+        border-radius: 100%;
+        justify-content: center;
+        @media (max-width: 768px) {
+            width: 3em;
+            height: 3em;
+        }
+        span {
+            color: $primaryColor;
+            font-size: 3em;
+        }
     }
 }
-.platformImage{
+
+.platformImage {
     max-width: 760px;
-    img{
-      width: 100%;
+    img {
+        width: 100%;
     }
-  }
+}
+
+.cardCollection {
+    margin-top: 1em;
+    .cardCollectionHeader {
+        display: flex;
+        align-items: center;
+        margin: 1.3em 0;
+        justify-content: space-between;
+        .cardCollectionTitle {
+            font-weight: 300;
+        }
+    }
+}
