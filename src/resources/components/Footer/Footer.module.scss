@@ -1,8 +1,8 @@
 @import '../../styles/sass/main.scss';
 .footer {
-    background: $secondaryColor;
+    background: #333;
     color: #fff;
-    padding: 4em 0;
+    padding: 1em 0;
     .footerWrapper {
         @extend .containerWrapper;
     }

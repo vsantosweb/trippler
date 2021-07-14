@@ -1,19 +1,28 @@
 import React from 'react'
-import css from './Hero.module.scss';
-import SearchBar from './SearchBar';
+import * as StyledHero from './style';
 
 export default function Hero() {
     return (
-        <div className={css.hero}>
-            <div className={css.bannerContainer}>
-                {/* <img src={'http://getmasum.com/html-preview/voyage/assets/img/slider/1.jpg'} className={css.bannerImage} /> */}
-                <div className={css.bannerTextContainer}>
-                    <div className={css.bannerText}>
-                        <h1 className={css.bannerTitle}>Viage no seu tempo</h1>
-                        <p>Garanta seu lugar em qualquer excursão, a qualquer hora. Explore milhares de viagens de forma fácil, rápida e confiável.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
+        <StyledHero.Container>
+            {/* <StyledHero.Banner>
+                <StyledHero.Title>Encontre sua trip Arrume sua Bag e bora viajar barato</StyledHero.Title>
+            </StyledHero.Banner> */}
+            <StyledHero.HeroCategories>
+                <StyledHero.HeroCategory>
+                    <StyledHero.HeroCategoryItem>
+                        <StyledHero.HeroCategoryIcon><i className={'las la-calendar'}></i> </StyledHero.HeroCategoryIcon>
+                        <StyledHero.HeroCategoryText>FDS</StyledHero.HeroCategoryText>
+                    </StyledHero.HeroCategoryItem>
+                    <StyledHero.HeroCategoryItem>
+                        <StyledHero.HeroCategoryIcon><i className="las la-exchange-alt"></i></StyledHero.HeroCategoryIcon>
+                        <StyledHero.HeroCategoryText>Bate & Volta </StyledHero.HeroCategoryText>
+                    </StyledHero.HeroCategoryItem>
+                    <StyledHero.HeroCategoryItem>
+                        <StyledHero.HeroCategoryIcon><i className="las la-umbrella-beach"></i></StyledHero.HeroCategoryIcon>
+                        <StyledHero.HeroCategoryText>Férias</StyledHero.HeroCategoryText>
+                    </StyledHero.HeroCategoryItem>
+                </StyledHero.HeroCategory>
+            </StyledHero.HeroCategories>
+        </StyledHero.Container>
     )
 }

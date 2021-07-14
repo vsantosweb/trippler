@@ -92,11 +92,13 @@ export default function Checkout() {
     setCreditCard(json);
 
     let cardValidations = pagarme.validate({ card: json });
+    
+    console.log(json, "caraioooooooooo!!!!");
+    console.log(cardValidations, 'kdoska')
 
     if (!creditCardRules(cardValidations.card)) {
       delete creditCard.installments;
       checkoutData.installments = json.installments;
-      console.log(json, "caraioooooooooo!!!!");
 
       pagarme.client
         .connect({ api_key: "ak_test_7ZdqNZE9QSlamtPbi5v030vmN1v1vj" })

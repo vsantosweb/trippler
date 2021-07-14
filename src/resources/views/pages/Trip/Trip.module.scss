@@ -154,6 +154,7 @@
     border: dashed 1px $primaryColor;
     cursor: pointer;
     border-radius: 10px;
+    background-position: red;
     &:hover{
       background: $primaryColor;
       color:#fff;

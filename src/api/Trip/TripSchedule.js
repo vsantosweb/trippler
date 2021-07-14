@@ -1,17 +1,22 @@
+import { trackPromise } from 'react-promise-tracker';
 import api from '..';
 
-export default class TripSchedule {
+export const tripScheduleList = (params = null, wait) => {
 
-    static list = async() => (
-        await api.get('/client/public/trips/schedule').then(response => response.data)
-    )
-    static listByCategories = async() => (
-        await api.get('/client/public/trips/categories').then(response => response.data)
-    )
-    static show = async(code) => (
-        await api.get('/client/public/trips/schedule/' + code).then(response => response.data)
-    )
-    static additionalPackages = async(code) => (
-        await api.get('/client/public/trips/additional-packages/' + code).then(response => response.data)
-    )
+    const data = api.get('/client/public/trip/schedule/categories')
+        .then(response => response.data)
+        .catch(error => error.response)
+
+    return wait ? trackPromise(data, 'table-area') : data;
+
+}
+
+export const tripScheduleShow = (code, wait) => {
+
+    const data = api.get('/client/public/trip/schedule/' + code)
+        .then(response => response.data)
+        .catch(error => error.response)
+
+    return wait ? trackPromise(data, 'table-area') : data;
+
 }

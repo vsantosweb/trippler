@@ -18,14 +18,14 @@ const Routes = [{
         type: 'default',
         private: false
     },
-    {
-        path: '/trips/:code',
-        exact: true,
-        title: 'Home',
-        component: Trip,
-        type: 'default',
-        private: false
-    },
+    // {
+    //     path: '/trips/:code',
+    //     exact: true,
+    //     title: 'Home',
+    //     component: Trip,
+    //     type: 'default',
+    //     private: false
+    // },
     {
         path: '/mochila',
         exact: false,
