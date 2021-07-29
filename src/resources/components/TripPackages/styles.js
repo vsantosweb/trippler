@@ -1,63 +1,5 @@
-import styled from "styled-components";
-import { setSyntheticTrailingComments } from "typescript";
+import styled from 'styled-components';
 
-export const Container = styled.div`
-  position: relative;
-  font-size: 14px;
-  font-weight: 400;
-`;
-
-export const Name = styled.h1``;
-export const Description = styled.p``;
-export const Info = styled.div``;
-
-export const InfoDetails = styled.span`
-  display: flex;
-  flex-direction: column;
-  align-items: ${({ justify }) => justify};
-`;
-
-export const InfoTop = styled.div``;
-export const InfoPriceValue = styled.span``;
-
-export const Vacancies = styled.div`
-  color: #333;
-`;
-
-export const Period = styled.div`
-  font-weight: bold;
-  color: #555;
-`;
-export const Details = styled.section`
-  padding: 1em;
-
-  ${Name} {
-    font-size: 24px;
-    line-height: 28px;
-    font-weight: 700;
-    display: inline;
-  }
-
-  ${Description} {
-    color: #525252;
-  }
-
-  ${Info} {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    ${InfoDetails} {
-      ${InfoTop} {
-        font-size: 11px;
-      }
-      ${InfoPriceValue} {
-        font-weight: bold;
-        font-size: 1.8em;
-        margin-top: -6px;
-      }
-    }
-  }
-`;
 
 export const PackageItem = styled.div`
   width: 100%;
@@ -76,7 +18,6 @@ export const PackageItem = styled.div`
   gap: 0.5em;
   background-color: ${({ theme }) => theme.colors.primary};
   color: #fff;
-  
   justify-content: space-between;
 `;
 export const PackageTitle = styled.h3`
@@ -104,7 +45,6 @@ export const PackageItemFooter = styled.div`
   border-bottom-right-radius: 10px;
 `;
 
-// package info
 export const PackageInfo = styled.div`
   background: #fff;
   position: fixed;

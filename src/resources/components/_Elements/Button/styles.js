@@ -15,6 +15,7 @@ export const Container = styled.button`
   font-weight: 700;
   border-radius: ${({ theme }) => `calc(${ theme.radiusDefault } * 1)`};
   white-space: nowrap;
+  width: ${({ block }) => block && '100%'};
   ${getColors};
   ${getSize};
   text-transform: uppercase;
@@ -25,7 +26,7 @@ export const Container = styled.button`
 		filter: saturate(60%);
 	}
   display: inline;
-  padding:  1em;
+  padding:  .6em;
   border: solid 1px;
 `;
 

@@ -50,7 +50,7 @@ const theme = {
         none: 'none',
         thin: '1px solid',
     },
-    radiusDefault: '0'
+    radiusDefault: '15px'
 }
 
 const Theme = ({ children }) => (

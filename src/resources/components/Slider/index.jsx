@@ -12,7 +12,7 @@ const Slider = ({ images }) => {
             
             {images.map((image, key) => (
                 <SwiperSlide key={key}>
-                    <img src={'https://picsum.photos/id/' + Math.floor(Math.random() * 500) + '/500/350.jpg'} />
+                    <img src={image} />
                 </SwiperSlide>
             ))}
         </SwiperSlider.Container>

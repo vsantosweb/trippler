@@ -39,7 +39,7 @@ input {
   transition: .2s ease-in-out;
   width: 100%;
   padding: 15px;
-  margin: 5px 0 22px 0;
+  margin: 5px 0 12px 0;
   display: inline-block;
   border: none;
   background: #f1f1f1;
