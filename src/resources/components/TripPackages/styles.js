@@ -45,16 +45,26 @@ export const PackageItemFooter = styled.div`
   border-bottom-right-radius: 10px;
 `;
 
+export const PackageInfoContainer = styled.div`
+  position: fixed;
+  height: 100%;
+  width: 100%;
+  background-color: rgba(0 ,0 ,0 , .5);
+  top:0;  
+  z-index: 1;
+  display: flex;
+  align-items: flex-end;
+  transform: ${({ open }) => (open ? "translateY(0%)" : "translateY(100%)")};
+  ${({ open }) => document.body.style.overflow = open ? 'hidden' : 'auto'}
+`
 export const PackageInfo = styled.div`
   background: #fff;
-  position: fixed;
+  position: relative;
   bottom: 0;
-  height: calc(100% - 80px);
-  z-index: 13;
+  height:85%;
   width: 100%;
   transition: ease-in-out 0.1s;
-  transform: ${({ open }) => (open ? "translateY(0%)" : "translateY(100%)")};
-  /* box-shadow: 0px -11px 16px 0px #cecece; */
+ 
   border-top-right-radius: 20px;
   border-top-left-radius: 20px;
   padding-bottom: 2.4em;
@@ -129,6 +139,7 @@ export const PricePackageContent = styled.div`
   display: flex;
   position: fixed;
   bottom: 0;
+  border-top: solid 1px #eee;
   background-color: #fff;
   width: 100%;
   align-items: center;

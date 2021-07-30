@@ -1,11 +1,8 @@
 import React from 'react'
 import Slider from '../../components/Slider'
-import * as Styled from './style';
+import * as Styled from './styles';
 import { useForm } from 'react-hook-form';
 
-import SwiperCore, { Navigation } from "swiper";
-import { Swiper, SwiperSlide } from "swiper/react";
-import "swiper/swiper.scss";
 import {
     Accordion,
     AccordionItem,
@@ -18,27 +15,17 @@ import { Button } from '../../components/_Elements/Button';
 import history from '../../../history';
 import moment from 'moment';
 import TripPackages from '../../components/TripPackages';
+import Cart from '../../../api/Cart/Cart';
 
-SwiperCore.use([Navigation]);
 
 
 export default function TripDetails({ data }) {
     
-    const { register, handleSubmit, getValues, formState: { errors, isValid } } = useForm({ mode: 'onChange' });
-
     let packages = data.packages || [];
-    let passagerTypes = data.passagers || [];
-    let boarding_locations = data.boarding_locations || [];
-
-    const onSubmit = (data) => {
-        alert(JSON.stringify(data));
-    }
-
     const packageAmounts = packages && packages.map(pack => pack.amount);
-
+    console.log(data)
     return (
         <Styled.Container>
-            {/* <Slider images={[0, 1, 2, 3, 4, 5, 6]} /> */}
             {data.trip && <Slider images={data.trip?.feature.metadata.trip_media} />}
             <Styled.Details>
                 <Styled.Name>{data.trip?.name}</Styled.Name>
@@ -51,11 +38,11 @@ export default function TripDetails({ data }) {
 
                     <Styled.InfoDetails justify={'flex-end'}>
                         <Styled.InfoTop>A partir de</Styled.InfoTop>
-                        {data && <Styled.InfoPriceValue>{new Intl.NumberFormat("pt-BR", { style: "currency", currency: "BRL", }).format(Math.min(...packageAmounts))}</Styled.InfoPriceValue>}
+                        {data && <Styled.InfoPriceValue>{new Intl.NumberFormat("pt-BR", { style: "currency", currency: "BRL", }).format(Math.min(...packageAmounts) + data.price)}</Styled.InfoPriceValue>}
                     </Styled.InfoDetails>
                 </Styled.Info>
             </Styled.Details>
-           <TripPackages data={data} />
+           <TripPackages data={data} cart={Cart} />
             <Accordion>
                 <AccordionItem>
                     <AccordionItemHeading>
@@ -64,7 +51,7 @@ export default function TripDetails({ data }) {
                     <AccordionItemPanel>
                         <ul>
                             {data?.trip?.feature.metadata.trip_takes.map((tripTakes, key) =>
-                                <li>
+                                <li key={key}>
                                     <h6>{tripTakes.title}</h6>
                                     <p>{tripTakes.description}</p>
                                 </li>
@@ -79,7 +66,7 @@ export default function TripDetails({ data }) {
                     <AccordionItemPanel>
                         <ul>
                             {data?.trip?.feature.metadata.road_map.map((roadMap, key) =>
-                                <li>
+                                <li key={key}>
                                     <h6>{roadMap.title}</h6>
                                     <p>{roadMap.description}</p>
                                 </li>

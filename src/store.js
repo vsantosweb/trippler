@@ -3,11 +3,11 @@ import thunk from 'redux-thunk';
 import { combineReducers } from 'redux';
 import { persistStore, persistReducer } from 'redux-persist';
 import storage from 'redux-persist/lib/storage/session';
-import cartReducer from './store/cart/cartReducer';
+import TripBagReducer from './resources/views/pages/TripBag/redux';
 
 
 const reducers = combineReducers({
-    cart: cartReducer
+    tripBag: TripBagReducer
 });
 
 const persistConfig = {

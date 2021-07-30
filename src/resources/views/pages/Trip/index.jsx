@@ -15,7 +15,7 @@ import css from "./Trip.module.scss";
 import SiteLayout from "../../layouts/SiteLayout";
 import { Container, Row, Col } from "react-grid-system";
 import TripReviews from "../../../components/Reviews/TripReviews/TripReviews";
-import TripSchedule, { tripScheduleShow } from "../../../../api/Trip/TripSchedule";
+import  { tripScheduleShow } from "../../../../api/Trip/TripSchedule";
 import { ModalLogin } from "../../../components/Modal/ModalLogin";
 import Cart from "../../../../api/Cart/Cart";
 

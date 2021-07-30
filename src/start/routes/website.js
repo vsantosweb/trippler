@@ -8,7 +8,7 @@ import Home from "../../resources/views/pages/Home";
 import Trip from "../../resources/views/pages/Trip";
 import Filter from "../../resources/views/pages/Filter";
 import Checkout from "../../resources/views/pages/Checkout";
-import Cart from "../../resources/components/Cart";
+import TripBag from "../../resources/views/pages/TripBag";
 
 
 export default [
@@ -31,7 +31,7 @@ export default [
         path: '/mochila',
         exact: true,
         title: 'Home',
-        component: Cart,
+        component: TripBag,
         type: 'default',
         private: false
     },
