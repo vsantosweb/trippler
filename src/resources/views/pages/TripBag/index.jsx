@@ -9,6 +9,14 @@ import Cart from "../../../../api/Cart/Cart";
 import { tripScheduleShow } from "../../../../api/Trip/TripSchedule";
 import SwiperCore, { Navigation } from "swiper";
 import { Swiper, SwiperSlide } from "swiper/react";
+import AdditionalPackage from "../../../components/AdditionalPackage";
+import {
+  Accordion,
+  AccordionItem,
+  AccordionItemHeading,
+  AccordionItemButton,
+  AccordionItemPanel,
+} from 'react-accessible-accordion';
 
 SwiperCore.use([Navigation]);
 
@@ -39,22 +47,26 @@ export default function TripBag({ layout }) {
   return (
 
     <div>
-      <Swiper direction="horizontal" spaceBetween={5} slidesPerView={1.4} freeMode={true}>
-
-        {tripSchedule && cart && tripSchedule?.additional_packages?.map((item, key) => (
-          <SwiperSlide key={key}>
-            <CardAdditionalPackage
-              key={key}
-              data={item}
-              passagers={cart.cart_data.items}
-            // changePassagers={chosePassagerPackages}
-            />
-          </SwiperSlide>
-        ))}
-
-
-      </Swiper>
-
+            {/* <h5>1 - Identificação dos Clientes</h5>
+            <Accordion>
+                {[1,2,3,4,5,6,7,8].map(item => (
+                  <AccordionItem>
+                  <AccordionItemHeading>
+                      <AccordionItemButton>Cliente {item}</AccordionItemButton>
+                  </AccordionItemHeading>
+                  <AccordionItemPanel>
+                    <label>Nome</label>
+                     <input />
+                     <label>RG</label>
+                     <input />
+                     <label>Data de Nascimento</label>
+                     <input />
+                  </AccordionItemPanel>
+              </AccordionItem>
+                ))}
+            </Accordion> */}
+      <h5>2 - Pacotes Adicionais</h5>
+      {cart &&  <AdditionalPackage data={tripSchedule?.additional_packages} passengers={cart?.cart_data?.items} />}
     </div>
   );
 }

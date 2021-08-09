@@ -12,25 +12,25 @@ import history from '../../../history';
 SwiperCore.use([Navigation]);
 
 export default function TripPackages({ data, cart }) {
-
+    
     const [packageDetails, setPackageDetails] = React.useState({ open: false });
-    const selectedPassagers = Array.from(Array(packageDetails.quantity).keys());
+    const selectedpassengers = Array.from(Array(packageDetails.quantity).keys());
     const { register, handleSubmit, getValues, formState: { errors, isValid } } = useForm({ mode: 'onChange' });
 
     let packages = data.packages || [];
-    let passagerTypes = data.passagers || [];
+    let passengerTypes = data.passengers || [];
     let boarding_locations = data.boarding_locations || [];
     let totalAmount = packageDetails.amount && (packageDetails.amount + data.price) * packageDetails.quantity;
     const dispatch = useDispatch();
 
     const onSubmit = (formData) => {
-        let selectedPassager = [];
+        let selectedpassenger = [];
 
-        let passagerAmount = formData.passagers.map(id => {
+        let passengerAmount = formData.passengers.map(id => {
 
-            selectedPassager.push(passagerTypes.filter(passager => passager.id == id)[0])
+            selectedpassenger.push(passengerTypes.filter(passenger => passenger.id == id)[0])
 
-            return selectedPassager.map(passager => passager.pivot.amount)[0]
+            return selectedpassenger.map(passenger => passenger.pivot.amount)[0]
         })
 
         const packageDIspatch = {
@@ -40,10 +40,10 @@ export default function TripPackages({ data, cart }) {
             type: packageDetails.name,
             quantity: packageDetails.quantity,
             shared: packageDetails.shared,
-            totalAmount: totalAmount + passagerAmount.reduce((total, amount) => total + amount),
-            items: selectedPassager.map(passager => ({
-                type: passager.name,
-                amount: passager.pivot.amount
+            totalAmount: totalAmount + passengerAmount.reduce((total, amount) => total + amount),
+            items: selectedpassenger.map(passenger => ({
+                type: passenger.name,
+                amount: passenger.pivot.amount
             }))
         }
 
@@ -104,19 +104,19 @@ export default function TripPackages({ data, cart }) {
 
                                 <Styled.AccommodationTitle>Selecione os Triplers</Styled.AccommodationTitle>
                                 {
-                                    selectedPassagers.map((passager, index) => (
+                                    selectedpassengers.map((passenger, index) => (
                                         index == 0 ?
 
-                                            <select key={index} defaultValue={1} {...register('passagers.[' + index + ']', { required: false })}>
-                                                <option value={1}>{passagerTypes[0]?.name}</option>
+                                            <select key={index} defaultValue={1} {...register('passengers.[' + index + ']', { required: false })}>
+                                                <option value={1}>{passengerTypes[0]?.name}</option>
                                             </select> :
 
-                                            <select key={index} {...register('passagers.[' + index + ']', { required: true })}>
-                                                {passagerTypes.map((passager, key) => <option key={key} value={passager.id}>{passager.name}</option>)}
+                                            <select key={index} {...register('passengers.[' + index + ']', { required: true })}>
+                                                {passengerTypes.map((passenger, key) => <option key={key} value={passenger.id}>{passenger.name}</option>)}
                                             </select>
                                     ))
                                 }
-                                {errors?.passagers?.type === "required" && <small>Selecione o passageiro</small>}
+                                {errors?.passengers?.type === "required" && <small>Selecione o passageiro</small>}
                             </Styled.PackageBodySection>
                             <Styled.PricePackageContent>
                                 <Styled.PriceInfo>

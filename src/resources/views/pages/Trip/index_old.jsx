@@ -110,7 +110,7 @@ const IMAGES = [
 const Trip = (props) => {
   const [tripSchedule, setTripSchedule] = useState(false);
   const [tripPackage, setTripPackage] = useState("");
-  const [passagers, setPassagers] = useState(false);
+  const [passengers, setpassengers] = useState(false);
   const [totalPrice, setTotalPrice] = useState(tripSchedule.price);
   const [disableSubmit, setDisableSubmit] = useState(true);
   const [loginRequest, setLoginRequest] = useState("");
@@ -122,10 +122,10 @@ const Trip = (props) => {
     let validator = Validator.make(data, {
       boarding_location: "required",
       package: "required",
-      passagers: "quantity",
+      passengers: "quantity",
     });
 
-    validator.extend("quantity", validatePassagers, ":attr is not a valid");
+    validator.extend("quantity", validatepassengers, ":attr is not a valid");
 
     if (validator.fails()) {
       return setDisableSubmit(true);
@@ -134,9 +134,9 @@ const Trip = (props) => {
     }
   };
 
-  const validatePassagers = (name, value, params) => {
-    if (tripPackage.passagers) {
-      return tripPackage.package.quantity === tripPackage.passagers.length;
+  const validatepassengers = (name, value, params) => {
+    if (tripPackage.passengers) {
+      return tripPackage.package.quantity === tripPackage.passengers.length;
     }
     return false;
   };
@@ -150,34 +150,34 @@ const Trip = (props) => {
     validation(tripPackage);
   }, [tripPackage]);
 
-  const chosePassagerTypes = (element, position) => {
-    let passagers = Object.assign([], tripPackage.passagers);
-    let passager = JSON.parse(element.target.value);
-    passagers[position] = passager;
-    setTripPackage({ ...tripPackage, passagers });
+  const chosepassengerTypes = (element, position) => {
+    let passengers = Object.assign([], tripPackage.passengers);
+    let passenger = JSON.parse(element.target.value);
+    passengers[position] = passenger;
+    setTripPackage({ ...tripPackage, passengers });
   };
 
-  const passagerCount = () => {
-    let passagers = [];
+  const passengerCount = () => {
+    let passengers = [];
 
     for (let i = 0; i < tripPackage.package.quantity; i++) {
-      passagers.push(
+      passengers.push(
         <select
           style={{ width: "100%", margin: ".4em 0" }}
           className={"form-control"}
           name={`passageiro[${i}]`}
           defaultValue="Selecione o tipo de passageiro"
-          onChange={(element) => chosePassagerTypes(element, i)}
+          onChange={(element) => chosepassengerTypes(element, i)}
         >
-          {tripSchedule.passager_types.map((passager) => (
-            <option key={passager.id} value={JSON.stringify(passager)}>
-              {passager.name}
+          {tripSchedule.passenger_types.map((passenger) => (
+            <option key={passenger.id} value={JSON.stringify(passenger)}>
+              {passenger.name}
             </option>
           ))}
         </select>
       );
     }
-    return passagers;
+    return passengers;
   };
 
   const handleBoardingLocation = (e) => {
@@ -299,7 +299,7 @@ const Trip = (props) => {
                             </Swiper>
                           </div>
                         ) : (
-                          <div className={css.tripPassagerTypes}>
+                          <div className={css.trippassengerTypes}>
                             {
                               <button
                                 className={"btn btn-light"}
@@ -314,7 +314,7 @@ const Trip = (props) => {
                               para todos os passageiros ou cada um pagar o seu
                             </p>
                             {/* <hr /> */}
-                            {passagerCount()}
+                            {passengerCount()}
                             {/* <hr /> */}
                             <small>
                               *Observação: bebê até 4 anos, viajando no colo e

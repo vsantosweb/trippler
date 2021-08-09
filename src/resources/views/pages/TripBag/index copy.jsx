@@ -39,13 +39,13 @@ export default function TripBag({ plans, ...props }) {
     return validator;
   };
 
-  const calculateTotalPassagerAmount = (cart) => {
+  const calculateTotalpassengerAmount = (cart) => {
     let totalAmount = [];
-    for (let passager of cart.passagers) {
-      passager.totalAmount = passager.amount + parseFloat(cart.price);
-      if (passager.additionalPackages) {
-        passager.additionalPackages.map((pack) => {
-          passager.totalAmount = passager.totalAmount + pack.amount;
+    for (let passenger of cart.passengers) {
+      passenger.totalAmount = passenger.amount + parseFloat(cart.price);
+      if (passenger.additionalPackages) {
+        passenger.additionalPackages.map((pack) => {
+          passenger.totalAmount = passenger.totalAmount + pack.amount;
         });
       }
     }
@@ -54,10 +54,10 @@ export default function TripBag({ plans, ...props }) {
   };
 
   const calculateTotalAmount = () => {
-    myCart.totalAmount = myCart.price * myCart.passagers.length;
-    for (let passager of myCart.passagers) {
+    myCart.totalAmount = myCart.price * myCart.passengers.length;
+    for (let passenger of myCart.passengers) {
       myCart.totalAmount = parseFloat(
-        (myCart.totalAmount + passager.totalAmount - myCart.price).toFixed(2)
+        (myCart.totalAmount + passenger.totalAmount - myCart.price).toFixed(2)
       );
     }
 
@@ -70,8 +70,8 @@ export default function TripBag({ plans, ...props }) {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    console.log("enviadoo!!!!", myCart.passagers);
-    let validators = formRules(myCart.passagers);
+    console.log("enviadoo!!!!", myCart.passengers);
+    let validators = formRules(myCart.passengers);
 
     let feedBack = [];
 
@@ -100,18 +100,18 @@ export default function TripBag({ plans, ...props }) {
     //  props.history.push('/checkout');
     // setFormFeedback({submited:true})
   };
-  const chosePassagerPackages = (passagers) => {
+  const chosepassengerPackages = (passengers) => {
     console.log(myCart, "myCart");
-    setMyCart({ ...myCart, passagers });
-    setPassagers(passagers);
+    setMyCart({ ...myCart, passengers });
+    setpassengers(passengers);
   };
-  const handleInputPassagers = (e, key) => {
-    let passagers = Object.assign([], myCart.passagers);
+  const handleInputpassengers = (e, key) => {
+    let passengers = Object.assign([], myCart.passengers);
 
-    passagers[key][e.target.name] = e.target.value;
-    setMyCart({ ...myCart, passagers });
+    passengers[key][e.target.name] = e.target.value;
+    setMyCart({ ...myCart, passengers });
 
-    let validators = formRules(passagers);
+    let validators = formRules(passengers);
     let feedBack = [];
 
     let validationCheck = validators.map((validator, key) => {
@@ -182,8 +182,8 @@ export default function TripBag({ plans, ...props }) {
                           <div key={key} className={"col-md-4"}>
                             <CardAdditionalPackage
                               data={item}
-                              passagers={myCart.passagers}
-                              changePassagers={chosePassagerPackages}
+                              passengers={myCart.passengers}
+                              changepassengers={chosepassengerPackages}
                             />
                           </div>
                         );
@@ -195,9 +195,9 @@ export default function TripBag({ plans, ...props }) {
                   <h3 className={css.blockTitle}>
                     2. Identificação dos passageiros
                   </h3>
-                  <div className="accordion" id={"passagerData"}>
+                  <div className="accordion" id={"passengerData"}>
                     {myCart
-                      ? myCart.passagers.map((passager, key) => (
+                      ? myCart.passengers.map((passenger, key) => (
                         <div className="card" key={key}>
                           <div className="card-header">
                             <h5 className="mb-0">
@@ -209,8 +209,8 @@ export default function TripBag({ plans, ...props }) {
                                 aria-expanded="true"
                                 aria-controls={key}
                               >
-                                {passager.fullName
-                                  ? key + 1 + " " + passager.fullName
+                                {passenger.fullName
+                                  ? key + 1 + " " + passenger.fullName
                                   : key + 1 + " Passageiro"}
                               </button>
                             </h5>
@@ -218,7 +218,7 @@ export default function TripBag({ plans, ...props }) {
                           <div
                             id={"passger" + key}
                             className="collapse"
-                            data-parent="#passagerData"
+                            data-parent="#passengerData"
                           >
                             <div className="card-body">
                               <div className={"form-row"}>
@@ -227,7 +227,7 @@ export default function TripBag({ plans, ...props }) {
                                   <input
                                     name={"fullName"}
                                     onChange={(e) =>
-                                      handleInputPassagers(e, key)
+                                      handleInputpassengers(e, key)
                                     }
                                     className={"form-control"}
                                   />
@@ -249,7 +249,7 @@ export default function TripBag({ plans, ...props }) {
                                   <input
                                     name={"document"}
                                     onChange={(e) =>
-                                      handleInputPassagers(e, key)
+                                      handleInputpassengers(e, key)
                                     }
                                     className={"form-control"}
                                   />
@@ -259,7 +259,7 @@ export default function TripBag({ plans, ...props }) {
                                   <input
                                     name={"birthday"}
                                     onChange={(e) =>
-                                      handleInputPassagers(e, key)
+                                      handleInputpassengers(e, key)
                                     }
                                     className={"form-control"}
                                   />
@@ -271,7 +271,7 @@ export default function TripBag({ plans, ...props }) {
                                   <input
                                     name={"document"}
                                     onChange={(e) =>
-                                      handleInputPassagers(e, key)
+                                      handleInputpassengers(e, key)
                                     }
                                     className={"form-control"}
                                   />
@@ -282,7 +282,7 @@ export default function TripBag({ plans, ...props }) {
                                     className="form-control"
                                     name={"gender"}
                                     onChange={(e) =>
-                                      handleInputPassagers(e, key)
+                                      handleInputpassengers(e, key)
                                     }
                                   >
                                     <option selected>Escolha.</option>
@@ -327,22 +327,22 @@ export default function TripBag({ plans, ...props }) {
                       </div>
                     </div>
                     {myCart
-                      ? myCart.passagers.map((passager, key) => (
+                      ? myCart.passengers.map((passenger, key) => (
                         <ul className={css.productDescription} key={key}>
                           <li>
                             <strong>Passageiro {key + 1}: </strong>{" "}
-                            {passager.fullName
-                              ? passager.fullName
-                              : passager.name}{" "}
+                            {passenger.fullName
+                              ? passenger.fullName
+                              : passenger.name}{" "}
                             -{" "}
                             {new Intl.NumberFormat("pt-BR", {
                               style: "currency",
                               currency: "BRL",
                             }).format(
-                              passager.amount + parseFloat(myCart.price)
+                              passenger.amount + parseFloat(myCart.price)
                             )}
-                            {passager.additionalPackages
-                              ? passager.additionalPackages.map(
+                            {passenger.additionalPackages
+                              ? passenger.additionalPackages.map(
                                 (pack, key) => {
                                   return (
                                     <dl key={key}>
@@ -368,7 +368,7 @@ export default function TripBag({ plans, ...props }) {
                             ? new Intl.NumberFormat("pt-BR", {
                               style: "currency",
                               currency: "BRL",
-                            }).format(passager.totalAmount)
+                            }).format(passenger.totalAmount)
                             : ""}
                         </ul>
                       ))

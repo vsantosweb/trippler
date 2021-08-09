@@ -33,7 +33,6 @@ const GlobalStyle = createGlobalStyle`
     }
 }
 
-
 select,
 input {
   transition: .2s ease-in-out;
