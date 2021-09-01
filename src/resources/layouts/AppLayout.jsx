@@ -1,5 +1,5 @@
 import React from 'react';
-import Footer from '../components/Footer';
+// import Footer from '../components/Footer';
 import Nav from '../components/Nav';
 
 
@@ -10,7 +10,7 @@ export default function AppLayout({ children }) {
             <div style={{ minHeight: '100%', height: 'auto' }}>
                 {children}
             </div>
-            <Footer/>
+            {/* <Footer/> */}
         </React.Fragment>
     )
 }

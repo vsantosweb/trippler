@@ -9,6 +9,7 @@ export const Container = styled.div`
   width: 100%;
   background-color: #fff;
   position: ${({ overlay }) => overlay ? 'absolute' : 'relative'};
+  border-bottom: solid 1px #ddd;
   font-family: ${(props) => props.theme.fonts[0]};
 `;
 

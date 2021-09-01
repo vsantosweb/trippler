@@ -1,7 +1,6 @@
 import React from 'react'
 import Slider from '../../components/Slider'
 import * as Styled from './styles';
-import { useForm } from 'react-hook-form';
 
 import {
     Accordion,
@@ -11,8 +10,6 @@ import {
     AccordionItemPanel,
 } from 'react-accessible-accordion';
 import 'react-accessible-accordion/dist/fancy-example.css';
-import { Button } from '../../components/_Elements/Button';
-import history from '../../../history';
 import moment from 'moment';
 import TripPackages from '../../components/TripPackages';
 import Cart from '../../../api/Cart/Cart';
@@ -23,7 +20,7 @@ export default function TripDetails({ data }) {
     
     let packages = data.packages || [];
     const packageAmounts = packages && packages.map(pack => pack.amount);
-    console.log(data)
+    
     return (
         <Styled.Container>
             {data.trip && <Slider images={data.trip?.feature.metadata.trip_media} />}

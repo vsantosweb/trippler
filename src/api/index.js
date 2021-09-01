@@ -2,20 +2,14 @@
 import Cookie from 'js-cookie';
 import axios from 'axios';
 
-const baseURL = process.env.REACT_APP_API_URL;
+const baseURL = 'http://tripler/api/v1';
 const api = axios.create({
     baseURL: baseURL,
-    headers: {
-        Authorization: 'Bearer ' + Cookie.get('UID')
-    }
 });
 
-api.interceptors.request.use((config) =>
-{
-    config.headers.Authorization = 'Bearer ' + Cookie.get('UID');
-    return config;
-},
-    error => Promise.reject(error)
-);
+if (Cookie.get('token')) {
+    console.log('caralho!!!!!!', Cookie.get('token'))
+    api.defaults.headers['Authorization'] = `Bearer ${Cookie.get('token')}`
+}
 
 export default api;

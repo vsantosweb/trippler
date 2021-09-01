@@ -1,10 +1,10 @@
 import styled from "styled-components";
-import { Link } from 'react-router-dom';
 
 export const CardEvent = styled.div`
   /* border: solid 1px #ccc; */
-  border-radius: ${({ theme }) => `calc(${ theme.radiusDefault } * 0.2) / calc(${ theme.radiusDefault } * 0.2);`};
+  border-radius: ${({ theme }) => theme.radiusDefault};
   background: #fff;
+  /* border: solid 1px #ddd; */
   margin-bottom: 2em;
   -khtml-user-select: none !important;
   -o-user-select: none !important;
@@ -27,8 +27,8 @@ export const CardEvent = styled.div`
 `;
 
 export const CardEventImage = styled.img`
-  border-top-left-radius: ${({ theme }) => `calc(${ theme.radiusDefault } * 0.2)`};
-  border-top-right-radius: ${({ theme }) => `calc(${ theme.radiusDefault } * 0.2) `};
+  border-top-left-radius: ${({ theme }) => theme.radiusDefault};
+  border-top-right-radius: ${({ theme }) => theme.radiusDefault};
   width: 100%;
   overflow: none;
   -khtml-user-select: none !important;
@@ -42,7 +42,7 @@ export const CardEventImage = styled.img`
   -o-user-drag: none;
 `;
 
-export const CardEventBody = styled(Link)`
+export const CardEventBody = styled.a`
   display: block;
   text-decoration: none;
   position: relative;
@@ -61,7 +61,7 @@ export const CardEventBody = styled(Link)`
 
 export const CategoryTag = styled.div`
   position: absolute;
-  background: ${({ theme }) => theme.colors.primary};;
+  background: ${({ theme }) => theme.colors.primary};
   margin-top: -11px;
   margin-left: 10px;
   border-radius: ${({ theme }) => theme.radiusDefault};

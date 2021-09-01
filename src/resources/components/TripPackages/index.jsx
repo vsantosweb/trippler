@@ -2,12 +2,10 @@ import React from 'react'
 import Slider from '../Slider';
 import * as Styled from './styles';
 import { useForm } from 'react-hook-form';
-import { Button } from '../_Elements/Button';
+import  Button  from '../_Elements/Button';
 import SwiperCore, { Navigation } from "swiper";
 import { Swiper, SwiperSlide } from "swiper/react";
-import "swiper/swiper.scss";
 import { useDispatch } from 'react-redux';
-import history from '../../../history';
 
 SwiperCore.use([Navigation]);
 
@@ -46,12 +44,12 @@ export default function TripPackages({ data, cart }) {
                 amount: passenger.pivot.amount
             }))
         }
-
+        console.log(packageDIspatch, 'XABLAU')
         cart.add(packageDIspatch).then(response => {
 
             if(response.error) return  alert('Problema ao completar pedido:'+response.message)
             dispatch({ type: 'ADD_BAG', payload: response.data })
-            history.push('/mochila?trackid=' + data.code)
+            // history.push('/mochila?trackid=' + data.code)
 
         })
     }
@@ -123,7 +121,7 @@ export default function TripPackages({ data, cart }) {
                                     <Styled.Price>{new Intl.NumberFormat("pt-BR", { style: "currency", currency: "BRL", }).format(totalAmount)}</Styled.Price>
                                     <small>Total do Pacote sem taxas adicionais</small>
                                 </Styled.PriceInfo>
-                                <Button disabled={!isValid} variant={'primary'}>Preparar a BAG</Button>
+                                <Button disabled={!isValid} block href={'/account/login'} color={'primary'}>Fechar Pacote</Button>
                             </Styled.PricePackageContent>
                         </form>
                     </Styled.PackageBody>
@@ -146,14 +144,13 @@ export default function TripPackages({ data, cart }) {
                             </Styled.PackageItemHeader>
                             <Styled.PackageItemBody>
                                 <p>{tripPackage.description}</p>
-
                             </Styled.PackageItemBody>
                             <Styled.PackagePriceContent>
                                 <Styled.PackageAmount>{new Intl.NumberFormat("pt-BR", { style: "currency", currency: "BRL", }).format(tripPackage.amount + data.price)}</Styled.PackageAmount>
                                 <small>Por pessoa</small>
                             </Styled.PackagePriceContent>
                             <Styled.PackageItemFooter>
-                                <Button block variant={'secondary'}>Quero este</Button>
+                                <Button color={'secondary'}>Quero este</Button>
                             </Styled.PackageItemFooter>
                         </Styled.PackageItem>
                     </SwiperSlide>

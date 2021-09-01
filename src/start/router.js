@@ -2,7 +2,6 @@ import React from 'react';
 
 import { Route, Redirect, Switch } from 'react-router-dom';
 import { SessionContext } from './session/SessionContext';
-import history from '../history';
 
 import website from './routes/website';
 

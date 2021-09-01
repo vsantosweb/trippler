@@ -5,9 +5,6 @@ import { PersistGate } from 'redux-persist/integration/react';
 import App from './start/app';
 import { store, persistor } from './store';
 import { usePromiseTracker } from "react-promise-tracker";
-import 'bootstrap/dist/css/bootstrap.min.css';
-import 'bootstrap/dist/js/bootstrap.bundle.min';
-import GlobalStyle from './GlobalStyle';
 // import LoaderTracker from './app/components/LoaderTracker';
 
 // const LoadingIndicator = props => {

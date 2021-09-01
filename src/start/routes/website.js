@@ -4,11 +4,11 @@
 |--------------------------------------------------------------------------
 */
 
-import Home from "../../resources/views/pages/Home";
-import Trip from "../../resources/views/pages/Trip";
-import Filter from "../../resources/views/pages/Filter";
-import Checkout from "../../resources/views/pages/Checkout";
-import TripBag from "../../resources/views/pages/TripBag";
+import Home from "../../pages/Home";
+import Trip from "../../pages/Trip";
+import Filter from "../../pages/Filter";
+import Checkout from "../../pages/Checkout";
+import TripBag from "../../pages/TripBag";
 
 
 export default [

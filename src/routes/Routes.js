@@ -4,11 +4,11 @@
 |--------------------------------------------------------------------------
 */
 
-import Home from "../resources/views/pages/Home";
-import Trip from "../resources/views/pages/Trip";
-import TripBag from "../resources/views/pages/TripBag";
-import Filter from "../resources/views/pages/Filter";
-import Checkout from "../resources/views/pages/Checkout";
+import Home from "../pages/Home";
+import Trip from "../pages/Trip";
+import TripBag from "../pages/TripBag";
+import Filter from "../pages/Filter";
+import Checkout from "../pages/Checkout";
 
 const Routes = [{
         path: '/',

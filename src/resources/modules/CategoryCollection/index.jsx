@@ -13,21 +13,10 @@ const mediaSizes = {
     640: { slidesPerView: 5, spaceBetween: 30 }
 }
 
-export default function CategoryCollection() {
-
-    const [tripListByCategories, setTripListByCategories] = useState([]);
-
-    let _fetching = useRef(true);
-
-    useEffect(() => {
-
-        tripScheduleList().then(response => _fetching && setTripListByCategories(response.data));
-        return () => { _fetching = false }
-
-    }, []);
+export default function CategoryCollection({ data }) {
 
     return (
-        tripListByCategories.map((category, key) => (
+        data.map((category, key) => (
             category.trip_schedules.length > 0 && <Collection.Container key={key}>
                 <Collection.Header>
                     <Collection.Title>{category.name} </Collection.Title>

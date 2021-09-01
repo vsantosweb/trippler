@@ -1,22 +1,37 @@
 import { createGlobalStyle } from "styled-components";
-import "./resources/fonts/line-awesome-1.3.0/1.3.0/css/line-awesome.min.css";
 
 const GlobalStyle = createGlobalStyle`
 
-  html, body, #root{ height: 100%; box-sizing:border-box }
-  body {
+* {
+   
+    outline: 0;
+    box-sizing: border-box;
+  }
+
+  *:focus {
+    outline: 0;
+  }
+
+  main{
+    background: #f4f4f4;
+  }
+  html, body, #__next{
+    height: 100%;
+    font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+    -webkit-font-smoothing: antialiased;
+    box-sizing:border-box;
     margin: 0;
     padding: 0;
-    font-family: system, -apple-system, BlinkMacSystemFont, ".SFNSText-Regular", "San Francisco", Roboto, "Segoe UI", "Helvetica Neue", "Lucida Grande", sans-serif;
+    font-size: 14px;
   }
-  section{
-    max-width: ${({ theme }) => theme.defaultContainer.width};
-    padding: 0 ${({ theme }) => theme.defaultContainer.spacing};
-    margin:auto;
-    @media (max-width:720px){ padding: 0 1em}
+
+
+  a {
+    text-decoration: none;
   }
-  a{ 
-    text-decoration: none !important;
+
+  ul {
+    list-style: none;
   }
   .slideNav {
     width: 30px;
@@ -32,18 +47,40 @@ const GlobalStyle = createGlobalStyle`
         outline: none;
     }
 }
+ 
+  section{
+    max-width: ${({ theme }) => theme.defaultContainer.width};
+    padding: 0 ${({ theme }) => theme.defaultContainer.spacing};
+    margin:auto;
+    @media (max-width:720px){ padding: 0 1em}
+  }
+  a{ 
+    text-decoration: none !important;
+  }
+  .slide-nav {
+    width: 30px;
+    height: 30px;
+    background-color: red;
+    border-radius: 100%;
+    background: none;
+    border: solid 1px;
+    outline: none;
+    box-shadow: none;
+    margin-bottom: .5em;
+    margin-right: .4em;
+    &:focus {
+        outline: none;
+    }
+}
 
-select,
-input {
-  transition: .2s ease-in-out;
+select{
+  padding: 1em;
   width: 100%;
-  padding: 15px;
-  margin: 5px 0 12px 0;
-  display: inline-block;
+}
+input {
+  width: 100%;
   border: none;
-  background: #f1f1f1;
-  border-radius: 20px;
-    border-radius: ${({theme}) => theme.radiusDefault}
+
 }
 `;
 

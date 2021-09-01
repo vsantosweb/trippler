@@ -14,7 +14,6 @@ import { Layout } from '../resources/layouts/index.tsx';
 import ErrorBoundary from '../ErrorBoundary';
 import { SessionProvider } from './session/SessionContext';
 import AppRoutes from './router';
-import history from '../history';
 import Theme from '../theme';
 
 

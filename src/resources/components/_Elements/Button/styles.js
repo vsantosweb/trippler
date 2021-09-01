@@ -1,32 +1,39 @@
-
 import styled from "styled-components";
 
-const getColors = ({ theme, variant, outlined }) => `
-
-background: ${outlined ? 'none' : theme.colors[variant]};
-border-color: ${theme.colors[variant]} !important;
-color: ${outlined ? theme.colors[variant] : '#fff'};
-`;
-
-const getSize = ({ theme, size }) => `
-  font-size: 14px;
-`
 export const Container = styled.button`
-  font-weight: 700;
-  border-radius: ${({ theme }) => `calc(${ theme.radiusDefault } * 1)`};
-  white-space: nowrap;
-  width: ${({ block }) => block && '100%'};
-  ${getColors};
-  ${getSize};
-  text-transform: uppercase;
-  cursor: pointer;
+  display: flex;
+  justify-content: ${({ icon }) => icon ? 'space-between': 'center'};
+  text-align: center;
+  padding: ${({ type }) => type !== 'link' && '0.8em 1.8em'};
+  border-radius: ${({ theme }) => theme.radiusDefault};
   outline: none;
-  &:disabled {
-		opacity: 0.6;
-		filter: saturate(60%);
-	}
-  display: inline;
-  padding:  .6em;
-  border: solid 1px;
-`;
+  box-shadow: none;
+  border: solid 2px ${({ theme, color }) => theme.colors[color]};
+  font-weight: bold;
+  background-color: ${({ theme, color }) => theme.colors[color]};
+  color: #fff;
+  width: ${({ block }) => block && '100%'};
+  color: #fff;
+  margin-bottom: .8em;
+  &:disabled{
+      opacity: .4 !important;
+      cursor: no-drop;
+  }
+  &:hover{
+      opacity: .9;
+  }
+  ${({ variant, theme, color }) => {
+        if (variant === "outlined") {
+            return (
+                `background: transparent;
+                color:  ${theme.colors[color]}};`
+            );
+        }
+    }}
+    a{
+        text-decoration: none;
+        display: block;
+        padding: ${({ type }) => type === 'link' && '0.8em 1.8em'};
 
+    }
+`;

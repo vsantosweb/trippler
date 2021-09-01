@@ -6,7 +6,7 @@ export const PackageItem = styled.div`
   min-height: 230px;
   height: auto;
   max-height: 300px;
-  padding: 1em;
+  padding: .8em;
   display: flex;
   flex-direction: column;
   border: dashed 1px $primaryColor;
@@ -15,9 +15,9 @@ export const PackageItem = styled.div`
   border-radius: ${({ theme }) => theme.radiusDefault};
   border: solid 1px #eee;
   box-shadow: rgb(15 41 77 / 8%) 0px 8px 20px 0px;
-  gap: 0.5em;
-  background-color: ${({ theme }) => theme.colors.primary};
-  color: #fff;
+  gap: 5px;
+  /* background-color: ${({ theme }) => theme.colors.primary}; */
+  color: #333;
   justify-content: space-between;
 `;
 export const PackageTitle = styled.h3`

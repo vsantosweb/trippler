@@ -3,7 +3,7 @@ import thunk from 'redux-thunk';
 import { combineReducers } from 'redux';
 import { persistStore, persistReducer } from 'redux-persist';
 import storage from 'redux-persist/lib/storage/session';
-import TripBagReducer from './resources/views/pages/TripBag/redux';
+import TripBagReducer from './pages/TripBag/redux';
 
 
 const reducers = combineReducers({

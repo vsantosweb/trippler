@@ -1,18 +1,13 @@
+import Link from 'next/link';
 import React from 'react';
-import * as Btn from './styles';
-import PropTypes from 'prop-types';
 
-export const Button = ({ children, ...rest }) => (
-  <Btn.Container {...rest}>{children}</Btn.Container>
-)
-Button.propTypes = {
-	color: PropTypes.oneOf(['secondary', 'primary']),
-	disabled: PropTypes.bool,
-	size: PropTypes.oneOf(['size']),
-	outlined: PropTypes.bool,
-	children: PropTypes.node.isRequired,
-};
+import * as Styled from './styles';
 
-Button.defaultProps = {
-	color: 'secondary',
-};
+export default function Button({ variant, color, children, href, block, icon,  ...rest }) {
+    return (
+        <Styled.Container icon={icon} block color={color} variant={variant} {...rest}>
+            {href ? <Link href={href}>{children}</Link>: children}
+        </Styled.Container>
+    );
+}
+

@@ -50,15 +50,15 @@ const theme = {
         none: 'none',
         thin: '1px solid',
     },
-    radiusDefault: '15px'
+    radiusDefault: '6px'
 }
 
 const Theme = ({ children }) => (
 
     <ThemeProvider theme={theme}>
-        <GlobalStyle/>
+        <GlobalStyle />
         {children}
-        </ThemeProvider>
+    </ThemeProvider>
 );
 
 export default Theme;
