@@ -23,6 +23,7 @@
     "react": "latest",
     "react-accessible-accordion": "^3.3.4",
     "react-dom": "latest",
+    "react-google-login": "^5.2.2",
     "react-helmet": "^6.1.0",
     "react-hook-form": "^7.11.0",
     "react-promise-tracker": "^2.1.0",

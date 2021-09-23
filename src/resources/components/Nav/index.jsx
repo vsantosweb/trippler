@@ -1,5 +1,5 @@
 import React from 'react';
-import  Button  from '../_Elements/Button';
+import Button from '../_Elements/Button';
 import Logo from '../../images/logo/tripler-logo.svg';
 import * as Navbar from './styles';
 import Burger from '../Burger';
@@ -18,6 +18,9 @@ export default function Nav({ overlay, props }) {
                 <Navbar.Wrapper>
                     <Navbar.Area><Burger open={open} onClick={() => setOpen(!open)} /></Navbar.Area>
                     <Navbar.Area> <Logo width="80px" /></Navbar.Area>
+                    <Navbar.Area> 
+                        {/* <Navbar.Search /> */}
+                    </Navbar.Area>
                     <Navbar.NavbarArea>
                         <Navbar.Nav navOpen={open}>
                             <Navbar.NavLink href={'#'}>Destinos</Navbar.NavLink>
@@ -27,7 +30,9 @@ export default function Nav({ overlay, props }) {
                         </Navbar.Nav>
                     </Navbar.NavbarArea>
                     <Navbar.Area>
-                       {!user ? <Button variant={'outlined'} href={'/account/login'} color={'primary'}>Entrar</Button> : <Link href={'/account'} ><a><ProfileAvatar/></a></Link>} 
+                        {!user ? <Button variant={'outlined'} href={'/account/login'} color={'primary'}>Entrar</Button> :
+                            <Link href={'/account'} ><a><ProfileAvatar color={'default'} avatar={user.avatar ? <img src={user.avatar} /> :
+                                <i className={'las la-user'}></i>} /></a></Link>}
                     </Navbar.Area>
                 </Navbar.Wrapper>
             </Navbar.Header>

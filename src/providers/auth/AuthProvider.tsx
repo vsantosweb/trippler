@@ -18,6 +18,7 @@ type AuthContentType = {
     user: User;
     _rendering: boolean;
     signIn: (data: SignInCredentials) => Promise<void>
+    signOut: () => void
 }
 
 export const AuthContext = createContext({} as AuthContentType);
@@ -73,5 +74,68 @@ export function AuthProvier({ children }) {
 
     }
 
-    return <AuthContext.Provider value={{ authenticated, signIn, user, _rendering, _watch }}>{children}</AuthContext.Provider>
+    async function signOut({ email, password }: SignInCredentials) {
+
+        const token = await Cookie.get('token');
+
+        // return console.log(token, 'XARALAUS')
+        api.defaults.headers.Authorization = `Bearer ${token}`
+
+        await api.post('/client/customer/auth/logout')
+            .then(response => response.data)
+            .catch(error => error.response);
+
+        await Cookie.remove('token');
+
+        setUser(null)
+
+    }
+
+    async function signUp(signUpData: any) {
+
+        const { data } = await api.post('/client/customer/auth/register', signUpData)
+            .then(response => response.data)
+            .catch(error => error.response);
+
+        if (data.error) return data
+
+        Cookie.set('token', data);
+
+        return data;
+    }
+
+    async function socialLogin(credentials: any) {
+
+        let signData = {
+            email: credentials.email,
+            auth_provider: credentials.auth_provider,
+            provider_id: credentials.provider_id,
+            name: credentials.name,
+            avatar: credentials.avatar
+        }
+
+        const { data } = await api.post('/client/customer/auth/social-login', signData)
+            .then(response => response.data)
+            .catch(error => error.response);
+
+        if (data.error) return data
+
+        Cookie.set('token', data);
+
+        return data;
+
+    }
+
+    return <AuthContext.Provider value={{
+        authenticated,
+        signIn,
+        socialLogin,
+        signOut,
+        user,
+        _rendering,
+        signUp,
+        _watch
+    }}>
+        {children}
+    </AuthContext.Provider>
 }

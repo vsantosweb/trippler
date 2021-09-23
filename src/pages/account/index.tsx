@@ -12,17 +12,19 @@ type Props = {
 
 const Account = ({ layout }: Props) => {
 
-    const user = React.useContext(AuthContext);
+    const {user, signOut} = React.useContext(AuthContext);
 
 
 
     React.useEffect(() => {
         layout('AppLayout')
     })
+
+    console.log(user.avatar)
     return (
         <React.Fragment>
             <Styled.ProfileDisplay>
-                <ProfileAvatar />
+                <ProfileAvatar color={'default'} avatar={user.avatar ? <img src={user.avatar} /> : <i className={'las la-user'}></i>} />
                 <Styled.ProfileInfo>
                     <span>{user.name}</span>
                     <small>{user.email}</small>
@@ -46,6 +48,14 @@ const Account = ({ layout }: Props) => {
                     <Styled.AccountCardIcon><i className="las la-user"></i></Styled.AccountCardIcon>
                     <Styled.AccountCardTitle>Perfil</Styled.AccountCardTitle>
                     <Styled.AccountCardDescription>Altere seus dados cadastrais</Styled.AccountCardDescription>
+                </Styled.AccountCardContent>
+                <Styled.AccountCardAction><i className={'las la-arrow-right'}></i></Styled.AccountCardAction>
+            </Styled.AccountCard>
+
+            <Styled.AccountCard onClick={signOut}>
+                <Styled.AccountCardContent>
+                    <Styled.AccountCardIcon><i className="las la-power-off"></i></Styled.AccountCardIcon>
+                    <Styled.AccountCardTitle>Sair</Styled.AccountCardTitle>
                 </Styled.AccountCardContent>
                 <Styled.AccountCardAction><i className={'las la-arrow-right'}></i></Styled.AccountCardAction>
             </Styled.AccountCard>

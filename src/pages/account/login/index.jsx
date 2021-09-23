@@ -5,21 +5,39 @@ import Button from '../../../resources/components/_Elements/Button'
 import Input from '../../../resources/components/_Elements/Input'
 import AuthLayout from '../../../resources/layouts/AuthLayout'
 import withAuth from '../../../utils/withAuth';
+import GoogleLogin from 'react-google-login';
 
 function Login() {
 
     const { handleSubmit, register, formState: { isValid } } = useForm({ mode: onchange });
-    const { signIn, _watch } = React.useContext(AuthContext);
+    const { signIn, socialLogin, _watch } = React.useContext(AuthContext);
     const [errorMessage, setErrorMessage] = React.useState(null);
 
     const submitCredentials = async (credentials) => {
 
         await signIn(credentials).then(response => {
+
             if (response.error) {
                 setErrorMessage(response.message)
             }
         })
         _watch()
+
+    }
+
+    const responseGoogle = (e) => console.log(e, 'DEU RUIM')
+
+    const sigInWithGoogle = async ({ profileObj }) => {
+
+        await socialLogin({
+            auth_provider: 'google',
+            provider_id: profileObj.googleId,
+            email: profileObj.email,
+            name: profileObj.name,
+            avatar: profileObj.imageUrl
+        });
+
+        _watch();
 
     }
     return (
@@ -35,7 +53,7 @@ function Login() {
                 </div>
                 <p>
                     <small>
-                        Ao registrar uma conta na tripler.com.br, confirmo que li e concordei com
+                        Ao entrar, confirmo que li e concordei com
                         <a href="https://pages.trip.com/service-guideline/terms-pt-br.html" target="_blank"> Termos e condições</a> e
                         <a href="https://pages.trip.com/service-guideline/privacy-policy-pt-br.html" target="_blank"> Declaração de Privacidade</a>
                         da tripler.com.br
@@ -45,7 +63,16 @@ function Login() {
                 <p style={{ color: 'red' }}>{errorMessage}</p>
 
                 <p>Não tem uma conta na Tripler?</p>
-                <Button style={{ width: '100%' }} color={"secondary"} icon>Registre-se <i className={'las la-arrow-right'}></i></Button>
+                <Button style={{ width: '100%' }} href={'/account/register'} color={"secondary"} icon>Registre-se <i className={'las la-arrow-right'}></i></Button>
+
+                <GoogleLogin
+                    className={'google-button'}
+                    clientId="645551867105-2j5hgd2nqi052pjud5lnpv3nhi3c6eot.apps.googleusercontent.com"
+                    buttonText="Sign in with Google"
+                    onSuccess={(response) => sigInWithGoogle(response)}
+                    onFailure={responseGoogle}
+                    cookiePolicy={'single_host_origin'}
+                />
 
             </form>
         </AuthLayout>

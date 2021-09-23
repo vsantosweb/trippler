@@ -15,4 +15,8 @@ export const Avatar = styled.div`
     font-weight: bold;
     font-size: 1.4em;
     color: #ffffff;
+    overflow-y: hidden;
+    img{
+        width: 100%;
+    }
 `

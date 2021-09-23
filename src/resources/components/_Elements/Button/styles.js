@@ -1,8 +1,10 @@
 import styled from "styled-components";
 
 export const Container = styled.button`
-  display: flex;
+  span{
+    display: flex;
   justify-content: ${({ icon }) => icon ? 'space-between': 'center'};
+  }
   text-align: center;
   padding: ${({ type }) => type !== 'link' && '0.8em 1.8em'};
   border-radius: ${({ theme }) => theme.radiusDefault};

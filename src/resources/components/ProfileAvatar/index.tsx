@@ -3,12 +3,13 @@ import * as Styled from './styles';
 
 
 type Props = {
-    color: 'white' | 'default'
+    color: 'white' | 'default';
+    avatar: any
 }
-export default function ProfileAvatar({ color }: Props) {
+export default function ProfileAvatar({ color, avatar }: Props) {
     return (
         <Styled.ProfileAvatar color={color}>
-            <Styled.Avatar><i className={'las la-user'}></i></Styled.Avatar>
+            <Styled.Avatar>{avatar}</Styled.Avatar>
         </Styled.ProfileAvatar>
     )
 }

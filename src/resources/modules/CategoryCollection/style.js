@@ -11,5 +11,6 @@ export const Header = styled.div`
 
 export const Title = styled.h3`
   font-weight: 300;
-  margin: 0;
+  margin: 1em 0;
+  font-size: 1.6em;
 `;

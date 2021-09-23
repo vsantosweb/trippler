@@ -29,6 +29,8 @@ export const CardEvent = styled.div`
 export const CardEventImage = styled.img`
   border-top-left-radius: ${({ theme }) => theme.radiusDefault};
   border-top-right-radius: ${({ theme }) => theme.radiusDefault};
+  border-bottom-left-radius: ${({ theme }) => theme.radiusDefault};
+  border-bottom-right-radius: ${({ theme }) => theme.radiusDefault};
   width: 100%;
   overflow: none;
   -khtml-user-select: none !important;
@@ -43,7 +45,9 @@ export const CardEventImage = styled.img`
 `;
 
 export const CardEventBody = styled.a`
-  display: block;
+  display: flex;
+  flex-direction: column;
+  gap:5px;
   text-decoration: none;
   position: relative;
   color: inherit;

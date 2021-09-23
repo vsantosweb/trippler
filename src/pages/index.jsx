@@ -23,4 +23,4 @@ function Home({ layout, data }) {
     );
 }
 
-export default withAuth(Home)
+export default Home

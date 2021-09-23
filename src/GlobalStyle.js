@@ -22,7 +22,7 @@ const GlobalStyle = createGlobalStyle`
     box-sizing:border-box;
     margin: 0;
     padding: 0;
-    font-size: 14px;
+    /* font-size: 14px; */
   }
 
 
@@ -81,6 +81,13 @@ input {
   width: 100%;
   border: none;
 
+}
+
+.google-button{
+  width: 100%;
+  box-shadow: none !important;
+  border: solid 1px #eee !important;
+  border-radius: ${({ theme }) => theme.radiusDefault} !important ;
 }
 `;
 

@@ -10,7 +10,7 @@ const CardEvent = ({ data, category, image }) => {
             <Link href={'/trip/' + data.uuid}>
                 <Styled.CardEventBody>
                     <Styled.CardEventImage src={image} />
-                    <Styled.CategoryTag> {category.name} </Styled.CategoryTag>
+                    {/* <Styled.CategoryTag> {category.name} </Styled.CategoryTag> */}
                     <Styled.CardEventTitle>{data.trip.name}</Styled.CardEventTitle>
                     <Styled.CardEventInfo>
                         <Styled.CardEventPriceWrapper>
