@@ -1,4 +1,5 @@
-import api from '..';
+import api from ".."
+import { apiServer } from "../../pages/_document"
 
 export default class Cart {
 
@@ -7,7 +8,11 @@ export default class Cart {
     )
 
     static show = async (session_id) => (
-        await api.get('/client/customer/carts/' + session_id).then(response => response.data)
+
+        await api.get('/client/customer/carts/' + session_id)
+            .then(response => response.data)
+            .catch(error => error.response)
+
     )
 
     static update = async (cartData, cartSession) => (

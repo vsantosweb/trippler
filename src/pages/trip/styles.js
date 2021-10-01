@@ -28,7 +28,7 @@ export const Period = styled.div`
   color: #555;
 `;
 export const Details = styled.section`
-  padding: 1em;
+  padding: .8em;
 
   ${Name} {
     font-size: 24px;

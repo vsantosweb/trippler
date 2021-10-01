@@ -41,7 +41,7 @@ export function AuthProvier({ children }) {
 
             if (token) {
 
-                api.defaults.headers.Authorization = `Bearer ${token}`
+                // api.defaults.headers.Authorization = `Bearer ${token}`
 
                 await api.get('/client/customer/auth/logged')
                     .then(response => {

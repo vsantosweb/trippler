@@ -8,6 +8,10 @@ import TripPackages from '../../resources/components/TripPackages';
 import { tripScheduleShow } from '../../api/Trip/TripSchedule';
 import Cart from '../../api/Cart/Cart';
 import PassengerTicket from '../../resources/components/TripPassagers';
+import useCart from '../../resources/modules/Cart';
+import { createCart } from '../api/cart';
+import { useDispatch } from 'react-redux';
+import { AuthContext } from '../../providers/auth/AuthProvider';
 
 export async function getServerSideProps(context) {
 
@@ -23,6 +27,10 @@ export async function getServerSideProps(context) {
 
 export default function Product({ layout, tripSchedule }) {
 
+    const { addTicket, removeTicket, tickets, ticketTotal, cart, validCart, passengerTypes, setBoarding } = useCart(tripSchedule);
+    const dispatch = useDispatch();
+    const { user } = React.useContext(AuthContext);
+
     let packages = tripSchedule.packages || [];
     const packageAmounts = packages.map(pack => pack.amount);
 
@@ -33,18 +41,37 @@ export default function Product({ layout, tripSchedule }) {
 
     React.useEffect(() => { layout('AppLayout') })
 
+    async function dispatchCart() {
+
+        if (!user) return window.location.href = '/account/login';
+
+        await createCart({ trip_schedule_id: tripSchedule.id, ...cart }).then(response => {
+            dispatch({ type: 'ADD_TO_CART', payload: { session: response.data.session } })
+            return window.location.href = '/book/' + response.data.session;
+        });
+
+    }
+
     return (
         <Styled.Container>
             <Slider images={tripSchedule.trip.feature.metadata.trip_media} />
             <Styled.Details>
                 <Styled.Name>{tripSchedule.trip.name}</Styled.Name>
                 <Styled.Description>{tripSchedule.trip.description}</Styled.Description>
-
+                <label>Local de embarque</label>
+                <select name={'boarding_locations'} onChange={(e) => setBoarding(JSON.parse(e.target.value))}>
+                    <option value={false}>Selecione o Local de Embarque</option>
+                    {tripSchedule?.boarding_locations.map((local, key) => (
+                        <option key={key} value={JSON.stringify({
+                            name: local.name,
+                            departure_time: local.departure_time
+                        })}>{local.name} - {local.departure_time}</option>
+                    ))}
+                </select>
             </Styled.Details>
-            {!tripSchedule.only_day ? <TripPackages data={tripSchedule} cart={Cart} /> :
-                <PassengerTicket tripSchedule={tripSchedule} />
-
-
+            {!tripSchedule.only_day ?
+                <TripPackages data={tripSchedule} cart={Cart} /> :
+                <PassengerTicket {...{ addTicket, removeTicket, tickets, ticketTotal, tripSchedule, validCart, dispatchCart, passengerTypes }} />
             }
             <Accordion>
                 <AccordionItem>

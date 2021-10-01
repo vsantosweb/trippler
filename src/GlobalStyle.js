@@ -16,6 +16,7 @@ const GlobalStyle = createGlobalStyle`
     background: #f4f4f4;
   }
   html, body, #__next{
+    color: #0f294d;
     height: 100%;
     font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
     -webkit-font-smoothing: antialiased;

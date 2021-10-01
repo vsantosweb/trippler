@@ -45,7 +45,7 @@ export default function AdditionalPackage({ data, passengers }) {
     return (
         <React.Fragment>
             <Swiper direction="horizontal" spaceBetween={10} slidesPerView={2.3} freeMode={true}>
-                {data?.map((item, key) => (
+                {[0,1,2,3,4]?.map((item, key) => (
                     <SwiperSlide key={key}>
                         <Styled.Container onClick={() => {
                             setOpen(true)
@@ -54,9 +54,9 @@ export default function AdditionalPackage({ data, passengers }) {
                             <Styled.Thumbnail>
                                 <img src={'https://www.fully.com.br/upload/galeria/675/galeria_1575382463.jpg'} />
                             </Styled.Thumbnail>
-                            <Styled.Title>{item.name}</Styled.Title>
-                            <Styled.Description>{item.description}</Styled.Description>
-                            <Styled.Price>{new Intl.NumberFormat("pt-BR", { style: "currency", currency: "BRL", }).format(item.amount)}</Styled.Price>
+                            <Styled.Title>{'Passeio de Jets Ki'}</Styled.Title>
+                            <Styled.Description>{'Lorem Ipsum is simply dummy text of the printing and'}</Styled.Description>
+                            <Styled.Price>{'20,00'}</Styled.Price>
                         </Styled.Container>
                     </SwiperSlide>
                 ))}

@@ -100,6 +100,3 @@ export const AddtPackageFooter = styled.div`
   display: flex;
   gap: 10px;
 `;
-export const AddtrPackageButton = styled(Button)`
-  width: 100%;
-`;
