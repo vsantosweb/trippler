@@ -1,0 +1,215 @@
+{
+    "id": 31,
+    "code": "61575E1E65D01",
+    "customer_id": 1,
+    "agency_id": 1,
+    "status": 2,
+    "payment_method": null,
+    "tax": 0,
+    "subtotal": null,
+    "total": 1455,
+    "discount": 0,
+    "total_paid": 0,
+    "promo": null,
+    "expire_at": "2021-10-03 19:14:38",
+    "created_at": "2021-10-01T19:14:38.000000Z",
+    "updated_at": "2021-10-01T19:14:38.000000Z",
+    "deleted_at": null,
+    "ticket": {
+        "id": 31,
+        "order_id": 31,
+        "trip_schedule_id": 1,
+        "type": "Cânion Fortaleza - Cambará do Sul - RS",
+        "period": "Fim de Semana",
+        "tax": 0,
+        "price": 414,
+        "total": 1242,
+        "quantity": 3,
+        "is_package": 0,
+        "created_at": "2021-10-01T19:14:38.000000Z",
+        "updated_at": "2021-10-01T19:14:38.000000Z",
+        "boarding": {
+            "id": 13,
+            "order_ticket_id": 31,
+            "name": "Term. Varginha",
+            "departure_time": "22:00:00",
+            "created_at": "2021-10-01T19:14:38.000000Z",
+            "updated_at": "2021-10-01T19:14:38.000000Z"
+        },
+        "trip_schedule": {
+            "id": 1,
+            "uuid": "ecdaf618-6c0a-4677-8f6f-c82b37d176f2",
+            "trip_id": 1,
+            "trip_schedule_period_id": 2,
+            "trip_schedule_status_id": 1,
+            "start_date": "2021-09-30 21:43:10",
+            "end_date": "2021-10-02 21:43:10",
+            "only_day": 1,
+            "published": 1,
+            "vacancies_quantity": 64,
+            "vacancies_filled": 16,
+            "price": 414,
+            "discount_percent": 0,
+            "purchase_limit": 0,
+            "for_adults": 0,
+            "deleted_at": null,
+            "created_at": "2021-09-30T21:43:10.000000Z",
+            "updated_at": "2021-09-30T21:43:10.000000Z",
+            "trip": {
+                "id": 1,
+                "name": "Cânion Fortaleza - Cambará do Sul - RS",
+                "slug": "canion-fortaleza-cambara-do-sul-rs",
+                "code": "5b86feaf078de405455bafa02e7b8dd2",
+                "trip_category_id": 1,
+                "agency_id": 1,
+                "trip_status_id": 1,
+                "image": "https://i.ytimg.com/vi/GTcwSWZ8GE8/maxresdefault.jpg",
+                "image_url": "https://i.ytimg.com/vi/GTcwSWZ8GE8/maxresdefault.jpg",
+                "description": "Qual será a sensação de conhecer o maior conjunto de cânions do mundo? Vivencie conosco a experiencia de estar em um dos lugares mais fantásticos do Brasil e do mundo.",
+                "home_dir": null,
+                "created_at": null,
+                "updated_at": null,
+                "deleted_at": null,
+                "agency": {
+                    "id": 1,
+                    "uid": "564564878000158",
+                    "name": "Mario Bross Turismo LTDA",
+                    "email": "mturimos@mturismo.com",
+                    "phone": "15454555",
+                    "password": "$2y$10$yeClxhP7vLrGXmlhGDUyDOkfFYKzvx85eJNiZLf9HR8SvND/qmBiG",
+                    "document": null,
+                    "logo": null,
+                    "home_dir": "agencies/cc6bc408f8fe376e4fb9da2f171c2e5d",
+                    "address_1": null,
+                    "address_2": null,
+                    "city": null,
+                    "postcode": null,
+                    "state_id": 1,
+                    "status": 1,
+                    "created_at": null,
+                    "updated_at": null,
+                    "deleted_at": null
+                },
+                "feature": {
+                    "id": 1,
+                    "trip_id": 1,
+                    "metadata": {
+                        "trip_media": [
+                            "https://www.triptri.com.br/image/cache/catalog/Beto%20Carrero%20World/Img_galeria%202-798x448.png",
+                            "https://www.triptri.com.br/image/cache/catalog/Beto%20Carrero%20World/Img_galeria%201-798x448.png",
+                            "https://www.triptri.com.br/image/cache/catalog/Beto%20Carrero%20World/Img_galeria%203-798x448.png",
+                            "https://www.triptri.com.br/image/cache/catalog/Beto%20Carrero%20World/Img_galeria%206-798x448.png",
+                            "https://www.triptri.com.br/image/cache/catalog/Beto%20Carrero%20World/beto_carrero_nov19_galeria%2001-798x448.jpg",
+                            "https://www.triptri.com.br/image/cache/catalog/Beto%20Carrero%20World/Img_galeria%204-798x448.png"
+                        ],
+                        "road_map": [
+                            {
+                                "title": "1º Dia Sábado",
+                                "description": "Em nosso primeiro dia de viagem, após apresentação geral do grupo, paramos para jantar na cidade de Cachoeira do Sul."
+                            },
+                            {
+                                "title": "2º Dia - Domingo",
+                                "description": "A tarde será livre para curtir as diversas atrações. As apresentações artísticas são um ponto alto no Beto Carrero."
+                            }
+                        ],
+                        "trip_takes": [
+                            {
+                                "title": "Alimentação",
+                                "description": "Levar alimentos para consumir em sua viagem (doces, salgados, bebidas não-alcoólicas, etc.)"
+                            },
+                            {
+                                "title": "Dinheiro e Cartões",
+                                "description": "Nem todos os locais aceitam pagamento em cartão (crédito/débito)"
+                            }
+                        ]
+                    },
+                    "created_at": null,
+                    "updated_at": null,
+                    "deleted_at": null
+                },
+                "category": {
+                    "id": 1,
+                    "code": "aa3e7822-6556-4a8c-8229-26a9ec852d41",
+                    "name": "Lazer e Bem Estar",
+                    "slug": "lazer-bem-estar",
+                    "color": "#ff8507",
+                    "created_at": null,
+                    "updated_at": null,
+                    "deleted_at": null
+                }
+            }
+        },
+        "package": null,
+        "passengers": [
+            {
+                "id": 76,
+                "order_ticket_id": 31,
+                "name": "Vitor Santos",
+                "type": "Adulto",
+                "email": "souzavito@hotmail.com",
+                "document": null,
+                "phone": null,
+                "birthday": null,
+                "tax": 15,
+                "discount": 0,
+                "price": 414,
+                "total": 429,
+                "created_at": "2021-10-01T19:14:38.000000Z",
+                "updated_at": "2021-10-01T19:14:38.000000Z",
+                "optionals": []
+            },
+            {
+                "id": 77,
+                "order_ticket_id": 31,
+                "name": "Alexa Tat",
+                "type": "Adulto",
+                "email": "alexa@tat.com",
+                "document": null,
+                "phone": null,
+                "birthday": null,
+                "tax": 15,
+                "discount": 0,
+                "price": 414,
+                "total": 429,
+                "created_at": "2021-10-01T19:14:38.000000Z",
+                "updated_at": "2021-10-01T19:14:38.000000Z",
+                "optionals": [
+                    {
+                        "id": 75,
+                        "passenger_id": 77,
+                        "name": "Passeio de Jets ki",
+                        "tax": 89,
+                        "created_at": "2021-10-01T19:14:38.000000Z",
+                        "updated_at": "2021-10-01T19:14:38.000000Z"
+                    }
+                ]
+            },
+            {
+                "id": 78,
+                "order_ticket_id": 31,
+                "name": "Jaspin Dude",
+                "type": "Menor",
+                "email": "jaspin@dude.com",
+                "document": null,
+                "phone": null,
+                "birthday": null,
+                "tax": 5,
+                "discount": 0,
+                "price": 414,
+                "total": 419,
+                "created_at": "2021-10-01T19:14:38.000000Z",
+                "updated_at": "2021-10-01T19:14:38.000000Z",
+                "optionals": [
+                    {
+                        "id": 76,
+                        "passenger_id": 78,
+                        "name": "Passeio de Jets ki",
+                        "tax": 89,
+                        "created_at": "2021-10-01T19:14:38.000000Z",
+                        "updated_at": "2021-10-01T19:14:38.000000Z"
+                    }
+                ]
+            }
+        ]
+    }
+}

@@ -50,7 +50,7 @@ const theme = {
         none: 'none',
         thin: '1px solid',
     },
-    radiusDefault: '8px',
+    radiusDefault: '20px',
     defaultRadius: '8px'
 
 }

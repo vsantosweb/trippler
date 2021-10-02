@@ -7,7 +7,7 @@ export const Container = styled.button`
   }
   text-align: center;
   padding: ${({ type }) => type !== 'link' && '0.8em 1.8em'};
-  border-radius: ${({ theme }) => theme.radiusDefault};
+  border-radius: ${({ theme }) => theme.defaultRadius};
   outline: none;
   box-shadow: none;
   border: solid 2px ${({ theme, color }) => theme.colors[color]};

@@ -23,13 +23,13 @@ export const DrawerContainer = styled.div`
   background: #fff;
   position: relative;
   bottom: 0;
-  height:85%;
+  min-height:200px;
+  height: auto;
   width: 100%;
   transition: ease-in-out 0.1s;
  
   border-top-right-radius: 20px;
   border-top-left-radius: 20px;
-  padding-bottom: 2.4em;
 `;
 
 export const DrawerHeader = styled.div`

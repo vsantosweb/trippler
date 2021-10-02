@@ -9,7 +9,7 @@ export default function AppLayout({ children }) {
     return (
         <React.Fragment>
             <Nav />
-            <div style={{ minHeight: '100%', height: 'auto' }}>
+            <div style={{ minHeight: '100%', height: '100%' }}>
                 {children}
             </div>
             {/* <Footer/> */}
