@@ -1,6 +1,7 @@
 import React, { useState, createContext, useEffect } from 'react';
 import api from '../../api';
 import Cookie from 'js-cookie';
+import Axios from 'axios';
 
 type User = {
     name: string,
@@ -35,15 +36,16 @@ export function AuthProvier({ children }) {
     const [update, setUpdate] = React.useState<number>();
 
     useEffect(() => {
+
         (async () => {
 
             const token = await Cookie.get('token');
 
             if (token) {
 
-                // api.defaults.headers.Authorization = `Bearer ${token}`
-
-                await api.get('/client/customer/auth/logged')
+                await Axios.get(process.env.NEXT_PUBLIC_URL_API + '/client/customer/auth/logged', {
+                    headers: {'Authorization': 'Bearer ' + token }
+                })
                     .then(response => {
                         setUser(response.data.data)
                         setRendering(false);
@@ -63,7 +65,7 @@ export function AuthProvier({ children }) {
 
     async function signIn({ email, password }: SignInCredentials) {
 
-        const { data } = await api.post('/client/customer/auth/login', { email, password })
+        const { data } = await Axios.post(process.env.NEXT_PUBLIC_URL_API + '/client/customer/auth/login', { email, password })
             .then(response => response.data)
             .catch(error => error.response);
 
@@ -81,7 +83,7 @@ export function AuthProvier({ children }) {
         // return console.log(token, 'XARALAUS')
         api.defaults.headers.Authorization = `Bearer ${token}`
 
-        await api.post('/client/customer/auth/logout')
+        await Axios.post(process.env.NEXT_PUBLIC_URL_API + '/client/customer/auth/logout')
             .then(response => response.data)
             .catch(error => error.response);
 

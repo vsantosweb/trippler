@@ -7,7 +7,7 @@ import Switch from "react-switch";
 
 import SwiperCore, { Navigation } from "swiper";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { createCart, getCart } from '../api/cart';
+import { createCart, getCart } from '../api/carts';
 SwiperCore.use([Navigation]);
 
 import { useSelector } from 'react-redux';
@@ -16,31 +16,40 @@ import Cookie from 'js-cookie';
 import moment from 'moment';
 import Button from '../../resources/components/_Elements/Button';
 import { useForm } from 'react-hook-form';
-import { createOrder } from '../api/orders';
+import Axios from 'axios';
+import withAuth from '../../utils/withAuth';
+import { createOrder } from '../../api/order/OrderResource';
+import { createOrderApi } from '../api/orders';
+import CartApi from '../../api/Cart';
+import handler from '../api/carts/[session]';
+import api from '../../api';
+import ApiServer from '../api';
 
 
+export async function getServerSideProps({ req, res, query }) {
 
+    const { data: { data }, status } = await ApiServer(req).get('/client/customer/carts/' + query.session);
 
+    if (status === 404) return { notFound: true }
 
+    return { props: { book: data } }
+}
 
-export default function Book({ layout, cart }) {
+function Book({ layout, book }) {
 
-    console.log(cart)
-    const [book, setBook] = React.useState({});
-    const [passengers, setPassengers] = React.useState(0);
+    let passengerQuantity = book.tickets.reduce((ticket, next) => ticket.quantity + next.quantity);
+    let total = book.tickets.map(ticket => ticket.total).reduce((total, next) => total + next);
+    const totalAmount = total;
+    const passengers = Array.from({ length: passengerQuantity }, (x, z) => z);
+    // const [book, setBook] = React.useState({});
+    // const [passengers, setPassengers] = React.useState(0);
     const [disableSubmit, setDisableSubmit] = React.useState(0);
-    const [totalAmount, setTotalAmount] = React.useState(0);
+    // const [totalAmount, setTotalAmount] = React.useState(0);
     const { register, handleSubmit, watch, formState: { errors, isValid } } = useForm({ mode: 'onChange' });
 
     let _fetch = React.useRef(true);
 
-    React.useEffect(() => {
-
-        layout('AppLayout');
-        showBook();
-        return () => { _fetch = false }
-
-    }, [])
+    React.useEffect(() => { layout('AppLayout') }, [])
 
     React.useEffect(() => {
         console.log(isValid)
@@ -49,43 +58,16 @@ export default function Book({ layout, cart }) {
 
     const handleSubmitPassenger = (formData) => {
 
-         console.log(formData, 'ksksksk')
 
         let teste = book.tickets.map((ticket, index) => ticket.info = formData.ticket[index].info);
-
-        console.log(teste)
-        // for (let ticket of book.tickets) {
-        //     // Puxa todos os tipos pela key
-        //     ticket.info = 
-        //     ticket.push(formData.ticket[ticket.type])
-        // }
         createOrder({
             trip_schedule_id: book.trip_schedule.id,
             tickets: book.tickets,
             boarding: book.boarding
-        }).then(response=> console.log(response))
-        return 'ok';
-        createCart({
-            trip_schedule_id: book.trip_schedule.id,
-            tickets: book.tickets,
-            boarding: book.boarding
-        }).then(response => console.log(response, 'funfoo'))
+        }).then(response => window.location.href = '/payment/' + response.data.code);
+
     }
 
-    const cartSession = useSelector(state => state.cart);
-
-
-    function showBook() {
-        getCart(cartSession.session).then(response => {
-            if (_fetch) {
-                setBook(response.data);
-                let passengerQuantity = response.data.tickets.reduce((ticket, next) => ticket.quantity + next.quantity);
-                let total = response.data.tickets.map(ticket => ticket.total).reduce((total, next) => total + next)
-                setTotalAmount(total);
-                setPassengers(Array.from({ length: passengerQuantity }, (x, z) => z))
-            }
-        })
-    }
 
     return (
         <Styled.Book>
@@ -150,12 +132,4 @@ export default function Book({ layout, cart }) {
     )
 }
 
-Book.getInitialProps = async ({ params }) => {
-
-    console.log(Cookie.get('token'), 'COOKIE')
-    const res = await fetch(`https://jsonplaceholder.typicode.com/users/${1}`)
-    const cart = await res.json()
-  
-    return { cart: cart }
-  }
-  
+export default withAuth(Book);

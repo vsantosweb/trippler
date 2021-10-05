@@ -5,24 +5,26 @@ import 'react-accessible-accordion/dist/fancy-example.css';
 import moment from 'moment';
 import Slider from '../../resources/components/Slider';
 import TripPackages from '../../resources/components/TripPackages';
-import { tripScheduleShow } from '../../api/Trip/TripSchedule';
+import { tripScheduleShow } from '../../api/Trip/TripResource';
 import Cart from '../../api/Cart/Cart';
 import PassengerTicket from '../../resources/components/TripPassagers';
 import useCart from '../../resources/modules/Cart';
-import { createCart } from '../api/cart';
 import { useDispatch } from 'react-redux';
 import { AuthContext } from '../../providers/auth/AuthProvider';
+import TripSchedule from '../../api/TripSchedule';
+import CartResource from '../../api/Cart';
+import { createCart } from '../api/carts';
+import ApiServer from '../api';
+import api from '../../api';
 
-export async function getServerSideProps(context) {
+export async function getServerSideProps({ req, res, query }) {
 
-    const response = await tripScheduleShow(context.query.uuid);
+    const { data: { data }, status } = await ApiServer().get('/client/public/trip/schedule/' + query.uuid);
 
-    if (response.status === 404) {
+    if (status === 404) return { notFound: true }
 
-        return { notFound: true }
-    }
 
-    return { props: { tripSchedule: response.data } }
+    return { props: { tripSchedule: data } }
 }
 
 export default function Product({ layout, tripSchedule }) {
@@ -32,6 +34,7 @@ export default function Product({ layout, tripSchedule }) {
     const { user } = React.useContext(AuthContext);
 
     let packages = tripSchedule.packages || [];
+
     const packageAmounts = packages.map(pack => pack.amount);
 
     const priceType = tripSchedule.only_day ?
@@ -43,11 +46,12 @@ export default function Product({ layout, tripSchedule }) {
 
     async function dispatchCart() {
 
+        const { create } = CartResource();
+
         if (!user) return window.location.href = '/account/login';
 
-        await createCart({ trip_schedule_id: tripSchedule.id, ...cart }).then(response => {
-            dispatch({ type: 'ADD_TO_CART', payload: { session: response.data.session } })
-            return window.location.href = '/book/' + response.data.session;
+        await api.post('/client/customer/carts', { trip_schedule_id: tripSchedule.id, ...cart }).then(response => {
+            return window.location.href = '/book/' + response.data.data;
         });
 
     }

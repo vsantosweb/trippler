@@ -1,7 +1,7 @@
-import api from "../../../api";
+import ApiServer from "..";
 
 export  default async function Trips(request, response) {
-    const { data } = await api.get('/client/public/trip/schedule/categories');
+    const { data } = await ApiServer(request).get('/client/public/trip/schedule/categories');
     response.json(data);
 }
 

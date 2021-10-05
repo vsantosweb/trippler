@@ -1,19 +1,32 @@
 import React from 'react'
 import pagarme from "pagarme";
 import Input from '../../_Elements/Input';
-import { useForm, Controller } from 'react-hook-form';
-import InputMask from 'react-input-mask';
+import { useForm } from 'react-hook-form';
 import moment from 'moment';
+import IMask from 'imask';
+
+export const useCreditCard = () => {
+
+    let credCardData = {};
+
+    const getData = (data) => {
+        credCardData = data;
+    }
+
+    return { creditCardData }
+}
+
 
 export default function CreditCard({ order, validFields }) {
 
     const [installments, setInstallments] = React.useState([]);
-    const [expirationSelect, setExpirationSelect] = React.useState({})
-    const { control, register, watch, formState: { isValid } } = useForm({ mode: 'onChange' });
+    const [data, setData] = React.useState(null);
 
-    validFields(isValid)
+    const { register, getValues, watch, formState: { isValid } } = useForm({ mode: 'onChange' });
+
     React.useEffect(() => {
-        let test = pagarme.client.connect({ api_key: 'ak_test_7ZdqNZE9QSlamtPbi5v030vmN1v1vj' }).then((client) =>
+
+        pagarme.client.connect({ api_key: 'ak_test_7ZdqNZE9QSlamtPbi5v030vmN1v1vj' }).then((client) =>
             client.transactions.calculateInstallmentsAmount({
                 id: order.code,
                 max_installments: 6,
@@ -28,60 +41,64 @@ export default function CreditCard({ order, validFields }) {
                 setInstallments(items);
             });
 
-        let {
-            card: {
-                card_holder_name,
-                card_number,
-                card_expiration_date,
-                card_cvv
-            }
-        } = pagarme.validate({ card: watch() });
-        makeExpirationSelect()
-    }, [watch]);
+    }, []);
+
+    React.useEffect(() => {
+
+        IMask(document.getElementById('card_number'), { mask: '0000 0000 0000 0000' });
+
+        let monthPattern = watch('expiration_month').length === 1 && '0' + watch('expiration_month');
+
+        let yearPattern = watch('expiration_year').split(0, 2)[1]
+
+        let card = { ...watch(), card_expiration_date: monthPattern + yearPattern }
+
+        let { card: { card_cvv, card_holder_name, card_number, card_expiration_date } } = pagarme.validate({ card: card });
+
+        let creditCardIsValid = [card_cvv, card_holder_name, card_number, card_expiration_date].every(value => value);
+
+        validFields(isValid && creditCardIsValid, { ...getValues() });
+
+        if (isValid && creditCardIsValid) {
+            pagarme.client
+                .connect({ api_key: "ak_test_7ZdqNZE9QSlamtPbi5v030vmN1v1vj" })
+                .then((client) => client.cards.create(card))
+                .then((card) => validFields(isValid && creditCardIsValid, { ...getValues(), card }));
+        }
+
+
+    }, [watch()]);
 
     const makeExpirationSelect = () => {
 
-        let months = [];
-        let years = [];
+        let months = [], years = [];
         for (let i = 1; i <= 12; i++) { months.push(i) }
         for (let i = new Date().getFullYear(); i <= new Date().getFullYear() + 20; i++) { years.push(i) }
 
-        setExpirationSelect({ months, years })
+        return { months, years }
     }
 
-    console.log(expirationSelect, 'asokdsoa')
-    // teste = years.call(() => moment().format('YYYY') + 1)
 
     return (
         <div >
-            <Input {...register('card_holder_name', { required: true })} label={'Nome do titular'} />
+            <Input placeholder={'Ex: João Pedro'} {...register('card_holder_name', { required: true })} label={'Nome do titular'} />
 
-            <Input {...register('card_number', { required: true })}
+            <Input id={'card_number'} {...register('card_number', { required: true })}
                 label={'Número do Cartão'}
-                inputMode={'numeric'}
                 type={'tel'}
                 placeholder={'0000 0000 0000 0000'} />
 
-            {/* <Input {...register('card_expiration_date', { required: true })}
-                label={'Expiração'}
-                inputMode={'numeric'}
-                type={'tel'}
-                placeholder={'30/21'} /> */}
             <label>Data de expiração</label>
-            <div style={{ display: 'flex' }}>
-                <select> {expirationSelect?.months?.map(month => <option value={month}>{month}</option>)}</select>
-                <select> {expirationSelect?.years?.map(year => <option value={year}>{year}</option>)}</select>
+            <div style={{ display: 'flex', gap: '10px' }}>
+                <select {...register('expiration_month', { required: true })}> {makeExpirationSelect()?.months?.map(month => <option value={month}>{month}</option>)}</select>
+                <select {...register('expiration_year', { required: true })}> {makeExpirationSelect()?.years?.map(year => <option value={year}>{year}</option>)}</select>
             </div>
+            <Input {...register('card_cvv', { required: true })} label={'CVV'} type={'tel'} placeholder={'123'} />
 
-            <Input {...register('card_cvv', { required: true })}
-                label={'CVV'}
-                type={'tel'}
-                placeholder={'123'} />
-
-
-            <select type={"text"} name={"installments"} className={"form-control"} onChange={'handleCreditCard'} defaultValue={1} >
+            <label>Parcelas</label>
+            <select {...register('installments', { required: true, value: 1 })} >
                 {installments?.map((item, key) => (
-                    <option key={key} value={item.installment} defaultValue={1}>
+                    <option key={key} defaultValue={1} value={item.installment}>
                         {`${item.installment}x ${new Intl.NumberFormat("pt-BR", { style: "currency", currency: "BRL", }).format((item.installment_amount / 100).toFixed(2))}`}
                     </option>
                 ))}

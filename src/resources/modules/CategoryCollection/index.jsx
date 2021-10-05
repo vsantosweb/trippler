@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react'
-import { tripScheduleList } from '../../../api/Trip/TripSchedule';
+import { tripScheduleList } from '../../../api/Trip/TripResource';
 import * as Collection from './style';
 import { Swiper, SwiperSlide } from "swiper/react";
 import SwiperCore, { Navigation } from "swiper";

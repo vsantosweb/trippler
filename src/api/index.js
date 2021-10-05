@@ -2,11 +2,8 @@
 import Cookie from 'js-cookie';
 import axios from 'axios';
 
-const baseURL = 'http://tripler.ws/api/v1';
-
-
 const api = axios.create({
-    baseURL: baseURL,
+    baseURL: process.env.NEXT_PUBLIC_APP_API_URL,
 });
 
 if (Cookie.get('token')) {

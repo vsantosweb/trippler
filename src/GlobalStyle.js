@@ -75,8 +75,17 @@ const GlobalStyle = createGlobalStyle`
 }
 
 select{
-  padding: 1em;
+  padding: 0.8em 0;
+  outline: none;
   width: 100%;
+  border-radius: ${({ theme }) => theme.defaultRadius};
+  padding:  ${({ theme }) => theme.defaultContainer.spacing};
+  border:none;
+  border-bottom: solid 1px #ddd;
+
+  background:transparent;
+  /* background-color: #f1f1f1; */
+  
 }
 input {
   width: 100%;

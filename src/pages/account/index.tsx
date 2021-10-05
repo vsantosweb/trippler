@@ -1,7 +1,6 @@
 import React from 'react'
 import { AuthContext } from '../../providers/auth/AuthProvider';
 import ProfileAvatar from '../../resources/components/ProfileAvatar';
-import { Button } from '../../resources/components/_Elements/Button';
 import withAuth from '../../utils/withAuth';
 import * as Styled from './styles';
 import Link from 'next/link';
@@ -12,7 +11,7 @@ type Props = {
 
 const Account = ({ layout }: Props) => {
 
-    const {user, signOut} = React.useContext(AuthContext);
+    const { user, signOut } = React.useContext(AuthContext);
 
 
 
@@ -20,7 +19,6 @@ const Account = ({ layout }: Props) => {
         layout('AppLayout')
     })
 
-    console.log(user.avatar)
     return (
         <React.Fragment>
             <Styled.ProfileDisplay>
@@ -31,12 +29,21 @@ const Account = ({ layout }: Props) => {
                 </Styled.ProfileInfo>
                 <a href={'/account/profile'}><i className={'las la-cog'}></i></a>
             </Styled.ProfileDisplay>
-
             <Link href={'/account/orders'}>
                 <Styled.AccountCard>
+                    <Styled.AccountCardIcon><i className="las la-file-alt"></i></Styled.AccountCardIcon>
                     <Styled.AccountCardContent>
-                        <Styled.AccountCardIcon><i className="las la-suitcase-rolling"></i></Styled.AccountCardIcon>
-                        <Styled.AccountCardTitle>Minhas Trips</Styled.AccountCardTitle>
+                        <Styled.AccountCardTitle>Reservas</Styled.AccountCardTitle>
+                        <Styled.AccountCardDescription>Veja os status das suas reservas</Styled.AccountCardDescription>
+                    </Styled.AccountCardContent>
+                    <Styled.AccountCardAction><i className={'las la-arrow-right'}></i></Styled.AccountCardAction>
+                </Styled.AccountCard>
+            </Link>
+            <Link href={'/account/orders'}>
+                <Styled.AccountCard>
+                    <Styled.AccountCardIcon><i className="las la-suitcase-rolling"></i></Styled.AccountCardIcon>
+                    <Styled.AccountCardContent>
+                        <Styled.AccountCardTitle>Trips</Styled.AccountCardTitle>
                         <Styled.AccountCardDescription>Veja todas as suas trips programas, em andamento, canceladas</Styled.AccountCardDescription>
                     </Styled.AccountCardContent>
                     <Styled.AccountCardAction><i className={'las la-arrow-right'}></i></Styled.AccountCardAction>
@@ -44,8 +51,8 @@ const Account = ({ layout }: Props) => {
             </Link>
 
             <Styled.AccountCard href={'/account/trips'}>
+                <Styled.AccountCardIcon><i className="las la-user"></i></Styled.AccountCardIcon>
                 <Styled.AccountCardContent>
-                    <Styled.AccountCardIcon><i className="las la-user"></i></Styled.AccountCardIcon>
                     <Styled.AccountCardTitle>Perfil</Styled.AccountCardTitle>
                     <Styled.AccountCardDescription>Altere seus dados cadastrais</Styled.AccountCardDescription>
                 </Styled.AccountCardContent>
@@ -53,8 +60,8 @@ const Account = ({ layout }: Props) => {
             </Styled.AccountCard>
 
             <Styled.AccountCard onClick={signOut}>
+                <Styled.AccountCardIcon><i className="las la-power-off"></i></Styled.AccountCardIcon>
                 <Styled.AccountCardContent>
-                    <Styled.AccountCardIcon><i className="las la-power-off"></i></Styled.AccountCardIcon>
                     <Styled.AccountCardTitle>Sair</Styled.AccountCardTitle>
                 </Styled.AccountCardContent>
                 <Styled.AccountCardAction><i className={'las la-arrow-right'}></i></Styled.AccountCardAction>

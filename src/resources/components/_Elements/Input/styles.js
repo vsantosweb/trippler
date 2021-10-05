@@ -8,7 +8,7 @@ export const Container = styled.div`
 export const Label = styled.label`
   display: flex;
   font-weight: 500;
-  margin-bottom: 0;
+  margin-top: 1em;
   text-align: left;
   flex: 0 0 25%;
   display: flex;

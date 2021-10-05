@@ -1,6 +1,4 @@
-import Axios from "axios";
 import ApiServer from "..";
-import api from "../../../api";
 
 export default async function getOrder(req, response) {
 

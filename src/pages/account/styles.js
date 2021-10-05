@@ -35,11 +35,11 @@ export const AccountCard = styled.a`
     border-bottom: solid 1px #ddd;
     color: inherit;
     padding: ${({ theme }) => theme.defaultContainer.spacing};
+    gap: 15px;
 `
 export const AccountCardContent = styled.div`
     display: flex;
     flex-direction: column;
-    gap: 10px;
     width: 100%;
 `
 

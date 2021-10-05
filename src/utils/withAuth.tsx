@@ -1,7 +1,5 @@
-import { useRouter } from 'next/dist/client/router';
 import React from 'react'
 import { AuthContext } from '../providers/auth/AuthProvider'
-import { GetServerSideProps } from 'next';
 
 export default function withAuth(Component: React.ElementType) {
 

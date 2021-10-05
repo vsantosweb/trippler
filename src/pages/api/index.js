@@ -5,10 +5,10 @@ import axios from 'axios';
 export default function ApiServer(req) {
 
     const api = axios.create({
-        baseURL: process.env.REACT_APP_API_URL,
+        baseURL: process.env.NEXT_PUBLIC_URL_API,
     });
 
-    if (req.cookies.token) {
+    if (req && req.cookies.token) {
         api.defaults.headers['Authorization'] = `Bearer ${req.cookies.token}`
     }
     

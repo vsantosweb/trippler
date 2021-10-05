@@ -1,7 +1,7 @@
 import Axios from "axios";
 import React, { useEffect, useState } from "react";
 
-import { tripScheduleShow } from "../../api/Trip/TripSchedule";
+import { tripScheduleShow } from "../../api/Trip/TripResource";
 
 import TripDetails from "../../resources/modules/TripDetails";
 import Trips from "../api/trips";
