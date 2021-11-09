@@ -17,7 +17,7 @@ export default function Nav({ overlay, props }) {
             <Navbar.Header>
                 <Navbar.Wrapper>
                     <Navbar.Area><Burger open={open} onClick={() => setOpen(!open)} /></Navbar.Area>
-                    <Navbar.Area> <Logo width="80px" /></Navbar.Area>
+                    <Navbar.Area> <Link href={'/'}><Logo width="80px" /></Link> </Navbar.Area>
                     <Navbar.Area> 
                         {/* <Navbar.Search /> */}
                     </Navbar.Area>

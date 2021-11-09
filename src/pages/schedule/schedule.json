@@ -1,0 +1,313 @@
+{
+    "uuid": "6c3c2e57-3c43-4189-a789-de0ceb82acad",
+    "start_date": "2021-10-24 12:33:01",
+    "end_date": "2021-10-26 12:33:01",
+    "has_package": 0,
+    "day_use": 0,
+    "for_adults": 0,
+    "published": 1,
+    "vacancies_quantity": 23,
+    "price": 239,
+    "discount_percent": 0,
+    "purchase_limit": 0,
+    "status": "Vagas Disponíveis",
+    "cancellation_policie": "Padrão (Deliberação Normativa)",
+    "period": {
+        "name": "Bate & Volta",
+        "slug": "bate-volta"
+    },
+    "boarding_locations": [
+        {
+            "id": 1,
+            "name": "Term. Grajaú"
+        },
+        {
+            "id": 2,
+            "name": "Term. Varginha"
+        }
+    ],
+    "roadmap": {
+        "name": "Quam At",
+        "description": "Earum eos aperiam enim magni facilis voluptatem. At vero suscipit eius magni eveniet soluta explicabo. Aut sit eius sint fuga recusandae eum dignissimos. Iste ad cum non dolor consequatur.",
+        "steps": [
+            {
+                "title": "Dolor",
+                "type": "date",
+                "event_date": "2021-10-24",
+                "description": "Et aut quod enim a consequatur tempora. In alias magnam veniam vitae. Laudantium fugiat amet quod accusantium ut.",
+                "values": [
+                    {
+                        "type": "food",
+                        "values": "Dolorem consequuntur quasi deleniti sit corrupti. Labore dolore quia et occaecati. Maiores voluptas nam voluptas ab fugit minus sunt. Voluptatum est inventore nihil dolorum ut."
+                    },
+                    {
+                        "type": "period",
+                        "values": "Aliquam laboriosam quas laborum blanditiis facere sit. Odio velit quae numquam sint officiis."
+                    },
+                    {
+                        "type": "local",
+                        "values": "Quod in non beatae. Eos qui eos et sed omnis culpa reiciendis dignissimos."
+                    },
+                    {
+                        "type": "local",
+                        "values": "Corrupti aut est nobis quos accusantium alias. Est quia doloribus dicta. Consequuntur ut dignissimos illum voluptates ab."
+                    },
+                    {
+                        "type": "food",
+                        "values": "In sit rerum repellendus nisi. Quia voluptate ad pariatur in praesentium doloribus. Et et et autem est."
+                    },
+                    {
+                        "type": "food",
+                        "values": "Est provident vero expedita."
+                    }
+                ]
+            },
+            {
+                "title": "Fuga",
+                "type": "local",
+                "event_date": "2021-10-24",
+                "description": "Consequatur sed aut repudiandae placeat ratione. Et quis voluptates atque minus et atque. Asperiores dolorem saepe assumenda laborum nisi suscipit quibusdam.",
+                "values": [
+                    {
+                        "type": "food",
+                        "values": "Ea qui ut exercitationem totam qui iste eligendi. Qui eveniet et officiis amet iste voluptatem. Rerum dicta nulla quo ad."
+                    },
+                    {
+                        "type": "local",
+                        "values": "Voluptas atque voluptas sit et sit facilis quo quod. Tenetur eum sunt nobis assumenda autem totam quia. Similique quia sunt quia beatae."
+                    },
+                    {
+                        "type": "food",
+                        "values": "Facere quisquam doloribus vel. Inventore voluptate ad nemo voluptatibus aut quia sit."
+                    }
+                ]
+            },
+            {
+                "title": "Corrupti",
+                "type": "date",
+                "event_date": "2021-10-24",
+                "description": "Eaque voluptatem sit rem reiciendis sunt qui laboriosam recusandae.",
+                "values": [
+                    {
+                        "type": "local",
+                        "values": "Officia voluptas veniam debitis fuga."
+                    },
+                    {
+                        "type": "food",
+                        "values": "Laboriosam odit quis quia officia. Et ab quo eos alias corrupti dolor. Consectetur nam quam debitis id sapiente et aut ipsa. Qui consequuntur sed explicabo rerum illum et magni."
+                    },
+                    {
+                        "type": "food",
+                        "values": "Consequatur officiis voluptate ipsam voluptas neque. Rerum tempora impedit iure aspernatur qui est consectetur. Neque fugit quo esse velit vitae incidunt ea."
+                    }
+                ]
+            },
+            {
+                "title": "Molestias",
+                "type": "time",
+                "event_date": "2021-10-24",
+                "description": "Qui est ea aut sequi ut itaque tempora. Labore id assumenda sit magni repudiandae hic expedita et. Vero tempore aspernatur tempora magni praesentium.",
+                "values": [
+                    {
+                        "type": "food",
+                        "values": "Eum doloremque officia qui repudiandae. Quibusdam sed soluta hic aut neque iure."
+                    },
+                    {
+                        "type": "food",
+                        "values": "Modi totam illo voluptas illum. Nesciunt corrupti nisi perferendis ut cupiditate aliquam ut."
+                    },
+                    {
+                        "type": "food",
+                        "values": "Delectus culpa aut voluptas ut eum et et."
+                    },
+                    {
+                        "type": "period",
+                        "values": "Occaecati adipisci dolores quidem ad. Sed repellendus excepturi deserunt omnis."
+                    },
+                    {
+                        "type": "period",
+                        "values": "At quam est ipsum dolor eius aspernatur qui."
+                    },
+                    {
+                        "type": "food",
+                        "values": "Est sit reprehenderit doloremque error. Deserunt iure perferendis minima aut sint provident tenetur."
+                    }
+                ]
+            },
+            {
+                "title": "Aut",
+                "type": "time",
+                "event_date": "2021-10-24",
+                "description": "Voluptate vero ipsum repellat ipsa incidunt ut ut. Deleniti ducimus sit expedita velit facilis ea. Quisquam facere vitae quia non est.",
+                "values": [
+                    {
+                        "type": "period",
+                        "values": "Officia voluptatem soluta vitae. Cupiditate reprehenderit numquam sed nam quia."
+                    },
+                    {
+                        "type": "period",
+                        "values": "Pariatur eaque eum aut odit qui sit."
+                    },
+                    {
+                        "type": "period",
+                        "values": "Aliquam ducimus natus omnis sequi adipisci ut minima. Esse velit blanditiis fugit saepe voluptas blanditiis quisquam non."
+                    },
+                    {
+                        "type": "food",
+                        "values": "Sint enim quidem sit qui. Est sed ipsum commodi eveniet consequuntur."
+                    },
+                    {
+                        "type": "food",
+                        "values": "Culpa qui cupiditate voluptas recusandae voluptatem enim. Blanditiis dolores quis quo aspernatur."
+                    }
+                ]
+            }
+        ]
+    },
+    "trip": {
+        "name": "Mattiemouth - West Linwood WV",
+        "slug": "mattiemouth-west-linwood-wv",
+        "description": "Quia ab rerum sequi culpa. Quas aut vero laboriosam deleniti. Voluptates ipsum quidem et laudantium eaque impedit impedit.",
+        "thumbnail": "http://lorempixel.com/g/700/700/",
+        "images": [
+            "http://lorempixel.com/g/700/700/",
+            "http://lorempixel.com/g/700/700/",
+            "http://lorempixel.com/g/700/700/",
+            "http://lorempixel.com/g/700/700/",
+            "http://lorempixel.com/g/700/700/",
+            "http://lorempixel.com/g/700/700/"
+        ],
+        "category": {
+            "name": "Praias",
+            "slug": "praias",
+            "color": "#5828e8"
+        },
+        "agency": {
+            "uuid": null,
+            "name": "Mario Bross Turismo LTDA",
+            "email": "mturimos@mturismo.com",
+            "phone": "15454555",
+            "document": null,
+            "logo": null
+        }
+    },
+    "passengers": [
+        {
+            "id": 1,
+            "name": "Adulto",
+            "amount": 28
+        },
+        {
+            "id": 2,
+            "name": "Menor",
+            "amount": 13
+        }
+    ],
+    "optional_packages": [
+        {
+            "name": "Passeio de Lancha",
+            "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
+            "images": null,
+            "price": 121,
+            "quantity": 9
+        }
+    ],
+    "packages": [
+        {
+            "name": "Casal",
+            "description": "Quarto privativo com ar condic. para 2 pessoas (cama de casal)",
+            "quantity": 2,
+            "amount": 150,
+            "shared": 0,
+            "accommodation": {
+                "name": "Pousada Sunset do sul",
+                "description": "Lorem impsum",
+                "site_url": null,
+                "address": null,
+                "geolocation": null,
+                "images": [
+                    "https://storage.googleapis.com/static-content-hc/sites/default/files/cataloina_porto_doble_balcon2_2.jpg",
+                    "https://www.iberian.property/media/image/2017/12/18/catalonia-a-a.jpg"
+                ]
+            },
+            "included_items": [
+                {
+                    "name": "piscina",
+                    "icon": "piscina"
+                },
+                {
+                    "name": "Ar Condicionado",
+                    "icon": "ar"
+                },
+                {
+                    "name": "Academia",
+                    "icon": "gym"
+                }
+            ]
+        },
+        {
+            "name": "Triplo",
+            "description": "Quarto privativo com ar condic. para 3 pessoas",
+            "quantity": 3,
+            "amount": 120,
+            "shared": 0,
+            "accommodation": {
+                "name": "Pousada Sunset do sul",
+                "description": "Lorem impsum",
+                "site_url": null,
+                "address": null,
+                "geolocation": null,
+                "images": [
+                    "https://storage.googleapis.com/static-content-hc/sites/default/files/cataloina_porto_doble_balcon2_2.jpg",
+                    "https://www.iberian.property/media/image/2017/12/18/catalonia-a-a.jpg"
+                ]
+            },
+            "included_items": [
+                {
+                    "name": "piscina",
+                    "icon": "piscina"
+                },
+                {
+                    "name": "Ar Condicionado",
+                    "icon": "ar"
+                },
+                {
+                    "name": "Academia",
+                    "icon": "gym"
+                }
+            ]
+        },
+        {
+            "name": "Único",
+            "description": "Vaga em quarto com ar condic. compartilhado para mulheres",
+            "quantity": 1,
+            "amount": 110,
+            "shared": 1,
+            "accommodation": {
+                "name": "Pousada Sunset do sul",
+                "description": "Lorem impsum",
+                "site_url": null,
+                "address": null,
+                "geolocation": null,
+                "images": [
+                    "https://storage.googleapis.com/static-content-hc/sites/default/files/cataloina_porto_doble_balcon2_2.jpg",
+                    "https://www.iberian.property/media/image/2017/12/18/catalonia-a-a.jpg"
+                ]
+            },
+            "included_items": [
+                {
+                    "name": "piscina",
+                    "icon": "piscina"
+                },
+                {
+                    "name": "Ar Condicionado",
+                    "icon": "ar"
+                },
+                {
+                    "name": "Academia",
+                    "icon": "gym"
+                }
+            ]
+        }
+    ]
+}

@@ -24,15 +24,15 @@
       "static/chunks/main.js",
       "static/chunks/pages/_error.js"
     ],
-    "/account/orders": [
+    "/account/login": [
       "static/chunks/webpack.js",
       "static/chunks/main.js",
-      "static/chunks/pages/account/orders.js"
+      "static/chunks/pages/account/login.js"
     ],
-    "/payment/[order]": [
+    "/trip/[uuid]": [
       "static/chunks/webpack.js",
       "static/chunks/main.js",
-      "static/chunks/pages/payment/[order].js"
+      "static/chunks/pages/trip/[uuid].js"
     ]
   },
   "ampFirstPages": []

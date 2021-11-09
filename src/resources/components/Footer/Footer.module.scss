@@ -1,9 +1,0 @@
-@import '../../styles/sass/main.scss';
-.footer {
-    background: #333;
-    color: #fff;
-    padding: 1em 0;
-    .footerWrapper {
-        @extend .containerWrapper;
-    }
-}

@@ -1,0 +1,127 @@
+{
+    "id": 1,
+    "uuid": "dc08a96c-2477-4de3-b842-d526c5144792",
+    "agency_name": "Mario Bross Turismo LTDA",
+    "agency_avatar": null,
+    "name": "Kianside - Jaunitaland PA",
+    "slug": "kianside-jaunitaland-pa",
+    "rating": 4,
+    "description": "Eius voluptates recusandae nemo eligendi autem hic fugiat. Quasi et laboriosam eaque accusamus. Dicta maxime aliquam eos. Fugit voluptas facere quia dolorem vero.",
+    "price_from": 80,
+    "schedules_count": 4,
+    "schedules": [
+        {
+            "uuid": "38c082b9-412d-40ff-a13b-505a819421bd",
+            "start_date": "2021-10-24 22:51:37",
+            "end_date": "2021-10-26 22:51:37",
+            "has_package": 0,
+            "day_use": 0,
+            "for_adults": 0,
+            "published": 1,
+            "vacancies_quantity": 53,
+            "price": 80,
+            "discount_percent": 0,
+            "purchase_limit": 0,
+            "status": "Vagas Disponíveis",
+            "cancellation_policie": "Padrão (Deliberação Normativa)",
+            "period": "Bate & Volta",
+            "boarding_locations": [
+                {
+                    "id": 1,
+                    "name": "Term. Grajaú"
+                },
+                {
+                    "id": 2,
+                    "name": "Term. Varginha"
+                }
+            ]
+        },
+        {
+            "uuid": "c9ad3853-003e-4857-9476-93cad387cfd3",
+            "start_date": "2021-10-24 22:51:37",
+            "end_date": "2021-10-26 22:51:37",
+            "has_package": 0,
+            "day_use": 0,
+            "for_adults": 0,
+            "published": 1,
+            "vacancies_quantity": 31,
+            "price": 661,
+            "discount_percent": 0,
+            "purchase_limit": 0,
+            "status": "Vagas Disponíveis",
+            "cancellation_policie": "Padrão (Deliberação Normativa)",
+            "period": "Bate & Volta",
+            "boarding_locations": [
+                {
+                    "id": 1,
+                    "name": "Term. Grajaú"
+                },
+                {
+                    "id": 2,
+                    "name": "Term. Varginha"
+                }
+            ]
+        },
+        {
+            "uuid": "88a7fba7-8ba3-403e-9b8c-414d89d366c9",
+            "start_date": "2021-10-24 22:51:37",
+            "end_date": "2021-10-26 22:51:37",
+            "has_package": 0,
+            "day_use": 0,
+            "for_adults": 0,
+            "published": 1,
+            "vacancies_quantity": 49,
+            "price": 152,
+            "discount_percent": 0,
+            "purchase_limit": 0,
+            "status": "Vagas Disponíveis",
+            "cancellation_policie": "Padrão (Deliberação Normativa)",
+            "period": "Bate & Volta",
+            "boarding_locations": [
+                {
+                    "id": 1,
+                    "name": "Term. Grajaú"
+                },
+                {
+                    "id": 2,
+                    "name": "Term. Varginha"
+                }
+            ]
+        },
+        {
+            "uuid": "95bfeb54-5d19-4619-8639-1646e22d52c2",
+            "start_date": "2021-10-24 22:51:37",
+            "end_date": "2021-10-26 22:51:37",
+            "has_package": 0,
+            "day_use": 0,
+            "for_adults": 0,
+            "published": 1,
+            "vacancies_quantity": 25,
+            "price": 596,
+            "discount_percent": 0,
+            "purchase_limit": 0,
+            "status": "Vagas Disponíveis",
+            "cancellation_policie": "Padrão (Deliberação Normativa)",
+            "period": "Bate & Volta",
+            "boarding_locations": [
+                {
+                    "id": 1,
+                    "name": "Term. Grajaú"
+                },
+                {
+                    "id": 2,
+                    "name": "Term. Varginha"
+                }
+            ]
+        }
+    ],
+    "thumbnail": "http://lorempixel.com/g/700/700/",
+    "images": [
+        "http://lorempixel.com/g/700/700/",
+        "http://lorempixel.com/g/700/700/",
+        "http://lorempixel.com/g/700/700/",
+        "http://lorempixel.com/g/700/700/",
+        "http://lorempixel.com/g/700/700/",
+        "http://lorempixel.com/g/700/700/"
+    ]
+}

@@ -11,11 +11,11 @@ const CardEvent = ({ data, category, image }) => {
                 <Styled.CardEventBody>
                     <Styled.CardEventImage src={image} />
                     {/* <Styled.CategoryTag> {category.name} </Styled.CategoryTag> */}
-                    <Styled.CardEventTitle>{data.trip.name}</Styled.CardEventTitle>
+                    <Styled.CardEventTitle>{data.name}</Styled.CardEventTitle>
                     <Styled.CardEventInfo>
                         <Styled.CardEventPriceWrapper>
                             <Styled.CardEventPriceText>A partir de</Styled.CardEventPriceText>
-                            <Styled.CardEventPrice>{new Intl.NumberFormat("pt-BR", { style: "currency", currency: "BRL", }).format(data.price)}</Styled.CardEventPrice>
+                            <Styled.CardEventPrice>{new Intl.NumberFormat("pt-BR", { style: "currency", currency: "BRL", }).format(data.price_from)}</Styled.CardEventPrice>
                         </Styled.CardEventPriceWrapper>
                     </Styled.CardEventInfo>
                 </Styled.CardEventBody>

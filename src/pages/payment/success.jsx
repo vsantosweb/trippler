@@ -12,7 +12,7 @@ function PaymentSuccess({ layout }) {
                 title={'Tudo certo, Bora Viajar!'}
                 icon={[<i className={'las la-check'}></i>]}
                 subTitle={'Sua reserva foi feita com sucesso, em breve você reberá novas instruções'}
-                extra={[<Button color={'primary'}>Minhas Reservas</Button>, <Button variant={'outlined'} color={'secondary'}>Início</Button>]}
+                extra={[<Button href={'/account/orders'} color={'primary'}>Minhas Reservasssss</Button>, <Button variant={'outlined'} color={'secondary'}>Início</Button>]}
             />
         </div>
     )

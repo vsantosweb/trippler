@@ -3,16 +3,17 @@ import { useForm } from 'react-hook-form'
 import { AuthContext } from '../../../providers/auth/AuthProvider'
 import Button from '../../../resources/components/_Elements/Button'
 import Input from '../../../resources/components/_Elements/Input'
-import AuthLayout from '../../../resources/layouts/AuthLayout'
 import withAuth from '../../../utils/withAuth';
 import GoogleLogin from 'react-google-login';
 
-function Login() {
+function Login({ layout }) {
 
     const { handleSubmit, register, formState: { isValid } } = useForm({ mode: onchange });
     const { signIn, socialLogin, _watch } = React.useContext(AuthContext);
     const [errorMessage, setErrorMessage] = React.useState(null);
 
+    React.useEffect(() => layout('AuthLayout'));
+    
     const submitCredentials = async (credentials) => {
 
         await signIn(credentials).then(response => {
@@ -41,7 +42,6 @@ function Login() {
 
     }
     return (
-        <AuthLayout>
             <form onSubmit={handleSubmit(submitCredentials)}>
                 <Input label={'Email'} placeholder={'Email, nome ou telefone celular'}
                     {...register('email', { required: true })}
@@ -75,7 +75,6 @@ function Login() {
                 />
 
             </form>
-        </AuthLayout>
     )
 }
 

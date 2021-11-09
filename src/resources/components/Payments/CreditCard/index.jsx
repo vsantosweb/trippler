@@ -51,9 +51,9 @@ export default function CreditCard({ order, validFields }) {
 
         let yearPattern = watch('expiration_year').split(0, 2)[1]
 
-        let card = { ...watch(), card_expiration_date: monthPattern + yearPattern }
+        let cardData = { ...watch(), card_expiration_date: monthPattern + yearPattern }
 
-        let { card: { card_cvv, card_holder_name, card_number, card_expiration_date } } = pagarme.validate({ card: card });
+        let { card: { card_cvv, card_holder_name, card_number, card_expiration_date } } = pagarme.validate({ card: cardData });
 
         let creditCardIsValid = [card_cvv, card_holder_name, card_number, card_expiration_date].every(value => value);
 
@@ -62,8 +62,8 @@ export default function CreditCard({ order, validFields }) {
         if (isValid && creditCardIsValid) {
             pagarme.client
                 .connect({ api_key: "ak_test_7ZdqNZE9QSlamtPbi5v030vmN1v1vj" })
-                .then((client) => client.cards.create(card))
-                .then((card) => validFields(isValid && creditCardIsValid, { ...getValues(), card }));
+                // .then((client) => client.cards.create(card))
+                .then((card) => validFields(isValid && creditCardIsValid, { ...cardData }));
         }
 
 
@@ -88,13 +88,12 @@ export default function CreditCard({ order, validFields }) {
                 type={'tel'}
                 placeholder={'0000 0000 0000 0000'} />
 
-            <label>Data de expiração</label>
-            <div style={{ display: 'flex', gap: '10px' }}>
-                <select {...register('expiration_month', { required: true })}> {makeExpirationSelect()?.months?.map(month => <option value={month}>{month}</option>)}</select>
-                <select {...register('expiration_year', { required: true })}> {makeExpirationSelect()?.years?.map(year => <option value={year}>{year}</option>)}</select>
+            <h4>Data de expiração</h4>
+            <div style={{ display: 'flex', gap: '10px', width: '100%' }}>
+                <label style={{  width: '100%' }}>Mês <select {...register('expiration_month', { required: true })}> {makeExpirationSelect()?.months?.map(month => <option key={month} value={month}>{month}</option>)}</select></label>
+                <label style={{  width: '100%' }}>Ano <select {...register('expiration_year', { required: true })}> {makeExpirationSelect()?.years?.map(year => <option key={year} value={year}>{year}</option>)}</select></label>
             </div>
-            <Input {...register('card_cvv', { required: true })} label={'CVV'} type={'tel'} placeholder={'123'} />
-
+            <Input {...register('card_cvv', { required: true, maxLength: 3 })} label={'CVV'} type={'tel'} maxLength={3} placeholder={'123'} />
             <label>Parcelas</label>
             <select {...register('installments', { required: true, value: 1 })} >
                 {installments?.map((item, key) => (

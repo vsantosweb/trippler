@@ -2,6 +2,6 @@
   "/_app": "pages/_app.js",
   "/_document": "pages/_document.js",
   "/_error": "pages/_error.js",
-  "/account/orders": "pages/account/orders.js",
-  "/payment/[order]": "pages/payment/[order].js"
+  "/account/login": "pages/account/login.js",
+  "/trip/[uuid]": "pages/trip/[uuid].js"
 }

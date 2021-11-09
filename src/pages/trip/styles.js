@@ -16,6 +16,84 @@ export const InfoDetails = styled.span`
   align-items: ${({ justify }) => justify};
 `;
 
+export const SchedulesContainer = styled.div`
+  padding: ${({ theme }) => theme.defaultContainer.spacing};
+  background-color: #f5f5f5;
+
+
+`
+export const TripScheduleCard = styled.div`
+  /* border: solid 1px #95979f; */
+  margin-bottom: 10px;
+  border-radius: ${({ theme }) => theme.defaultRadius};
+  padding: 5px;
+  background-color: #fff;
+  /* box-shadow: 0 8px 6px -6px rgb(0 0 0 / 10%); */
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  /* padding: ${({ theme }) => theme.defaultContainer.spacing}; */
+
+`
+
+export const TripScheduleCardHeader = styled.div`
+display: flex;
+align-items: center;
+`
+
+export const TripScheduleCardBody = styled.div`
+display: flex;
+align-items: center;
+margin: 10px 0;
+gap: 10px;
+
+`
+export const TripScheduleCardFooter = styled.div`
+display: flex;
+border-top: solid 1px #e3e3e3;
+
+justify-content: space-between;
+align-items: center;
+`
+export const TripSchedulePrice = styled.div`
+font-weight: bold;
+font-size: 20px;
+`
+export const TripScheduleStatus = styled.div`
+font-weight: bold;
+color: green;
+font-size: 12px;
+padding: 0 3px;
+border-radius: 4px;
+`
+
+export const TripScheduleBoardings = styled.div`
+display: flex;
+flex-wrap: wrap-reverse;
+justify-content: flex-start;
+gap: 3px;
+flex: 1;
+`
+export const TripScheduleBoarding = styled.div`
+ border:solid 1px ${({ theme }) => theme.colors.primary};
+ color: ${({ theme }) => theme.colors.primary};
+ padding:0 4px;
+ border-radius: 4px;
+ font-size: 12px;
+`
+export const TripScheduleBoardingIcon = styled.div`
+ /* background-color: ${({ theme }) => theme.colors.secondary};; */
+ height: 35px;
+ flex: 0 0 35px;
+ border-radius: 50px;
+ text-align: center;
+ display: flex;
+ align-items: center;
+ justify-content: center;
+ font-size: 1.4em;
+`
+
+
 export const InfoTop = styled.div``;
 export const InfoPriceValue = styled.span``;
 
@@ -28,7 +106,7 @@ export const Period = styled.div`
   color: #555;
 `;
 export const Details = styled.section`
-  padding: .8em;
+  padding: 0.8em;
 
   ${Name} {
     font-size: 24px;
@@ -75,9 +153,9 @@ export const PackageItem = styled.div`
   gap: 0.5em;
   background-color: ${({ theme }) => theme.colors.primary};
   color: #fff;
-  
   justify-content: space-between;
 `;
+
 export const PackageTitle = styled.h3`
   font-weight: bold;
   font-size: 1.4em;
@@ -156,6 +234,7 @@ export const AccommodationDetailList = styled.ul`
 
 export const PackageBodySection = styled.div``;
 export const AccommodationTitle = styled.h6``;
+
 export const PackageBody = styled.div`
   max-height: calc(100% - 80px);
   overflow-y: auto;
@@ -201,4 +280,32 @@ export const PriceInfo = styled.div`
 export const Price = styled.div`
   font-weight: bold;
   font-size: 1.8em;
+`;
+
+export const TripFeaturesNav = styled.nav`
+  padding: 0 0.8em;
+`;
+export const TripFeaturesNavList = styled.ul`
+  display: flex;
+  gap: 20px;
+`;
+export const TripFeaturesNavListItem = styled.li`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  &:hover {
+    cursor: pointer;
+  }
+`;
+export const TripFeatureIcon = styled.li`
+  width: 70px;
+  height: 70px;
+  border-radius: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.7em;
+  background-color: #f1f1f1;
 `;

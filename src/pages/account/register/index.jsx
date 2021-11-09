@@ -3,15 +3,15 @@ import { useForm } from 'react-hook-form'
 import { AuthContext } from '../../../providers/auth/AuthProvider'
 import Button from '../../../resources/components/_Elements/Button'
 import Input from '../../../resources/components/_Elements/Input'
-import AuthLayout from '../../../resources/layouts/AuthLayout'
-import withAuth from '../../../utils/withAuth';
 import GoogleLogin from 'react-google-login';
 
-function Register() {
+function Register({ layout }) {
 
     const { handleSubmit, register, formState: { isValid } } = useForm({ mode: onchange });
     const { signIn, socialLogin, _watch, signUp } = React.useContext(AuthContext);
     const [errorMessage, setErrorMessage] = React.useState(null);
+
+    React.useEffect(() => layout('AuthLayout'));
 
     const submitCredentials = async (credentials) => {
 
@@ -32,20 +32,18 @@ function Register() {
     const sigInWithGoogle = async ({ profileObj }) => {
 
         await socialLogin({
-
             auth_provider: 'google',
             provider_id: profileObj.googleId,
             email: profileObj.email,
             name: profileObj.name,
             avatar: profileObj.imageUrl
-
         });
-
         _watch();
 
     }
+
     return (
-        <AuthLayout>
+        <React.Fragment>
             <form onSubmit={handleSubmit(handleSubmitRegister)}>
                 <Input label={'Nome'} placeholder={'Digite seu nome'}
                     {...register('name', { required: true })}
@@ -74,13 +72,14 @@ function Register() {
 
             <GoogleLogin
                 className={'google-button'}
-                clientId="645551867105-2j5hgd2nqi052pjud5lnpv3nhi3c6eot.apps.googleusercontent.com"
+                clientId={process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID}
                 buttonText="Sign in with Google"
                 onSuccess={(response) => sigInWithGoogle(response)}
                 onFailure={(response) => console.log(response)}
                 cookiePolicy={'single_host_origin'}
             />
-        </AuthLayout>
+        </React.Fragment>
+
     )
 }
 

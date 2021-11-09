@@ -14,10 +14,10 @@ const mediaSizes = {
 }
 
 export default function CategoryCollection({ data }) {
-
+    console.log(data.trips, 'okdsaodkaso')
     return (
         data.map((category, key) => (
-            category.trip_schedules.length > 0 && <Collection.Container key={key}>
+            <Collection.Container key={key}>
                 <Collection.Header>
                     <Collection.Title>{category.name} </Collection.Title>
                     <div>
@@ -26,7 +26,7 @@ export default function CategoryCollection({ data }) {
                     </div>
                 </Collection.Header>
 
-                <Swiper
+                 <Swiper
                     navigation={{ nextEl: `.el-${category.id}-next`, prevEl: `.el-${category.id}-prev` }}
                     direction="horizontal"
                     spaceBetween={10}
@@ -34,9 +34,9 @@ export default function CategoryCollection({ data }) {
                     breakpoints={mediaSizes}
                     freeMode={true}
                 >
-                    {category.trip_schedules.map((schedule, key) => (
+                    {category.trips.map((trip, key) => (
                         <SwiperSlide key={key} >
-                            <CardEvent key={key} data={schedule} category={category} image={'https://picsum.photos/id/' + Math.floor(Math.random() * 500) + '/500/350.jpg'} />
+                            <CardEvent key={key} data={trip} category={category} image={'https://picsum.photos/id/' + Math.floor(Math.random() * 500) + '/500/350.jpg'} />
                         </SwiperSlide>
                     ))}
                 </Swiper>

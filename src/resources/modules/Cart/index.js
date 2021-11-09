@@ -1,29 +1,17 @@
 import React, { useState } from "react"
 import { useDispatch } from 'react-redux';
 
-export default function useCart(tripSchedule) {
+export default function useCart() {
 
-    let ticketTypes = tripSchedule.passengers.map(passenger => ({
-        type: passenger.name,
-        description: passenger.description,
-        price: tripSchedule.price,
-        tax: passenger.pivot.amount,
-        unit_price: passenger.pivot.amount + tripSchedule.price,
-        total: passenger.pivot.amount + tripSchedule.price,
-        quantity: passenger.name === 'Adulto' ? 1 : 0,
-        optionals: [],
-        info: null,
-    }));
-
-    console.log(ticketTypes)
-    const [passengerTypes, setPassengerTypes] = useState(ticketTypes);
+    const [passengerTypes, setPassengerTypes] = useState(null);
     const [ticketTotal, setTicketTotal] = useState(0);
+    const [scheduleData, setScheduleData] = useState(0);
+
     const [boarding, setBoarding] = useState(false);
     const [validCart, setCartValid] = useState(false);
-    const [tickets, setTickets] = useState([ticketTypes.filter(ticketTypes => ticketTypes.type === 'Adulto')[0]]);
+    const [tickets, setTickets] = useState([]);
 
     const [cart, setCart] = useState({
-        boarding: false,
         tickets: false
     });
 
@@ -31,27 +19,46 @@ export default function useCart(tripSchedule) {
 
     React.useEffect(() => {
 
-        setCart({ ...cart, tickets, boarding });
+        setCart({ ...cart, tickets });
 
     }, [tickets, boarding])
 
-    console.log(cart)
+    console.log(scheduleData)
 
     React.useEffect(() => {
+
+        if (scheduleData) {
+            
+            let ticketTypes = scheduleData.passengers.map(passenger => ({
+                type: passenger.name,
+                description: passenger.description,
+                price: scheduleData.price,
+                tax: passenger.amount,
+                unit_price: passenger.amount + scheduleData.price,
+                total: passenger.amount + scheduleData.price,
+                quantity: passenger.name === 'Adulto' ? 1 : 0,
+                optionals: [],
+                info: null,
+            }));
+
+            setPassengerTypes(ticketTypes);
+
+            setTickets([ticketTypes.filter(ticketTypes => ticketTypes.type === 'Adulto')[0]])
+        }
 
         if (!Object.values(cart).every(el => el)) {
             return setCartValid(false)
         }
         setCartValid(true)
 
-    });
+    }, [scheduleData]);
 
 
     function addTicket(passengerTypes) {
 
         passengerTypes.quantity = passengerTypes.quantity + 1;
         // passengerTypes.total = passengerTypes.total + passengerTypes.price;
-        
+
         setTickets([passengerTypes, ...tickets]);
 
         return console.log(passengerTypes, 'TICKET')
@@ -74,5 +81,5 @@ export default function useCart(tripSchedule) {
 
     const dispatchCart = () => dispatch({ type: 'ADD_TO_CART', payload: cart });
 
-    return { addTicket, removeTicket, setBoarding, tickets, passengerTypes, ticketTotal, cart, validCart, dispatchCart }
+    return { addTicket, removeTicket, setBoarding, setScheduleData, tickets, passengerTypes, ticketTotal, cart, validCart, dispatchCart }
 }

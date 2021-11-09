@@ -1,9 +1,9 @@
 import styled from "styled-components";
 
 export const CardEvent = styled.div`
-  /* border: solid 1px #ccc; */
   border-radius: ${({ theme }) => theme.radiusDefault};
   background: #fff;
+  min-height: 289px;
   /* border: solid 1px #ddd; */
   margin-bottom: 2em;
   -khtml-user-select: none !important;
@@ -81,7 +81,6 @@ export const CardEventTitle = styled.div`
   padding: 0 8px;
   margin-bottom: 0;
   font-size: 16px;
-  margin-top: 0.7em;
   display: -webkit-box !important;
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;

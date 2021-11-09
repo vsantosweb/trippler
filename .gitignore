@@ -5,6 +5,7 @@
 /.pnp
 /.next
 .next
+.nextt/
 .pnp.js
 
 # testing

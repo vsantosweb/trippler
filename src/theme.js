@@ -1,6 +1,7 @@
 import React from "react";
 import { ThemeProvider } from "styled-components";
 import GlobalStyle from "./GlobalStyle";
+import { ChakraProvider } from "@chakra-ui/react"
 
 const theme = {
     defaultContainer: {
@@ -8,8 +9,8 @@ const theme = {
         spacing: '.8em'
     },
     colors: {
-        primary: '#7c00ff',
-        secondary: '#ff9800' /*'#e6207e'*/,
+        primary: '#571d9f',
+        secondary: '#ffcc3e' /*'#e6207e'*/,
         text: '#333',
         background: '#fff',
         accent: '#d396c3',
@@ -59,7 +60,9 @@ const Theme = ({ children }) => (
 
     <ThemeProvider theme={theme}>
         <GlobalStyle />
-        {children}
+        <ChakraProvider>
+            {children}
+        </ChakraProvider>
     </ThemeProvider>
 );
 

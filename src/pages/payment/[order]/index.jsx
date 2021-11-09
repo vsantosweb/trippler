@@ -7,64 +7,66 @@ import Button from '../../../resources/components/_Elements/Button';
 import Drawer from '../../../resources/components/Drawer';
 import { useForm } from 'react-hook-form';
 import CreditCard from '../../../resources/components/Payments/CreditCard';
-import order from '../order.json';
+// import order from '../order.json';
+import api from '../../../api';
+import { OrderListItem } from '../../../resources/components/OrderList';
 
-// export async function getServerSideProps({ req, query }) {
+export async function getServerSideProps({ req, query }) {
 
-//     const { data } = await getOrder(req, query.order);
+    const { data } = await getOrder(req, query.order);
 
-//     return { props: { order: data } }
-// }
+    return { props: { order: data } }
+}
 
-function Payment({ layout }) {
+function Payment({ layout, order }) {
 
     const [openPayment, setOpenPayMent] = React.useState(false);
     const [paymentMethodisValid, setPaymentMethodisValid] = React.useState(false);
     const [paymentData, setPaymentData] = React.useState(null);
-
+    const [paymentButtonText, setPaymentButtonText] = React.useState('Finalizar Compra');
+    const [paymentSubmited, setPaymentSubmited] = React.useState(false);
     const { register, watch, handleSubmit, formState: { isValid } } = useForm({ mode: 'onChange' });
     let cardData = null;
 
     React.useEffect(() => { layout('AppLayout') });
 
     const submitPayment = (e) => {
-        console.log(cardData, 'xablau')
+
+        setPaymentSubmited(true);
+        setPaymentButtonText('Processando...')
+        api.post('/client/customer/orders/payment', {
+            order: order.code,
+            payment_method: 'credit_card',
+            ...cardData,
+        }).then(response => {
+            if (!response.data.error && response.data.message === 'processing') {
+                window.location.href = `/payment/${response.data.data}/success`
+            }
+            setPaymentButtonText('Finalizar Compra')
+
+            setPaymentMethodisValid(true);
+
+        })
     }
-
-
+    console.log(paymentMethodisValid)
     const validateCard = (validForm, formData) => {
-        console.log(validForm,'XKASODKASODKSA')
         setPaymentMethodisValid(validForm);
-
         cardData = formData;
     }
+
     return (
         <Styled.Container>
-            <Styled.Session>
-                <Styled.SessionHeader>
-                    <Styled.SessionTitle>{order.ticket.trip_schedule.trip.name}</Styled.SessionTitle>
-                    <Styled.SessionSubTitle>{order.ticket.trip_schedule.trip.agency.name}</Styled.SessionSubTitle>
-                </Styled.SessionHeader>
-                <Styled.SessionBody>
-                    <Styled.CheckIn>
-                        <Styled.CheckInfo>
-                            <Styled.CheckTitle>Check-In</Styled.CheckTitle>
-                            <Styled.CheckDate>{moment(order.ticket.trip_schedule.start_date).format('lll')}</Styled.CheckDate>
-                        </Styled.CheckInfo>
-                        <Styled.CheckInfo>
-                            <Styled.CheckTitle>Check-Out</Styled.CheckTitle>
-                            <Styled.CheckDate>{moment(order.ticket.trip_schedule.end_date).format('lll')}</Styled.CheckDate>
-                        </Styled.CheckInfo>
-                    </Styled.CheckIn>
-                    <Styled.Boarding>
-                        <span><i className={'las la-bus'}></i> Embarque </span>
-                        <span><i className={'las la-arrow-right'}></i></span>
-                        <span style={{ flex: 1 }}>{order.ticket.boarding.name} - {order.ticket.boarding.departure_time}</span>
-
-                    </Styled.Boarding>
-                    <small>*Não toleramos atrasos, fique atento aos horários de check-in e check-out.</small>
-                </Styled.SessionBody>
-            </Styled.Session>
+            <OrderListItem
+                tripTitle={order.ticket.trip_schedule.trip.name}
+                agencyName={order.ticket.trip_schedule.trip.agency.name}
+                order={order}
+                startDate={moment(order.ticket.trip_schedule.start_date).format('lll')}
+                endDate={moment(order.ticket.trip_schedule.end_date).format('lll')}
+                boradingLocation={order.ticket.boarding.name}
+                departureTime={order.ticket.boarding.departure_time}
+                orderStatus={order.status}
+                expireAt={moment(order.expire_at)}
+            />
 
             <Styled.Session>
                 <Styled.SessionHeader>
@@ -89,7 +91,13 @@ function Payment({ layout }) {
                     </Styled.TotalArea>
                 </Styled.SessionFooter>
             </Styled.Session>
-            <Button onClick={() => setOpenPayMent(true)} icon={<span className={'las la-lock'}>{new Intl.NumberFormat("pt-BR", { style: "currency", currency: "BRL", }).format(order.total)}</span>} color={'secondary'}>Pagamento</Button>
+            {order.status === 3 && <Button
+                onClick={() => setOpenPayMent(true)}
+                icon={<span className={'las la-lock'}>{new Intl.NumberFormat("pt-BR", { style: "currency", currency: "BRL", }).format(order.total)}</span>}
+                color={'secondary'}>
+                Pagamento
+            </Button>
+            }
 
 
             <Drawer open={openPayment} title={'Formas de pagamento'} onClose={setOpenPayMent}>
@@ -97,7 +105,7 @@ function Payment({ layout }) {
                     <form onSubmit={handleSubmit(submitPayment)}>
                         <Styled.PaymentMethod>
                             <Styled.PaymentMethodHeader>
-                                <Styled.PaymentMethodName for={'credit_card'}>Cartão de Crédito</Styled.PaymentMethodName>
+                                <Styled.PaymentMethodName htmlFor={'credit_card'}>Cartão de Crédito</Styled.PaymentMethodName>
                                 <Styled.PaymentMethodControl>
                                     <input id={'credit_card'} {...register('payment_method', { required: true })} value={'credit_card'} type={'radio'} />
                                 </Styled.PaymentMethodControl>
@@ -107,11 +115,15 @@ function Payment({ layout }) {
                                 <CreditCard
                                     order={order}
                                     register={register}
-                                    validFields={(isValid, formData) => validateCard(isValid, formData)} />}
+                                    validFields={(isValid, formData) => validateCard(isValid, formData)}
+                                />}
 
                         </Styled.PaymentMethod>
                         {/* <label style={{ display: 'flex' }}> <span><input type={'checkbox'} /></span> <small>Aceito as condições do Contrato de Prestação de Serviços de Turismo.</small></label> */}
-                    <Button disabled={!paymentMethodisValid} onClick={submitPayment} color={'primary'}>Finalizar Compra</Button>
+                        {paymentSubmited ?
+                            <Button disabled={paymentSubmited} color={'primary'}>{paymentButtonText}</Button> :
+                            <Button disabled={!paymentMethodisValid} onClick={submitPayment} color={'primary'}>{paymentButtonText}</Button>
+                        }
                     </form>
 
                 </Styled.PaymentMethods>
