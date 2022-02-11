@@ -67,7 +67,7 @@
     ]
   },
   "devDependencies": {
-    "node-sass": "4",
+    "node-sass": "7",
     "sass-loader": "^12.1.0"
   }
 }
