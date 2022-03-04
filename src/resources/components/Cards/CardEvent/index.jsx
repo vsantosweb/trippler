@@ -19,7 +19,15 @@ const CardEvent = ({ data, category, image }) => {
                         </Styled.CardEventPriceWrapper>
                     </Styled.CardEventInfo>
                 </Styled.CardEventBody>
+                
             </Link>
+            <Styled.CardEventFooter>
+                    <Styled.OwnerInfo>
+                    <Styled.OwnerImage><img src={'https://i.picsum.photos/id/395/500/350.jpg?hmac=dTiIr52Z88T2mgCLRjX9QcSVtwpiK6_jhlOaduyfyAE'} /></Styled.OwnerImage>
+                    <Styled.OwnerName>test</Styled.OwnerName>
+
+                    </Styled.OwnerInfo>
+                </Styled.CardEventFooter>
         </Styled.CardEvent>
     );
 }
