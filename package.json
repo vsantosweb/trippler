@@ -21,7 +21,7 @@
     "framer-motion": "4",
     "imask": "^6.2.2",
     "js-cookie": "^2.2.1",
-    "moment": "^2.29.0",
+    "moment": "^2.29.2",
     "moment-countdown": "^0.0.3",
     "next": "^latest",
     "next-api-middleware": "^1.0.1",
